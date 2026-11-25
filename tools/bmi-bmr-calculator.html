@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMI 비만도 & 기초대사량(BMR)·하루 권장 칼로리 계산기 | ToolBox Hub</title>
+  <meta name="description" content="키, 몸무게, 나이, 성별, 활동량을 입력하면 대한비만학회 기준 BMI 비만도 판정, 기초대사량(BMR), 그리고 다이어트·유지·증량 목표별 하루 권장 칼로리를 계산합니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="BMI 비만도 & 기초대사량(BMR) 칼로리 계산기 | ToolBox Hub" />
+  <meta property="og:description" content="한국인 기준 BMI 체질량지수와 다이어트용 하루 권장 칼로리(TDEE)를 1초 만에 계산하세요." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/tools/bmi-bmr-calculator.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/tools/bmi-bmr-calculator.html" />
+
+  <meta name="tool:title" content="BMI 비만도 & 기초대사량 계산기" />
+  <meta name="tool:category" content="생활·유틸" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="⚖️" />
+  <meta name="tool:summary" content="대한비만학회 기준 BMI 비만도 판정, 기초대사량(BMR), 다이어트·증량 권장 칼로리를 계산합니다." />
+  <meta name="tool:keywords" content="BMI,비만도,기초대사량,BMR,TDEE,칼로리계산기,다이어트,표준체중" />
+  <meta name="tool:order" content="16" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "BMI 비만도 & 기초대사량(BMR)·하루 권장 칼로리 계산기",
+        "url": "https://toolboxhub-kr.github.io/tools/bmi-bmr-calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "대한비만학회 기준 BMI 지수와 Mifflin-St Jeor 공식 기반 기초대사량 및 일일 권장 칼로리를 계산합니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "한국(대한비만학회) BMI 비만 기준은 서양과 다른가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네. 서양(WHO)은 BMI 25 이상을 과체중, 30 이상을 비만으로 보지만, 한국인(아시아-태평양 기준)은 18.5 미만 저체중, 18.5~22.9 정상, 23~24.9 과체중(비만 전단계), 25 이상을 비만으로 판정합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "다이어트할 때 하루 칼로리를 기초대사량보다 적게 먹어도 되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "권장하지 않습니다. 기초대사량(BMR) 이하로 장기간 섭취하면 근손실과 대사 저하(요요 현상)가 오기 쉽습니다. 유지 칼로리(TDEE)에서 300~500kcal 정도만 줄이는 것이 가장 건강하고 지속 가능합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "근육량이 많은 사람도 BMI로 비만을 판단할 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "BMI는 근육량과 체지방을 구분하지 못하므로, 헬스·운동으로 근육량이 많은 경우 BMI가 높게 나와도 실제로는 건강한 상태일 수 있습니다. 체지방률(인바디)과 허리둘레를 함께 확인하세요."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>생활·유틸</span> <span>›</span> <span>BMI & 기초대사량 계산기</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>⚖️ BMI 비만도 & 기초대사량(BMR)·권장 칼로리 계산기</h1>
+      <p>한국인 기준 BMI 체질량지수와 표준체중, 다이어트·유지·증량 목표별 하루 권장 칼로리를 계산합니다.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">신체 정보 입력</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="bm-gender">성별</label>
+              <select id="bm-gender">
+                <option value="male" selected>남성</option>
+                <option value="female">여성</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="bm-age">나이 (만)</label>
+              <div class="input-group has-unit">
+                <input type="number" id="bm-age" value="30" min="10" max="100" />
+                <span class="input-unit">세</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="bm-height">키 (신장)</label>
+              <div class="input-group has-unit">
+                <input type="number" id="bm-height" value="175" min="100" max="230" step="0.5" />
+                <span class="input-unit">cm</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="bm-weight">몸무게 (체중)</label>
+              <div class="input-group has-unit">
+                <input type="number" id="bm-weight" value="70" min="25" max="250" step="0.5" />
+                <span class="input-unit">kg</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="field-label" for="bm-act">평소 활동량 수준</label>
+            <select id="bm-act">
+              <option value="1.2">거의 운동 안 함 (사무직·좌식 생활)</option>
+              <option value="1.375" selected>가벼운 활동 (주 1~3회 가벼운 운동)</option>
+              <option value="1.55">보통 활동 (주 3~5회 규칙적 운동)</option>
+              <option value="1.725">활발한 활동 (주 6~7회 고강도 운동)</option>
+              <option value="1.9">매우 활발 (운동선수·육체노동)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div class="result-highlight" id="bm-hl">
+            <div class="rh-label">BMI 체질량지수 (대한비만학회 기준)</div>
+            <div class="rh-value" id="bm-bmi">22.9 · 정상</div>
+            <div class="rh-sub" id="bm-std-range">정상 체중 범위: 0kg ~ 0kg</div>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi-box">
+              <div class="kpi-label">기초대사량 (BMR)</div>
+              <div class="kpi-value text-primary" id="bm-bmr">0 kcal</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">체중 유지 칼로리 (TDEE)</div>
+              <div class="kpi-value text-success" id="bm-tdee">0 kcal</div>
+            </div>
+          </div>
+
+          <ul class="breakdown-list">
+            <li><span>🥗 체중 감량 (다이어트, -500 kcal)</span><strong id="bm-cut" style="color:var(--primary)">0 kcal / 일</strong></li>
+            <li><span>⚖️ 현재 체중 유지 (TDEE)</span><strong id="bm-maint">0 kcal / 일</strong></li>
+            <li><span>💪 근육 증량 (벌크업, +300 kcal)</span><strong id="bm-bulk" style="color:var(--success)">0 kcal / 일</strong></li>
+            <li><span>권장 단백질 섭취량 (체중 × 1.4g)</span><strong id="bm-protein">0 g / 일</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>BMI 및 기초대사량(Mifflin-St Jeor) 계산 공식</h2>
+      <div class="formula-box">
+        BMI = 체중(kg) ÷ [키(m) × 키(m)]<br />
+        남성 BMR = (10 × 체중) + (6.25 × 키) - (5 × 나이) + 5<br />
+        여성 BMR = (10 × 체중) + (6.25 × 키) - (5 × 나이) - 161<br />
+        일일 에너지 소비량(TDEE) = BMR × 활동량 계수 (1.2 ~ 1.9)
+      </div>
+      <h2>건강한 다이어트 & 식단 활용 팁</h2>
+      <div class="tip-box">
+        <strong>💡 체지방 1kg 감량 = 약 7,700 kcal 적자:</strong> 매일 유지 칼로리(TDEE)보다 500kcal 적게 섭취하면 일주일에 약 0.45~0.5kg(한 달 약 2kg)씩 근손실 없이 가장 이상적으로 감량할 수 있습니다.
+      </div>
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>한국(대한비만학회) BMI 비만 기준은 어떻게 나뉘나요?</summary>
+          <div class="faq-answer">18.5 미만 저체중, 18.5~22.9 정상, 23.0~24.9 과체중(비만 전단계), 25.0~29.9 1단계 비만, 30.0~34.9 2단계 비만, 35.0 이상 고도비만으로 구분합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>다이어트할 때 기초대사량보다 적게 먹으면 안 되나요?</summary>
+          <div class="faq-answer">기초대사량 이하의 극단적인 절식은 근육을 빠르게 분해하고 기초대사량 자체를 떨어뜨려 요요 현상을 유발합니다. 최소한 BMR 이상은 섭취하면서 운동을 병행하세요.</div>
+        </details>
+        <details class="faq-item">
+          <summary>표준체중은 어떻게 계산하나요?</summary>
+          <div class="faq-answer">정상 BMI 범위(18.5~22.9)에 해당하는 체중 구간을 키의 제곱(m²)에 곱해 가장 건강한 정상 체중 범위를 산출합니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      function update() {
+        const g = document.getElementById("bm-gender").value;
+        const age = Math.max(10, Number(document.getElementById("bm-age").value) || 30);
+        const hCm = Math.max(100, Number(document.getElementById("bm-height").value) || 170);
+        const wKg = Math.max(20, Number(document.getElementById("bm-weight").value) || 65);
+        const act = Number(document.getElementById("bm-act").value) || 1.375;
+
+        const hM = hCm / 100;
+        const bmi = wKg / (hM * hM);
+
+        let grade = "정상", bg = "linear-gradient(135deg, #059669 0%, #10b981 100%)";
+        if (bmi < 18.5) { grade = "저체중"; bg = "linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)"; }
+        else if (bmi < 23) { grade = "정상"; }
+        else if (bmi < 25) { grade = "과체중"; bg = "linear-gradient(135deg, #d97706 0%, #f59e0b 100%)"; }
+        else if (bmi < 30) { grade = "1단계 비만"; bg = "linear-gradient(135deg, #ea580c 0%, #dc2626 100%)"; }
+        else { grade = "고도비만"; bg = "linear-gradient(135deg, #b91c1c 0%, #991b1b 100%)"; }
+
+        const minW = 18.5 * hM * hM;
+        const maxW = 22.9 * hM * hM;
+        const bmr = 10 * wKg + 6.25 * hCm - 5 * age + (g === "male" ? 5 : -161);
+        const tdee = bmr * act;
+        const cut = Math.max(bmr, tdee - 500);
+        const bulk = tdee + 300;
+
+        document.getElementById("bm-hl").style.background = bg;
+        document.getElementById("bm-bmi").textContent = `${bmi.toFixed(1)} · ${grade}`;
+        document.getElementById("bm-std-range").textContent = `정상 체중 범위: ${minW.toFixed(1)}kg ~ ${maxW.toFixed(1)}kg`;
+        document.getElementById("bm-bmr").textContent = `${TBH.fmtNum(Math.round(bmr))} kcal`;
+        document.getElementById("bm-tdee").textContent = `${TBH.fmtNum(Math.round(tdee))} kcal`;
+        document.getElementById("bm-cut").textContent = `${TBH.fmtNum(Math.round(cut))} kcal / 일`;
+        document.getElementById("bm-maint").textContent = `${TBH.fmtNum(Math.round(tdee))} kcal / 일`;
+        document.getElementById("bm-bulk").textContent = `${TBH.fmtNum(Math.round(bulk))} kcal / 일`;
+        document.getElementById("bm-protein").textContent = `${Math.round(wKg * 1.4)} g / 일`;
+      }
+
+      ["bm-gender", "bm-age", "bm-height", "bm-weight", "bm-act"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", update);
+        document.getElementById(id).addEventListener("change", update);
+      });
+      update();
+    })();
+  </script>
+</body>
+</html>

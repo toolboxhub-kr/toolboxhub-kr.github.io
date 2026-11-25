@@ -99,5 +99,105 @@ window.TOOLS_REGISTRY = [
     "icon": "📈",
     "summary": "적립식 복리 투자 성장 그래프와 목표 자산(1억·10억 등) 달성까지 걸리는 기간을 계산합니다.",
     "keywords": "복리계산기,적립식투자,수익률,목표자산,72의법칙,은퇴자금,ETF,재테크"
+  },
+  {
+    "slug": "brokerage-fee",
+    "url": "tools/brokerage-fee.html",
+    "title": "부동산 중개보수(복비) 계산기",
+    "category": "금융·세금",
+    "category_slug": "finance",
+    "icon": "🏢",
+    "summary": "주택·오피스텔 매매, 전세, 월세 거래금액에 따른 법정 최대 중개보수(복비)와 부가세를 계산합니다.",
+    "keywords": "부동산복비,중개보수,중개수수료,아파트매매,전세복비,월세복비,오피스텔"
+  },
+  {
+    "slug": "weekly-holiday-pay",
+    "url": "tools/weekly-holiday-pay.html",
+    "title": "주휴수당 & 알바 급여 계산기",
+    "category": "금융·세금",
+    "category_slug": "finance",
+    "icon": "⏰",
+    "summary": "시급·근무시간별 법정 주휴수당, 예상 주급·월급, 3.3%·4대보험 공제 후 실수령액을 계산합니다.",
+    "keywords": "주휴수당,알바급여,시급계산기,최저시급,주급,월급,아르바이트"
+  },
+  {
+    "slug": "gift-tax",
+    "url": "tools/gift-tax.html",
+    "title": "증여세 간편 계산기",
+    "category": "금융·세금",
+    "category_slug": "finance",
+    "icon": "🎁",
+    "summary": "배우자·자녀·혼인출산 공제 한도와 누진세율, 자진신고 3% 공제를 반영한 증여세를 계산합니다.",
+    "keywords": "증여세,증여공제,자녀증여,배우자증여,혼인증여공제,세금계산기,증여세율"
+  },
+  {
+    "slug": "pyeong-converter",
+    "url": "tools/pyeong-converter.html",
+    "title": "평수(평 ↔ ㎡) 면적 계산기",
+    "category": "생활·유틸",
+    "category_slug": "utility",
+    "icon": "📏",
+    "summary": "아파트 ㎡ ↔ 평수 실시간 양방향 변환과 가로·세로(m) 실측 평수를 즉시 계산합니다.",
+    "keywords": "평수계산기,제곱미터,평변환,아파트평수,84제곱미터,59제곱미터,면적계산"
+  },
+  {
+    "slug": "age-dday-calculator",
+    "url": "tools/age-dday-calculator.html",
+    "title": "만나이 & D-Day 날짜 계산기",
+    "category": "생활·유틸",
+    "category_slug": "utility",
+    "icon": "📅",
+    "summary": "생년월일 기준 법적 만나이·연나이·띠 계산과 시험·기념일 D-Day 및 100일 단위를 계산합니다.",
+    "keywords": "만나이,디데이,D-Day,날짜계산기,기념일,연나이,생년월일,100일"
+  },
+  {
+    "slug": "bmi-bmr-calculator",
+    "url": "tools/bmi-bmr-calculator.html",
+    "title": "BMI 비만도 & 기초대사량 계산기",
+    "category": "생활·유틸",
+    "category_slug": "utility",
+    "icon": "⚖️",
+    "summary": "대한비만학회 기준 BMI 비만도 판정, 기초대사량(BMR), 다이어트·증량 권장 칼로리를 계산합니다.",
+    "keywords": "BMI,비만도,기초대사량,BMR,TDEE,칼로리계산기,다이어트,표준체중"
+  },
+  {
+    "slug": "percent-discount",
+    "url": "tools/percent-discount.html",
+    "title": "퍼센트(%) & 할인율 계산기",
+    "category": "생활·유틸",
+    "category_slug": "utility",
+    "icon": "🏷️",
+    "summary": "쇼핑 중복 할인율, 주식·매출 증감률(%), 전체 대비 비율 등 4가지 퍼센트 계산을 한 번에 처리합니다.",
+    "keywords": "퍼센트계산기,할인율,증감률,비율계산,세일가격,주식수익률,마진율"
+  },
+  {
+    "slug": "password-generator",
+    "url": "tools/password-generator.html",
+    "title": "강력한 비밀번호 생성기",
+    "category": "생활·유틸",
+    "category_slug": "utility",
+    "icon": "🔐",
+    "summary": "Web Crypto API로 해킹에 안전한 랜덤 비밀번호를 생성하고 보안 강도(엔트로피)를 측정합니다.",
+    "keywords": "비밀번호생성기,패스워드,랜덤비밀번호,보안강도,암호생성,엔트로피"
+  },
+  {
+    "slug": "youtube-thumbnail",
+    "url": "tools/youtube-thumbnail.html",
+    "title": "유튜브 썸네일 고화질 추출기",
+    "category": "생활·유틸",
+    "category_slug": "utility",
+    "icon": "🎬",
+    "summary": "유튜브 일반·쇼츠(Shorts) 영상 주소로 HD 고화질(1280×720) 썸네일을 즉시 추출·저장합니다.",
+    "keywords": "유튜브썸네일,썸네일추출,썸네일다운로드,유튜브이미지,쇼츠썸네일,고화질"
+  },
+  {
+    "slug": "dutch-pay",
+    "url": "tools/dutch-pay.html",
+    "title": "더치페이(N빵) 모임 정산 계산기",
+    "category": "생활·유틸",
+    "category_slug": "utility",
+    "icon": "🍻",
+    "summary": "1차·2차 모임 차수별 금액과 인원수, 절사 단위를 반영해 1인당 N빵 정산액과 카톡 공유 문구를 생성합니다.",
+    "keywords": "더치페이,N빵,엔빵,회식정산,여행정산,1차2차계산기,모임정산"
   }
 ];

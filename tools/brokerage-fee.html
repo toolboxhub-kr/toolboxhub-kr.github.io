@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>부동산 중개보수(복비) 계산기 (매매·전세·월세 법정 상한요율) | ToolBox Hub</title>
+  <meta name="description" content="주택·오피스텔 매매, 전세, 월세 계약 시 법정 부동산 중개보수(복비) 상한요율과 한도액, 부가가치세(10%) 포함 최대 중개수수료를 1초 만에 계산하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="부동산 중개보수(복비) 계산기 | ToolBox Hub" />
+  <meta property="og:description" content="아파트·빌라·오피스텔 매매·전세·월세 법정 중개수수료(복비)를 즉시 계산합니다." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/tools/brokerage-fee.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/tools/brokerage-fee.html" />
+
+  <meta name="tool:title" content="부동산 중개보수(복비) 계산기" />
+  <meta name="tool:category" content="금융·세금" />
+  <meta name="tool:category_slug" content="finance" />
+  <meta name="tool:icon" content="🏢" />
+  <meta name="tool:summary" content="주택·오피스텔 매매, 전세, 월세 거래금액에 따른 법정 최대 중개보수(복비)와 부가세를 계산합니다." />
+  <meta name="tool:keywords" content="부동산복비,중개보수,중개수수료,아파트매매,전세복비,월세복비,오피스텔" />
+  <meta name="tool:order" content="11" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "부동산 중개보수(복비) 계산기",
+        "url": "https://toolboxhub-kr.github.io/tools/brokerage-fee.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "주택 및 오피스텔 매매·전세·월세 계약의 법정 부동산 중개보수 상한액과 부가세를 계산하는 무료 도구입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "월세 거래금액은 복비 계산 시 어떻게 환산하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "기본적으로 '보증금 + (월세 × 100)'으로 환산합니다. 다만 이 금액이 5,000만 원 미만일 경우에는 '보증금 + (월세 × 70)'으로 다시 계산하여 세입자의 복비 부담을 낮춰줍니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "부동산 중개보수에 부가가치세(10%)는 별도인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "일반과세자 공인중개사 사무소는 법정 중개보수에 부가가치세 10%를 별도로 청구할 수 있습니다. 간이과세자인 경우 부가세율이 낮거나 면제될 수 있으므로 계약 전 확인하세요."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "계산된 법정 중개보수는 반드시 전액 다 내야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "법정 요율은 '상한요율(최대치)'입니다. 상한요율 한도 내에서 중개사와 의뢰인이 사전에 협의하여 그보다 낮은 요율로 정할 수 있습니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>금융·세금</span> <span>›</span> <span>부동산 중개보수(복비) 계산기</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>🏢 부동산 중개보수(복비) 계산기</h1>
+      <p>주택 · 오피스텔의 매매 · 전세 · 월세 법정 최대 중개수수료와 부가세를 즉시 계산합니다.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">부동산 거래 정보</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="bf-prop">매물 유형</label>
+              <select id="bf-prop">
+                <option value="house" selected>주택 (아파트·빌라·단독·원룸)</option>
+                <option value="officetel">주거용 오피스텔 (85㎡ 이하)</option>
+                <option value="other">상가·토지·업무용 오피스텔</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="bf-deal">거래 유형</label>
+              <select id="bf-deal">
+                <option value="sale" selected>매매 / 교환</option>
+                <option value="jeonse">전세</option>
+                <option value="monthly">월세</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="field-label" for="bf-price" id="bf-price-label">매매가 (거래금액)</label>
+            <div class="input-group has-unit">
+              <input type="number" id="bf-price" value="600000000" min="0" step="10000000" />
+              <span class="input-unit">원</span>
+            </div>
+            <div class="preset-chips">
+              <button type="button" class="chip-btn" data-bfp="100000000">1억</button>
+              <button type="button" class="chip-btn" data-bfp="300000000">3억</button>
+              <button type="button" class="chip-btn" data-bfp="600000000">6억</button>
+              <button type="button" class="chip-btn" data-bfp="900000000">9억</button>
+              <button type="button" class="chip-btn" data-bfp="1200000000">12억</button>
+            </div>
+          </div>
+
+          <div class="form-group" id="bf-rent-wrap" style="display:none;">
+            <label class="field-label" for="bf-rent">월세 (관리비 제외)</label>
+            <div class="input-group has-unit">
+              <input type="number" id="bf-rent" value="700000" min="0" step="50000" />
+              <span class="input-unit">원</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="field-label" for="bf-vat">부가가치세 (중개사 과세유형)</label>
+            <select id="bf-vat">
+              <option value="10" selected>일반과세자 (부가세 10% 별도)</option>
+              <option value="0">간이과세자 / 부가세 미포함</option>
+            </select>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="btn-copy-bf">계산 결과 복사</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label">최대 중개보수 (부가세 포함)</div>
+            <div class="rh-value" id="bf-total">0원</div>
+            <div class="rh-sub" id="bf-sub">적용 상한요율 0% · 환산 거래금액 0원</div>
+          </div>
+          <ul class="breakdown-list">
+            <li><span>환산 거래금액</span><strong id="bf-base">0원</strong></li>
+            <li><span>법정 상한요율</span><strong id="bf-rate" style="color:var(--primary)">0%</strong></li>
+            <li><span>중개보수 (부가세 제외)</span><strong id="bf-fee">0원</strong></li>
+            <li><span>부가가치세 (VAT)</span><strong id="bf-vat-amt">0원</strong></li>
+            <li class="total-row"><span>최종 최대 지급액</span><strong id="bf-total-row" style="color:var(--primary)">0원</strong></li>
+          </ul>
+          <p id="bf-cap-note" style="font-size:0.82rem;color:var(--success);margin-top:10px;display:none;"></p>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>부동산 중개보수(복비) 계산 원리 및 법정 요율</h2>
+      <p>주택 중개보수는 공인중개사법 시행규칙에 따라 거래금액 구간별 <strong>상한요율</strong>과 <strong>한도액</strong>이 정해져 있습니다.</p>
+      <div class="formula-box">
+        중개보수 = min(환산 거래금액 × 상한요율, 구간별 한도액)<br />
+        월세 환산 거래금액 = 보증금 + (월세 × 100) &nbsp;[단, 5,000만 원 미만 시 보증금 + (월세 × 70)]<br />
+        최종 금액 = 중개보수 + 부가가치세(일반과세자 10%)
+      </div>
+      <h2>복비 절약 및 계약 전 체크 팁</h2>
+      <div class="tip-box">
+        <strong>💡 현금영수증 의무발행 업종:</strong> 부동산 중개업은 10만 원 이상 거래 시 현금영수증 의무발행 업종입니다. 복비 지급 시 현금영수증을 발급받으면 연말정산 소득공제 또는 추후 양도소득세 필요경비로 공제받을 수 있습니다.
+      </div>
+      <ul>
+        <li><strong>사전 협의:</strong> 법정 요율은 '상한선'이므로 고가 주택(9억 이상 등) 계약 시에는 계약서 작성 전 중개사와 협의 요율을 미리 합의하는 것이 일반적입니다.</li>
+        <li><strong>오피스텔 특례:</strong> 전용면적 85㎡ 이하이면서 상하수도·부엌·욕실을 갖춘 주거용 오피스텔은 매매 0.5%, 임대차 0.4%의 낮은 상한요율이 적용됩니다.</li>
+      </ul>
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>월세 거래금액은 복비 계산 시 어떻게 환산하나요?</summary>
+          <div class="faq-answer">기본 공식은 <code>보증금 + (월세 × 100)</code>입니다. 만약 이 합계가 5,000만 원 미만이면 <code>보증금 + (월세 × 70)</code>으로 낮춰 적용합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>부가가치세 10%는 무조건 내야 하나요?</summary>
+          <div class="faq-answer">일반과세자 중개사무소는 부가세 10%를 별도로 청구할 수 있으며, 간이과세자 중개사무소는 세법상 부가세 면제 또는 낮은 부가율만 적용됩니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>전세·월세 묵시적 갱신이나 계약갱신청구권 사용 시에도 복비를 내나요?</summary>
+          <div class="faq-answer">집주인과 세입자가 직접 연장하거나 묵시적 갱신 시에는 복비가 들지 않습니다. 다만 중개사를 통해 계약서를 새로 작성하는 경우 소정의 대서료(보통 5~10만 원)가 발생할 수 있습니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      function calcBrokerage(prop, deal, price, rent) {
+        let base = price;
+        if (deal === "monthly") {
+          const calc100 = price + rent * 100;
+          base = calc100 < 50000000 ? price + rent * 70 : calc100;
+        }
+        let rate = 0, cap = Infinity;
+        if (prop === "officetel") {
+          rate = deal === "sale" ? 0.005 : 0.004;
+        } else if (prop === "other") {
+          rate = 0.009;
+        } else if (deal === "sale") {
+          if (base < 50000000) { rate = 0.006; cap = 250000; }
+          else if (base < 200000000) { rate = 0.005; cap = 800000; }
+          else if (base < 900000000) { rate = 0.004; }
+          else if (base < 1200000000) { rate = 0.005; }
+          else if (base < 1500000000) { rate = 0.006; }
+          else { rate = 0.007; }
+        } else {
+          if (base < 50000000) { rate = 0.005; cap = 200000; }
+          else if (base < 100000000) { rate = 0.004; cap = 300000; }
+          else if (base < 600000000) { rate = 0.003; }
+          else if (base < 1200000000) { rate = 0.004; }
+          else if (base < 1500000000) { rate = 0.005; }
+          else { rate = 0.006; }
+        }
+        const rawFee = Math.round(base * rate);
+        const capped = rawFee > cap;
+        const fee = capped ? cap : rawFee;
+        return { base, rate, fee, cap, capped };
+      }
+
+      function update() {
+        const prop = document.getElementById("bf-prop").value;
+        const deal = document.getElementById("bf-deal").value;
+        const price = Math.max(0, Number(document.getElementById("bf-price").value) || 0);
+        const rent = Math.max(0, Number(document.getElementById("bf-rent").value) || 0);
+        const vatRate = Number(document.getElementById("bf-vat").value) / 100;
+
+        document.getElementById("bf-rent-wrap").style.display = deal === "monthly" ? "block" : "none";
+        document.getElementById("bf-price-label").textContent =
+          deal === "sale" ? "매매가 (거래금액)" : deal === "jeonse" ? "전세 보증금" : "월세 보증금";
+
+        const r = calcBrokerage(prop, deal, price, rent);
+        const vat = Math.round(r.fee * vatRate);
+        const total = r.fee + vat;
+
+        document.getElementById("bf-total").textContent = TBH.fmtWon(total);
+        document.getElementById("bf-sub").textContent = `적용 상한요율 ${(r.rate * 100).toFixed(1)}% · 환산 거래금액 ${TBH.fmtWon(r.base)}`;
+        document.getElementById("bf-base").textContent = TBH.fmtWon(r.base);
+        document.getElementById("bf-rate").textContent = `${(r.rate * 100).toFixed(1)}%`;
+        document.getElementById("bf-fee").textContent = TBH.fmtWon(r.fee);
+        document.getElementById("bf-vat-amt").textContent = TBH.fmtWon(vat);
+        document.getElementById("bf-total-row").textContent = TBH.fmtWon(total);
+
+        const capNote = document.getElementById("bf-cap-note");
+        if (r.capped) {
+          capNote.style.display = "block";
+          capNote.textContent = `✅ 법정 한도액(${TBH.fmtWon(r.cap)})이 적용되어 중개보수가 상한선으로 제한되었습니다.`;
+        } else {
+          capNote.style.display = "none";
+        }
+      }
+
+      document.querySelectorAll("[data-bfp]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.getElementById("bf-price").value = btn.dataset.bfp;
+          update();
+        });
+      });
+      ["bf-prop", "bf-deal", "bf-price", "bf-rent", "bf-vat"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", update);
+        document.getElementById(id).addEventListener("change", update);
+      });
+      document.getElementById("btn-copy-bf").addEventListener("click", () => {
+        TBH.copyText(`[부동산 중개보수 계산]\n최대 중개보수(부가세 포함): ${document.getElementById("bf-total").textContent}\n${document.getElementById("bf-sub").textContent}`);
+      });
+      update();
+    })();
+  </script>
+</body>
+</html>

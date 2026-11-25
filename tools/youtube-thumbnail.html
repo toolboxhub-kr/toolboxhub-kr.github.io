@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>유튜브 썸네일 고화질 추출 & 다운로드 도구 (일반·쇼츠 지원) | ToolBox Hub</title>
+  <meta name="description" content="유튜브 일반 영상, 쇼츠(Shorts), 모바일 공유 링크를 붙여넣으면 최대 해상도(HD 1280×720) 썸네일 이미지를 즉시 추출하고 저장할 수 있습니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="유튜브 썸네일 고화질 추출기 | ToolBox Hub" />
+  <meta property="og:description" content="유튜브 영상 URL만 넣으면 HD 고화질 썸네일을 1초 만에 추출하고 다운로드합니다." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/tools/youtube-thumbnail.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/tools/youtube-thumbnail.html" />
+
+  <meta name="tool:title" content="유튜브 썸네일 고화질 추출기" />
+  <meta name="tool:category" content="생활·유틸" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="🎬" />
+  <meta name="tool:summary" content="유튜브 일반·쇼츠(Shorts) 영상 주소로 HD 고화질(1280×720) 썸네일을 즉시 추출·저장합니다." />
+  <meta name="tool:keywords" content="유튜브썸네일,썸네일추출,썸네일다운로드,유튜브이미지,쇼츠썸네일,고화질" />
+  <meta name="tool:order" content="19" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "유튜브 썸네일 고화질 추출 & 다운로드 도구",
+        "url": "https://toolboxhub-kr.github.io/tools/youtube-thumbnail.html",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "유튜브 URL에서 11자리 영상 ID를 추출해 최대 해상도(maxresdefault) 썸네일을 즉시 확인하고 저장하는 무료 도구입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "유튜브 쇼츠(Shorts) 영상 썸네일도 추출할 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네! youtube.com/shorts/영상ID 형태의 쇼츠 주소나 youtu.be 단축 링크, 모바일 m.youtube.com 주소 모두 자동으로 인식해 추출합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "최대 해상도(1280×720) 이미지가 회색 아이콘으로 나올 때는 어떻게 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "오래된 저화질 영상이나 일부 쇼츠는 유튜브 서버에 maxresdefault(1280×720) 파일이 생성되지 않습니다. 이 경우 바로 아래의 표준 고화질(SD 640×480) 또는 HQ(480×360) 이미지를 사용하시면 됩니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "추출한 썸네일 이미지의 저작권 주의사항이 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "썸네일 이미지의 저작권은 원 영상 제작자(유튜버)에게 있습니다. 개인 참고, 디자인 레퍼런스, 본인 채널 관리 외 상업적 무단 재사용은 저작권 침해가 될 수 있으므로 주의하세요."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>생활·유틸</span> <span>›</span> <span>유튜브 썸네일 추출기</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>🎬 유튜브 썸네일 고화질 추출 & 다운로드</h1>
+      <p>유튜브 일반 영상 · 쇼츠(Shorts) · 공유 링크를 붙여넣으면 해상도별 썸네일을 즉시 추출합니다.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="form-group">
+        <label class="field-label" for="yt-url">유튜브 영상 URL 또는 11자리 영상 ID</label>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="url" id="yt-url" style="flex:1;min-width:240px;" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ 또는 https://youtu.be/..." value="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+          <button type="button" class="btn btn-primary" id="btn-yt-extract">썸네일 추출</button>
+        </div>
+      </div>
+
+      <div id="yt-error" style="display:none;color:var(--danger);font-size:0.88rem;font-weight:600;margin-bottom:14px;"></div>
+
+      <div id="yt-results" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:20px;"></div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>유튜브 썸네일 추출 원리</h2>
+      <p>유튜브의 모든 영상은 고유한 <strong>11자리 Video ID</strong>를 가지며, 유튜브 공식 이미지 CDN(<code>i.ytimg.com</code>)에 해상도별 표준 경로로 썸네일이 저장됩니다.</p>
+      <div class="formula-box">
+        최대 해상도(HD): https://i.ytimg.com/vi/{VIDEO_ID}/maxresdefault.jpg (1280×720)<br />
+        표준 고화질(SD): https://i.ytimg.com/vi/{VIDEO_ID}/sddefault.jpg (640×480)<br />
+        고화질(HQ): https://i.ytimg.com/vi/{VIDEO_ID}/hqdefault.jpg (480×360)
+      </div>
+      <h2>블로그·디자인 레퍼런스 활용 팁</h2>
+      <div class="tip-box">
+        <strong>💡 이미지 용량까지 줄이고 싶다면?</strong> 추출한 JPG 썸네일을 본 사이트의 <a href="image-converter.html">이미지 압축 & WebP 변환기</a>에 넣으면 블로그 로딩 속도에 최적화된 초경량 WebP로 즉시 바꿀 수 있습니다.
+      </div>
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>유튜브 쇼츠(Shorts) 링크도 되나요?</summary>
+          <div class="faq-answer">네. <code>youtube.com/shorts/...</code>, <code>youtu.be/...</code>, <code>youtube.com/live/...</code> 등 모든 유튜브 URL 형식을 자동으로 인식합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>다운로드 버튼을 눌렀는데 새 탭에서 이미지가 열리면 어떻게 저장하나요?</summary>
+          <div class="faq-answer">브라우저 보안 정책(CORS)상 새 탭으로 열리는 경우, PC에서는 이미지 위에서 마우스 우클릭 → '다른 이름으로 이미지 저장', 모바일에서는 이미지를 길게 눌러 '사진 저장'을 선택하세요.</div>
+        </details>
+        <details class="faq-item">
+          <summary>비공개 영상의 썸네일도 추출되나요?</summary>
+          <div class="faq-answer">공개 또는 일부 공개 영상의 썸네일만 유튜브 이미지 서버에서 불러올 수 있으며, 완전 비공개·삭제된 영상은 표시되지 않습니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const QUALITIES = [
+        { key: "maxresdefault", label: "최대 해상도 (HD 1280×720)", badge: "추천" },
+        { key: "sddefault", label: "표준 고화질 (SD 640×480)", badge: "SD" },
+        { key: "hqdefault", label: "고화질 (HQ 480×360)", badge: "HQ" },
+        { key: "mqdefault", label: "중간 화질 (MQ 320×180)", badge: "MQ" },
+      ];
+
+      function extractVideoId(input) {
+        const s = (input || "").trim();
+        if (/^[a-zA-Z0-9_-]{11}$/.test(s)) return s;
+        const patterns = [
+          /[?&]v=([a-zA-Z0-9_-]{11})/,
+          /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+          /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/,
+          /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
+          /youtube\.com\/live\/([a-zA-Z0-9_-]{11})/,
+        ];
+        for (const p of patterns) {
+          const m = s.match(p);
+          if (m) return m[1];
+        }
+        return null;
+      }
+
+      function render() {
+        const url = document.getElementById("yt-url").value;
+        const id = extractVideoId(url);
+        const err = document.getElementById("yt-error");
+        const box = document.getElementById("yt-results");
+
+        if (!id) {
+          err.style.display = "block";
+          err.textContent = "⚠️ 올바른 유튜브 URL 또는 11자리 영상 ID를 입력해 주세요.";
+          box.innerHTML = "";
+          return;
+        }
+        err.style.display = "none";
+        box.innerHTML = QUALITIES.map((q) => {
+          const imgUrl = `https://i.ytimg.com/vi/${id}/${q.key}.jpg`;
+          return `
+            <div style="border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg);">
+              <div style="aspect-ratio:16/9;background:#0f172a;display:grid;place-items:center;overflow:hidden;">
+                <img src="${imgUrl}" alt="${q.label}" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+              </div>
+              <div style="padding:14px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                  <strong style="font-size:0.92rem;">${q.label}</strong>
+                  <span class="tool-card-cat">${q.badge}</span>
+                </div>
+                <div class="btn-row" style="margin:0;">
+                  <a class="btn btn-primary btn-sm" href="${imgUrl}" target="_blank" rel="noopener noreferrer" download="yt-${id}-${q.key}.jpg">원본 열기 / 저장</a>
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="TBH.copyText('${imgUrl}')">이미지 주소 복사</button>
+                </div>
+              </div>
+            </div>`;
+        }).join("");
+      }
+
+      document.getElementById("btn-yt-extract").addEventListener("click", render);
+      document.getElementById("yt-url").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") render();
+      });
+      render();
+    })();
+  </script>
+</body>
+</html>

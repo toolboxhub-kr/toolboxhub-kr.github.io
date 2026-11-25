@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>평수 계산기 (평 ↔ 제곱미터 ㎡ 변환 & 가로·세로 면적) | ToolBox Hub</title>
+  <meta name="description" content="아파트 전용면적 59㎡·84㎡·114㎡를 몇 평인지 즉시 변환하고, 방 가로·세로 길이(m)로 정확한 평수와 제곱미터(㎡)를 한 번에 계산하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="평수(평 ↔ ㎡) 계산기 | ToolBox Hub" />
+  <meta property="og:description" content="제곱미터(㎡)와 평수 양방향 즉시 변환 및 가로×세로 실측 면적 계산기입니다." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/tools/pyeong-converter.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/tools/pyeong-converter.html" />
+
+  <meta name="tool:title" content="평수(평 ↔ ㎡) 면적 계산기" />
+  <meta name="tool:category" content="생활·유틸" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="📏" />
+  <meta name="tool:summary" content="아파트 ㎡ ↔ 평수 실시간 양방향 변환과 가로·세로(m) 실측 평수를 즉시 계산합니다." />
+  <meta name="tool:keywords" content="평수계산기,제곱미터,평변환,아파트평수,84제곱미터,59제곱미터,면적계산" />
+  <meta name="tool:order" content="14" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "평수(평 ↔ ㎡) & 가로·세로 면적 계산기",
+        "url": "https://toolboxhub-kr.github.io/tools/pyeong-converter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "제곱미터(㎡)와 평수의 실시간 양방향 변환 및 가로·세로 치수 기반 평수 계산기입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "1평은 정확히 몇 제곱미터(㎡)인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "1평은 정확히 3.305785㎡(약 3.3㎡)이며, 가로 1.818m × 세로 1.818m 크기의 정사각형 면적입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "전용면적 84㎡ 아파트를 왜 32~34평형이라고 부르나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "전용면적 84㎡ 자체는 약 25.4평이지만, 여기에 복도·계단·엘리베이터 등 주거공용면적을 더한 '공급면적(약 108~112㎡)'을 평으로 환산하면 약 32~34평이 되기 때문입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "제곱미터를 암산으로 빠르게 평수로 바꾸는 법은?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "제곱미터 숫자에서 일의 자리를 반올림해 버린 뒤 3을 곱하면 거의 정확합니다. 예: 84㎡ → 8 × 3 = 약 24~25평."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>생활·유틸</span> <span>›</span> <span>평수(평 ↔ ㎡) 계산기</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>📏 평수 계산기 (평 ↔ ㎡ 변환 & 가로·세로 면적)</h1>
+      <p>제곱미터(㎡)와 평수를 양방향으로 실시간 변환하고, 가로·세로 실측 길이로 평수를 계산하세요.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">평 ↔ 제곱미터(㎡) 양방향 변환</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="py-sqm">제곱미터 (㎡)</label>
+              <div class="input-group has-unit">
+                <input type="number" id="py-sqm" value="84.9" min="0" step="0.1" />
+                <span class="input-unit">㎡</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="py-pyeong">평수 (평)</label>
+              <div class="input-group has-unit">
+                <input type="number" id="py-pyeong" value="25.68" min="0" step="0.1" />
+                <span class="input-unit">평</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="preset-chips" style="margin-bottom:20px;">
+            <button type="button" class="chip-btn" data-sqm="19.8">원룸 (19.8㎡)</button>
+            <button type="button" class="chip-btn" data-sqm="59.9">전용 59㎡ (25평형)</button>
+            <button type="button" class="chip-btn" data-sqm="84.9">전용 84㎡ (34평형)</button>
+            <button type="button" class="chip-btn" data-sqm="114.9">전용 114㎡ (45평형)</button>
+          </div>
+
+          <div class="form-section-title">가로 × 세로 실측으로 평수 구하기</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="py-w">가로 길이 (m)</label>
+              <div class="input-group has-unit">
+                <input type="number" id="py-w" value="4.2" min="0" step="0.1" />
+                <span class="input-unit">m</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="py-h">세로 길이 (m)</label>
+              <div class="input-group has-unit">
+                <input type="number" id="py-h" value="3.5" min="0" step="0.1" />
+                <span class="input-unit">m</span>
+              </div>
+            </div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-label">실측 공간 면적</div>
+            <div class="kpi-value text-primary" id="py-dim-res">14.70 ㎡ (약 4.45평)</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label">변환 결과</div>
+            <div class="rh-value" id="py-res-main">25.68평</div>
+            <div class="rh-sub" id="py-res-sub">84.90 ㎡ · 약 913.9 ft²</div>
+          </div>
+          <div class="form-section-title">인기 아파트 전용면적 ↔ 평형 조견표</div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>전용면적 (㎡)</th><th>전용 평수</th><th>일반 공급 평형</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>33 ㎡</td><td>약 10.0평</td><td>13~15평형</td></tr>
+                <tr><td>49 ㎡</td><td>약 14.8평</td><td>20~21평형</td></tr>
+                <tr><td>59 ㎡</td><td>약 17.8평</td><td>24~25평형</td></tr>
+                <tr><td>74 ㎡</td><td>약 22.4평</td><td>29~30평형</td></tr>
+                <tr><td>84 ㎡ (국평)</td><td>약 25.4평</td><td>32~34평형</td></tr>
+                <tr><td>114 ㎡</td><td>약 34.5평</td><td>43~45평형</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>평수 및 제곱미터 계산 원리</h2>
+      <div class="formula-box">
+        평수 = 제곱미터(㎡) ÷ 3.305785 (또는 ㎡ × 0.3025)<br />
+        제곱미터(㎡) = 평수 × 3.305785
+      </div>
+      <h2>아파트·원룸 계약 시 면적 확인 팁</h2>
+      <div class="tip-box">
+        <strong>💡 전용면적 vs 공급면적:</strong> 부동산 앱에서 원룸·오피스텔을 볼 때는 반드시 <strong>'전용면적(실평수)'</strong>을 확인해야 합니다. 오피스텔은 아파트보다 전용률(보통 45~55%)이 낮아 공급평수가 같아도 실제 방 크기가 더 작을 수 있습니다.
+      </div>
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>1평은 정확히 몇 제곱미터(㎡)인가요?</summary>
+          <div class="faq-answer">1평은 3.305785㎡입니다. 가로 1.818m, 세로 1.818m의 정사각형 넓이와 같습니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>84㎡가 왜 34평형(국민평형)인가요?</summary>
+          <div class="faq-answer">84㎡는 집 안의 실제 방·거실 넓이인 '전용면적(25.4평)'이며, 여기에 복도·계단 등 공용면적을 합한 '공급면적'이 약 110~112㎡(33~34평)이기 때문입니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>제곱피트(ft²)로도 환산되나요?</summary>
+          <div class="faq-answer">네, 상단 결과 요약 카드에서 해외 부동산에서 사용하는 제곱피트(1㎡ ≈ 10.7639 ft²) 값도 함께 확인하실 수 있습니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const FACTOR = 3.305785;
+      const sqmEl = document.getElementById("py-sqm");
+      const pyEl = document.getElementById("py-pyeong");
+
+      function showResult(sqm, py) {
+        const sqft = sqm * 10.76391;
+        document.getElementById("py-res-main").textContent = `${py.toFixed(2)}평`;
+        document.getElementById("py-res-sub").textContent = `${sqm.toFixed(2)} ㎡ · 약 ${TBH.fmtNum(sqft, 1)} ft²`;
+      }
+
+      function fromSqm() {
+        const sqm = Math.max(0, Number(sqmEl.value) || 0);
+        const py = sqm / FACTOR;
+        pyEl.value = py.toFixed(2);
+        showResult(sqm, py);
+      }
+
+      function fromPy() {
+        const py = Math.max(0, Number(pyEl.value) || 0);
+        const sqm = py * FACTOR;
+        sqmEl.value = sqm.toFixed(2);
+        showResult(sqm, py);
+      }
+
+      function updateDim() {
+        const w = Math.max(0, Number(document.getElementById("py-w").value) || 0);
+        const h = Math.max(0, Number(document.getElementById("py-h").value) || 0);
+        const area = w * h;
+        const py = area / FACTOR;
+        document.getElementById("py-dim-res").textContent = `${area.toFixed(2)} ㎡ (약 ${py.toFixed(2)}평)`;
+      }
+
+      sqmEl.addEventListener("input", fromSqm);
+      pyEl.addEventListener("input", fromPy);
+      document.getElementById("py-w").addEventListener("input", updateDim);
+      document.getElementById("py-h").addEventListener("input", updateDim);
+      document.querySelectorAll("[data-sqm]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          sqmEl.value = btn.dataset.sqm;
+          fromSqm();
+        });
+      });
+
+      fromSqm();
+      updateDim();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>만나이 & D-Day(디데이) 날짜 계산기 (기념일·전역일·수능) | ToolBox Hub</title>
+  <meta name="description" content="생년월일로 정확한 법적 만나이, 연나이, 띠, 살아온 일수를 확인하고, 특정 날짜까지 남은 D-Day와 100일·1주년 기념일을 즉시 계산하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="만나이 & D-Day 날짜 계산기 | ToolBox Hub" />
+  <meta property="og:description" content="법적 만나이 계산과 기념일·시험일 D-Day 날짜 계산을 한 번에 해결하세요." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/tools/age-dday-calculator.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/tools/age-dday-calculator.html" />
+
+  <meta name="tool:title" content="만나이 & D-Day 날짜 계산기" />
+  <meta name="tool:category" content="생활·유틸" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="📅" />
+  <meta name="tool:summary" content="생년월일 기준 법적 만나이·연나이·띠 계산과 시험·기념일 D-Day 및 100일 단위를 계산합니다." />
+  <meta name="tool:keywords" content="만나이,디데이,D-Day,날짜계산기,기념일,연나이,생년월일,100일" />
+  <meta name="tool:order" content="15" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "만나이 & D-Day(디데이) 날짜 계산기",
+        "url": "https://toolboxhub-kr.github.io/tools/age-dday-calculator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "생년월일 기반 법적 만나이와 기념일·시험일 D-Day를 계산하는 무료 웹 도구입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "만나이와 연나이의 차이는 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "만나이는 출생일을 기준으로 생일이 지날 때마다 1살씩 늘어나는 법적 표준 나이입니다. 반면 연나이는 생일 여부와 상관없이 '현재 연도 - 출생 연도'로 계산하며 병역법, 청소년보호법 등 일부 법률에서만 예외적으로 사용합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "커플 100일 기념일은 시작일을 1일로 포함하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "한국의 연인·아기 기념일은 보통 처음 만난 날(시작일)을 1일로 포함해 계산합니다. 반면 시험·마감일 D-Day는 시작일(오늘)을 0일로 두고 남은 일수를 셉니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "만나이 통일법 시행 후에도 변하지 않는 예외 분야가 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "초등학교 취학 연령(만 6세가 되는 해의 다음 해 3월), 주류·담배 구매 가능 연령(연나이 19세), 병역 의무(연나이 기준) 등은 행정 편의를 위해 기존 연나이 기준을 유지합니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>생활·유틸</span> <span>›</span> <span>만나이 & D-Day 계산기</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>📅 만나이 & D-Day(디데이) 날짜 계산기</h1>
+      <p>법적 만나이 · 연나이 · 띠 계산부터 시험 · 기념일 D-Day와 100일 단위 날짜까지 한 번에 확인하세요.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab-btn active" data-ad-tab="age">만나이 계산기</button>
+        <button type="button" class="tab-btn" data-ad-tab="dday">D-Day · 기념일 계산기</button>
+      </div>
+
+      <!-- TAB 1: Age -->
+      <div id="ad-tab-age" class="tool-layout">
+        <div>
+          <div class="form-section-title">생년월일 및 기준일</div>
+          <div class="form-group">
+            <label class="field-label" for="age-birth">생년월일 (양력)</label>
+            <input type="date" id="age-birth" value="1995-06-15" />
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="age-ref">계산 기준일 (기본: 오늘)</label>
+            <input type="date" id="age-ref" />
+          </div>
+        </div>
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label">법적 만나이</div>
+            <div class="rh-value" id="age-res-man">0세</div>
+            <div class="rh-sub" id="age-res-sub">-</div>
+          </div>
+          <div class="kpi-grid cols-3">
+            <div class="kpi-box">
+              <div class="kpi-label">연나이</div>
+              <div class="kpi-value text-primary" id="age-res-year">0세</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">띠 (12간지)</div>
+              <div class="kpi-value" id="age-res-zodiac">-</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">다음 생일까지</div>
+              <div class="kpi-value text-success" id="age-res-next">D-0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: D-Day -->
+      <div id="ad-tab-dday" class="tool-layout" style="display:none;">
+        <div>
+          <div class="form-section-title">기준일 및 목표일 입력</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="dd-base">기준일 (오늘 또는 시작일)</label>
+              <input type="date" id="dd-base" />
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="dd-target">목표 날짜 (시험일·기념일)</label>
+              <input type="date" id="dd-target" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="dd-include-start">시작일(당일) 1일 포함 여부</label>
+            <select id="dd-include-start">
+              <option value="0" selected>미포함 (일반 D-Day: 시험·마감일 기준)</option>
+              <option value="1">1일 포함 (연인·아기 기념일 기준)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label">계산된 D-Day</div>
+            <div class="rh-value" id="dd-res-main">D-Day</div>
+            <div class="rh-sub" id="dd-res-sub">-</div>
+          </div>
+          <div class="form-section-title">기준일로부터 주요 기념일 자동 계산</div>
+          <ul class="breakdown-list" id="dd-milestones"></ul>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>만나이 & D-Day 계산 공식</h2>
+      <div class="formula-box">
+        만나이 = (기준 연도 - 출생 연도) - [생일이 아직 안 지났으면 1, 지났으면 0]<br />
+        연나이 = 기준 연도 - 출생 연도<br />
+        D-Day = 목표 날짜 - 기준 날짜 (기념일 계산 시 시작일 +1일 적용)
+      </div>
+      <h2>실생활 활용 팁</h2>
+      <div class="tip-box">
+        <strong>💡 보험 가입(상령일) 체크:</strong> 보험료가 오르는 '보험나이'는 만나이 기준 생일로부터 6개월이 지나는 날(상령일)에 1살 올라갑니다. 생일 6개월 전후로 보험 가입 시기를 조절하면 보험료를 절약할 수 있습니다.
+      </div>
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>만나이와 연나이의 차이는 무엇인가요?</summary>
+          <div class="faq-answer">만나이는 생일이 지나야 1살이 올라가는 국제 표준 나이이며, 연나이는 생일과 무관하게 '올해 - 출생연도'로 계산합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>커플 100일은 왜 99일을 더하나요?</summary>
+          <div class="faq-answer">사귀기 시작한 날을 '1일'로 세기 때문에 시작일 + 99일째 되는 날이 정확히 100일이 됩니다. '1일 포함' 옵션을 선택하시면 자동 반영됩니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>윤년(2월 29일)도 정확하게 계산되나요?</summary>
+          <div class="faq-answer">네, 브라우저의 표준 양력 달력(Date 객체)을 사용해 윤년 366일을 포함해 1일 오차 없이 정확하게 계산합니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const ZODIAC = ["원숭이띠 🐵", "닭띠 🐔", "개띠 🐶", "돼지띠 🐷", "쥐띠 🐭", "소띠 🐮", "호랑이띠 🐯", "토끼띠 🐰", "용띠 🐲", "뱀띠 🐍", "말띠 🐴", "양띠 🐑"];
+      const WEEK = ["일", "월", "화", "수", "목", "금", "토"];
+
+      function fmtDate(d) {
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, "0");
+        const day = String(d.getDate()).padStart(2, "0");
+        return `${y}-${m}-${day}`;
+      }
+      function fmtDateKor(d) {
+        return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 (${WEEK[d.getDay()]})`;
+      }
+
+      const today = new Date();
+      const todayStr = fmtDate(today);
+      document.getElementById("age-ref").value = todayStr;
+      document.getElementById("dd-base").value = todayStr;
+      const plus100 = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 100);
+      document.getElementById("dd-target").value = fmtDate(plus100);
+
+      function updateAge() {
+        const bStr = document.getElementById("age-birth").value;
+        const rStr = document.getElementById("age-ref").value;
+        if (!bStr || !rStr) return;
+        const b = new Date(bStr + "T00:00:00");
+        const r = new Date(rStr + "T00:00:00");
+        const yearAge = r.getFullYear() - b.getFullYear();
+        const passed = r.getMonth() > b.getMonth() || (r.getMonth() === b.getMonth() && r.getDate() >= b.getDate());
+        const manAge = Math.max(0, passed ? yearAge : yearAge - 1);
+        const livedDays = Math.max(0, Math.round((r - b) / 86400000));
+
+        let nextB = new Date(r.getFullYear(), b.getMonth(), b.getDate());
+        if (nextB < r) nextB = new Date(r.getFullYear() + 1, b.getMonth(), b.getDate());
+        const toNext = Math.round((nextB - r) / 86400000);
+
+        document.getElementById("age-res-man").textContent = `만 ${manAge}세`;
+        document.getElementById("age-res-sub").textContent = `태어난 지 ${TBH.fmtNum(livedDays)}일째 · ${b.getFullYear()}년생`;
+        document.getElementById("age-res-year").textContent = `${yearAge}세`;
+        document.getElementById("age-res-zodiac").textContent = ZODIAC[b.getFullYear() % 12];
+        document.getElementById("age-res-next").textContent = toNext === 0 ? "🎂 생일!" : `D-${toNext}`;
+      }
+
+      function updateDday() {
+        const bStr = document.getElementById("dd-base").value;
+        const tStr = document.getElementById("dd-target").value;
+        const inc = Number(document.getElementById("dd-include-start").value);
+        if (!bStr || !tStr) return;
+        const b = new Date(bStr + "T00:00:00");
+        const t = new Date(tStr + "T00:00:00");
+        const diff = Math.round((t - b) / 86400000);
+
+        let mainTxt = "D-Day (당일)";
+        if (diff > 0) mainTxt = `D-${TBH.fmtNum(diff)}`;
+        else if (diff < 0) mainTxt = `D+${TBH.fmtNum(Math.abs(diff) + inc)}`;
+        else if (inc === 1) mainTxt = "1일째 (시작일)";
+
+        document.getElementById("dd-res-main").textContent = mainTxt;
+        document.getElementById("dd-res-sub").textContent = `${fmtDateKor(b)} → ${fmtDateKor(t)}`;
+
+        const milestones = [100, 200, 300, 365, 500, 1000];
+        document.getElementById("dd-milestones").innerHTML = milestones
+          .map((days) => {
+            const d = new Date(b.getFullYear(), b.getMonth(), b.getDate() + days - inc);
+            const lbl = days === 365 ? "1주년 (365일)" : `${days}일`;
+            return `<li><span>${lbl}</span><strong>${fmtDateKor(d)}</strong></li>`;
+          })
+          .join("");
+      }
+
+      document.querySelectorAll("[data-ad-tab]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-ad-tab]").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const tab = btn.dataset.adTab;
+          document.getElementById("ad-tab-age").style.display = tab === "age" ? "grid" : "none";
+          document.getElementById("ad-tab-dday").style.display = tab === "dday" ? "grid" : "none";
+        });
+      });
+
+      ["age-birth", "age-ref"].forEach((id) => document.getElementById(id).addEventListener("change", updateAge));
+      ["dd-base", "dd-target", "dd-include-start"].forEach((id) => document.getElementById(id).addEventListener("change", updateDday));
+
+      updateAge();
+      updateDday();
+    })();
+  </script>
+</body>
+</html>

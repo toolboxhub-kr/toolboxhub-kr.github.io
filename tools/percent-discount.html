@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>퍼센트(%) & 할인율·증감률 만능 계산기 | ToolBox Hub</title>
+  <meta name="description" content="전체 값의 몇 %, 두 숫자의 비율, 주식·매출 증감률(%), 그리고 쇼핑몰 중복 할인율 적용 최종 가격까지 4가지 퍼센트 계산을 한 화면에서 즉시 해결하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="퍼센트(%) & 할인율·증감률 만능 계산기 | ToolBox Hub" />
+  <meta property="og:description" content="할인가 계산, 증감률(%), 비율 계산을 1초 만에 해결하는 올인원 퍼센트 계산기입니다." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/tools/percent-discount.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/tools/percent-discount.html" />
+
+  <meta name="tool:title" content="퍼센트(%) & 할인율 계산기" />
+  <meta name="tool:category" content="생활·유틸" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="🏷️" />
+  <meta name="tool:summary" content="쇼핑 중복 할인율, 주식·매출 증감률(%), 전체 대비 비율 등 4가지 퍼센트 계산을 한 번에 처리합니다." />
+  <meta name="tool:keywords" content="퍼센트계산기,할인율,증감률,비율계산,세일가격,주식수익률,마진율" />
+  <meta name="tool:order" content="17" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "퍼센트(%) & 할인율·증감률 만능 계산기",
+        "url": "https://toolboxhub-kr.github.io/tools/percent-discount.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "비율, 증감률, 쇼핑 중복 할인가 등 4가지 핵심 퍼센트 계산을 실시간으로 수행하는 무료 웹 도구입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "30% 할인에 추가 10% 쿠폰을 쓰면 총 40% 할인인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "아니요. 중복 할인은 1차 할인된 가격(70%)에서 다시 10%를 빼는 방식이므로 최종 가격은 63%가 되어 실제 총 할인율은 37%입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "주식이 50% 떨어졌을 때 본전이 되려면 몇 % 올라야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "100만 원이 50% 하락해 50만 원이 되었다면, 다시 100만 원이 되기 위해서는 50만 원이 올라야 하므로 +100% 상승해야 원금이 회복됩니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "마진율과 마크업(원가 대비 이익률)의 차이는 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "마진율은 '판매가 대비 순이익 비율'이고, 마크업은 '매입 원가 대비 이익 비율'입니다. 예: 원가 1만 원 상품을 2만 원에 팔면 마진율은 50%, 원가 대비 상승률(마크업)은 100%입니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>생활·유틸</span> <span>›</span> <span>퍼센트 & 할인율 계산기</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>🏷️ 퍼센트(%) & 할인율·증감률 만능 계산기</h1>
+      <p>일상·쇼핑·업무·주식에서 자주 쓰는 4가지 퍼센트 계산을 한 화면에서 실시간으로 해결하세요.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <!-- 1. Shopping Discount + Extra Coupon -->
+    <section class="panel">
+      <div class="form-section-title">1. 쇼핑 할인율 & 추가 쿠폰 최종가 계산</div>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label class="field-label" for="p-price">원래 정가</label>
+          <div class="input-group has-unit"><input type="number" id="p-price" value="89000" min="0" step="1000" /><span class="input-unit">원</span></div>
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="p-disc1">1차 할인율</label>
+          <div class="input-group has-unit"><input type="number" id="p-disc1" value="30" min="0" max="100" step="1" /><span class="input-unit">%</span></div>
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="p-disc2">추가 중복 할인 (선택)</label>
+          <div class="input-group has-unit"><input type="number" id="p-disc2" value="10" min="0" max="100" step="1" /><span class="input-unit">%</span></div>
+        </div>
+      </div>
+      <div class="kpi-grid cols-3" style="margin-bottom:0;">
+        <div class="kpi-box"><div class="kpi-label">최종 결제 금액</div><div class="kpi-value text-primary" id="p-final">0원</div></div>
+        <div class="kpi-box"><div class="kpi-label">총 할인(절약) 금액</div><div class="kpi-value text-success" id="p-saved">0원</div></div>
+        <div class="kpi-box"><div class="kpi-label">실제 총 할인율</div><div class="kpi-value" id="p-realrate">0%</div></div>
+      </div>
+    </section>
+
+    <!-- 2, 3, 4. General Percent Calculators -->
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">2. 전체 값의 몇 %는 얼마?</div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="p2-a">전체 값 (A)</label><input type="number" id="p2-a" value="500000" /></div>
+            <div class="form-group"><label class="field-label" for="p2-b">비율 (%)</label><div class="input-group has-unit"><input type="number" id="p2-b" value="15" /><span class="input-unit">%</span></div></div>
+          </div>
+          <div class="kpi-box" style="margin-bottom:20px;"><div class="kpi-label">계산 결과</div><div class="kpi-value text-primary" id="p2-res">75,000</div></div>
+
+          <div class="form-section-title">3. 일부 값은 전체의 몇 %?</div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="p3-a">전체 값</label><input type="number" id="p3-a" value="250" /></div>
+            <div class="form-group"><label class="field-label" for="p3-b">일부 값</label><input type="number" id="p3-b" value="45" /></div>
+          </div>
+          <div class="kpi-box"><div class="kpi-label">차지하는 비율</div><div class="kpi-value text-success" id="p3-res">18.00%</div></div>
+        </div>
+
+        <div>
+          <div class="form-section-title">4. 값의 변화(증감률 %) 계산</div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="p4-a">이전 값 (매수가·작년)</label><input type="number" id="p4-a" value="50000" /></div>
+            <div class="form-group"><label class="field-label" for="p4-b">현재 값 (현재가·올해)</label><input type="number" id="p4-b" value="62500" /></div>
+          </div>
+          <div class="result-highlight" id="p4-hl">
+            <div class="rh-label">증감률 (변화율)</div>
+            <div class="rh-value" id="p4-res">+25.00%</div>
+            <div class="rh-sub" id="p4-diff">차이: +12,500</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>퍼센트 및 증감률 계산 공식</h2>
+      <div class="formula-box">
+        중복 할인가 = 정가 × (1 - 할인1/100) × (1 - 할인2/100)<br />
+        증감률(%) = [(현재 값 - 이전 값) ÷ |이전 값|] × 100<br />
+        비율(%) = (일부 값 ÷ 전체 값) × 100
+      </div>
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>30% 할인에 추가 10% 쿠폰을 쓰면 총 40% 할인인가요?</summary>
+          <div class="faq-answer">아니요. 1차 할인된 가격(70%)에서 10%를 다시 빼므로 최종 가격은 정가의 63%가 되어 실제 총 할인율은 37%입니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>주식이 50% 하락했을 때 원금 회복에는 몇 %가 필요한가요?</summary>
+          <div class="faq-answer">50% 하락 후에는 원금이 절반이 되므로, 원래 가격으로 돌아오려면 정확히 +100% 상승해야 합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>부가세(10%) 포함 금액에서 공급가액을 구하려면?</summary>
+          <div class="faq-answer">총 결제금액을 1.1로 나누면 공급가액, 나머지 약 9.09%가 부가가치세입니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      function updateAll() {
+        // 1. Discount
+        const price = Math.max(0, Number(document.getElementById("p-price").value) || 0);
+        const d1 = Math.min(100, Math.max(0, Number(document.getElementById("p-disc1").value) || 0));
+        const d2 = Math.min(100, Math.max(0, Number(document.getElementById("p-disc2").value) || 0));
+        const finalP = price * (1 - d1 / 100) * (1 - d2 / 100);
+        const saved = price - finalP;
+        const realRate = price > 0 ? (saved / price) * 100 : 0;
+        document.getElementById("p-final").textContent = TBH.fmtWon(finalP);
+        document.getElementById("p-saved").textContent = TBH.fmtWon(saved);
+        document.getElementById("p-realrate").textContent = `${realRate.toFixed(1)}%`;
+
+        // 2. A * B%
+        const a2 = Number(document.getElementById("p2-a").value) || 0;
+        const b2 = Number(document.getElementById("p2-b").value) || 0;
+        document.getElementById("p2-res").textContent = TBH.fmtNum(a2 * (b2 / 100), 2);
+
+        // 3. B / A %
+        const a3 = Number(document.getElementById("p3-a").value) || 0;
+        const b3 = Number(document.getElementById("p3-b").value) || 0;
+        document.getElementById("p3-res").textContent = a3 !== 0 ? `${((b3 / a3) * 100).toFixed(2)}%` : "0%";
+
+        // 4. Growth rate
+        const a4 = Number(document.getElementById("p4-a").value) || 0;
+        const b4 = Number(document.getElementById("p4-b").value) || 0;
+        const diff = b4 - a4;
+        const pct = a4 !== 0 ? (diff / Math.abs(a4)) * 100 : 0;
+        const hl = document.getElementById("p4-hl");
+        hl.style.background = diff >= 0
+          ? "linear-gradient(135deg, #059669 0%, #10b981 100%)"
+          : "linear-gradient(135deg, #dc2626 0%, #ea580c 100%)";
+        document.getElementById("p4-res").textContent = `${pct >= 0 ? "+" : ""}${pct.toFixed(2)}%`;
+        document.getElementById("p4-diff").textContent = `변화량: ${diff >= 0 ? "+" : ""}${TBH.fmtNum(diff, 2)}`;
+      }
+
+      ["p-price", "p-disc1", "p-disc2", "p2-a", "p2-b", "p3-a", "p3-b", "p4-a", "p4-b"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", updateAll);
+      });
+      updateAll();
+    })();
+  </script>
+</body>
+</html>
