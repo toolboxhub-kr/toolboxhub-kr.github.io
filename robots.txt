@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://toolboxhub-kr.github.io/auto-web-tools/sitemap.xml
+Sitemap: https://toolboxhub-kr.github.io/sitemap.xml
