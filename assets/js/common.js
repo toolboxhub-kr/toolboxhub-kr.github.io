@@ -7,6 +7,26 @@
   const isSubPage = window.location.pathname.includes("/tools/");
   const ROOT = isSubPage ? ".." : ".";
 
+  // 0. Google Analytics 4 (GA4) Real-Time Tracking
+  function initAnalytics() {
+    const GA_ID = "G-K95DLD6FQQ";
+    if (!GA_ID || document.getElementById("ga4-script")) return;
+    const s = document.createElement("script");
+    s.id = "ga4-script";
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+    gtag("js", new Date());
+    gtag("config", GA_ID);
+  }
+  initAnalytics();
+
   // 1. Theme Management
   function initTheme() {
     const saved = localStorage.getItem("tbh-theme");
