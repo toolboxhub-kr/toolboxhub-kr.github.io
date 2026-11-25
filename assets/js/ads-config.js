@@ -17,7 +17,7 @@
 
 window.AD_CONFIG = {
   // 개발/미리보기용 플레이스홀더 표시 여부 (실제 광고 적용 시 false로 변경 권장)
-  showPlaceholder: true,
+  showPlaceholder: false,
 
   // 구글 애드센스 설정
   adsense: {
