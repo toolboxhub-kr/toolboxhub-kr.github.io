@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FPS 게임 마우스 감도(eDPI) 변환 및 계산기 (발로란트·CS2·오버워치·배그) | ToolBox Hub</title>
+  <meta name="description" content="발로란트, CS2, 오버워치2, 에이펙스 레전드, 배틀그라운드, 포트나이트 간 마우스 감도를 완벽하게 변환하고 eDPI 및 cm/360° 거리를 즉시 계산하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="FPS 게임 마우스 감도(eDPI) 변환 및 계산기 | ToolBox Hub" />
+  <meta property="og:description" content="발로란트·CS2·오버워치2·에이펙스·배그 간 동일한 에임 감각을 유지하는 감도 변환기입니다." />
+  <meta property="og:url" content="https://example.com/tools/fps-edpi-calculator.html" />
+  <link rel="canonical" href="https://example.com/tools/fps-edpi-calculator.html" />
+
+  <meta name="tool:title" content="FPS 마우스 감도(eDPI) 변환기" />
+  <meta name="tool:category" content="게임·취미" />
+  <meta name="tool:category_slug" content="hobby" />
+  <meta name="tool:icon" content="🎯" />
+  <meta name="tool:summary" content="발로란트·CS2·오버워치2·에이펙스·배그 간 마우스 감도 상호 변환과 eDPI, cm/360°를 계산합니다." />
+  <meta name="tool:keywords" content="FPS,마우스감도,eDPI,cm360,발로란트,오버워치,CS2,에이펙스,배그,감도변환기" />
+  <meta name="tool:order" content="6" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "FPS 게임 마우스 감도(eDPI) 변환 및 계산기",
+        "url": "https://example.com/tools/fps-edpi-calculator.html",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "주요 FPS 게임 간의 마우스 감도 상호 변환, eDPI 계산, cm/360° 회전 거리를 산출하는 무료 웹 도구입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "eDPI와 cm/360°의 차이는 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "eDPI(DPI × 인게임 감도)는 같은 게임 내에서 유저 간 감도를 비교할 때 유용하지만 게임마다 엔진 배율이 달라 직접 비교할 수 없습니다. 반면 cm/360°는 게임 내에서 360도 회전하는 데 필요한 실제 마우스 이동 거리(cm)이므로 모든 FPS 게임에 공통으로 적용되는 절대 지표입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "마우스 DPI를 800에서 1600으로 올리면 감도는 어떻게 바꾸나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "동일한 eDPI와 에임 감각을 유지하려면 DPI를 2배로 올린 대신 인게임 감도를 정확히 절반(1/2)으로 줄이면 됩니다. 예: 800 DPI × 0.4 = 1600 DPI × 0.2."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "발로란트와 CS2 프로게이머 평균 감도는 어느 정도인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "발로란트 프로게이머 평균 eDPI는 약 240~320(cm/360° 기준 약 40~54cm), CS2는 약 800~950(cm/360° 기준 약 43~52cm) 구간에 가장 많이 분포합니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>게임·취미</span> <span>›</span> <span>FPS 마우스 감도(eDPI) 변환기</span>
+    </nav>
+
+    <section class="tool-hero">
+      <h1>🎯 FPS 게임 마우스 감도(eDPI) 변환 및 계산기</h1>
+      <p>발로란트 · CS2 · 오버워치2 · 에이펙스 · 배틀그라운드 간 동일한 에임 감각(cm/360°)을 유지하는 감도를 즉시 계산합니다.</p>
+    </section>
+
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <!-- Inputs -->
+        <div>
+          <div class="form-section-title">현재 게임 및 마우스 설정</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="fps-from">현재 게임 (From)</label>
+              <select id="fps-from"></select>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="fps-to">변환할 게임 (To)</label>
+              <select id="fps-to"></select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="fps-sens">현재 인게임 감도</label>
+              <input type="number" id="fps-sens" value="0.35" min="0.001" step="0.01" />
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="fps-dpi-from">현재 마우스 DPI</label>
+              <input type="number" id="fps-dpi-from" value="800" min="50" max="25600" step="50" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="field-label" for="fps-dpi-to">변환 후 마우스 DPI (동일하면 그대로 유지)</label>
+            <input type="number" id="fps-dpi-to" value="800" min="50" max="25600" step="50" />
+            <div class="preset-chips">
+              <button type="button" class="chip-btn" data-dpi="400">400 DPI</button>
+              <button type="button" class="chip-btn" data-dpi="800">800 DPI</button>
+              <button type="button" class="chip-btn" data-dpi="1600">1600 DPI</button>
+              <button type="button" class="chip-btn" data-dpi="3200">3200 DPI</button>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-secondary" id="btn-swap">⇄ 게임 서로 바꾸기</button>
+            <button type="button" class="btn btn-primary" id="btn-copy-fps">변환 결과 복사</button>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label" id="fps-target-label">변환된 인게임 감도</div>
+            <div class="rh-value" id="fps-res-sens">0.000</div>
+            <div class="rh-sub" id="fps-res-sub">eDPI 0 · cm/360° 0cm</div>
+          </div>
+
+          <div class="kpi-grid cols-3">
+            <div class="kpi-box">
+              <div class="kpi-label">현재 게임 eDPI</div>
+              <div class="kpi-value text-primary" id="fps-edpi-from">0</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">360° 회전 거리</div>
+              <div class="kpi-value text-success" id="fps-cm360">0 cm</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">360° (인치)</div>
+              <div class="kpi-value" id="fps-in360">0 in</div>
+            </div>
+          </div>
+
+          <div class="kpi-box" style="margin-bottom:14px;">
+            <div class="kpi-label">감도 성향 분석 (cm/360° 기준)</div>
+            <div style="font-size:0.95rem;font-weight:700;" id="fps-style-desc">-</div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:16px;">전체 주요 FPS 게임 동시 변환표</div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>게임명</th>
+                  <th>변환 감도</th>
+                  <th>해당 게임 eDPI</th>
+                </tr>
+              </thead>
+              <tbody id="fps-all-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>FPS 마우스 감도(eDPI & cm/360°) 계산 원리</h2>
+      <p>게임 엔진마다 마우스 1카운트(Count)당 화면이 회전하는 각도인 <strong>Yaw(도/카운트)</strong> 값이 다릅니다. 예를 들어 발로란트는 <code>0.07°</code>, CS2와 에이펙스 레전드는 <code>0.022°</code>, 오버워치2는 <code>0.0066°</code>를 사용합니다.</p>
+      <div class="formula-box">
+        eDPI = 마우스 DPI × 인게임 감도<br />
+        cm / 360° = [360 ÷ (DPI × 인게임 감도 × 게임별 Yaw)] × 2.54<br />
+        변환 감도 = 현재 감도 × (현재 게임 Yaw ÷ 목표 게임 Yaw) × (현재 DPI ÷ 목표 DPI)
+      </div>
+
+      <h2>에임 향상을 위한 감도 세팅 팁</h2>
+      <div class="tip-box">
+        <strong>💡 윈도우 포인터 정확도 향상(마우스 가속) 끄기:</strong> Windows 제어판 → 마우스 → 포인터 옵션에서 <strong>'포인터 정확도 향상' 체크를 해제</strong>하고, 포인터 속도는 중앙(6/11)으로 고정해야 모든 FPS 게임에서 일관된 근육 기억을 형성할 수 있습니다.
+      </div>
+      <ul>
+        <li><strong>저감도 vs 고감도:</strong> 발로란트·CS2처럼 정밀한 헤드라인 브레이킹이 중요한 택티컬 슈터는 <code>40~55 cm/360°</code>(저감도), 오버워치2·에이펙스처럼 빠른 트래킹과 180도 전환이 잦은 게임은 <code>25~40 cm/360°</code>(중감도)가 유리합니다.</li>
+        <li><strong>800 DPI vs 1600 DPI:</strong> 최근 프로게이머들은 센서 입력 지연을 미세하게 줄이기 위해 1600 DPI를 선택하고 인게임 감도를 절반으로 낮추는 추세입니다.</li>
+      </ul>
+
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>eDPI와 cm/360°의 차이는 무엇인가요?</summary>
+          <div class="faq-answer">eDPI는 같은 게임 안에서는 편리한 비교 지표지만 게임이 다르면 Yaw 값이 달라 비교할 수 없습니다. 반면 cm/360°는 실제 마우스패드 위에서 360도 회전하는 물리적 거리이므로 어떤 게임으로 옮겨도 동일한 에임 감각을 보장합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>마우스 DPI를 800에서 1600으로 올리면 감도는 어떻게 바꾸나요?</summary>
+          <div class="faq-answer">DPI를 2배로 높이면 인게임 감도를 정확히 1/2로 줄여야 같은 cm/360°가 유지됩니다. 위 계산기에서 '변환 후 마우스 DPI'에 1600을 입력하면 자동으로 정확한 값을 계산해 줍니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>배틀그라운드(PUBG) 감도 변환 시 주의할 점이 있나요?</summary>
+          <div class="faq-answer">배틀그라운드는 지향사격(일반)과 조준사격(ADS) 감도가 분리되어 있으며 FOV 설정에 따라 체감이 다릅니다. 본 계산기는 1인칭(FPP) 기본 시야각 기준 일반 감도를 산출합니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      // Standard yaw degrees per count at sens=1
+      const GAMES = [
+        { id: "valorant", name: "발로란트 (Valorant)", yaw: 0.07 },
+        { id: "cs2", name: "CS2 / 카운터스트라이크", yaw: 0.022 },
+        { id: "overwatch2", name: "오버워치 2 (Overwatch 2)", yaw: 0.0066 },
+        { id: "apex", name: "에이펙스 레전드 (Apex)", yaw: 0.022 },
+        { id: "fortnite", name: "포트나이트 (Fortnite %)", yaw: 0.005555 },
+        { id: "r6", name: "레인보우식스 시즈 (R6)", yaw: 0.00572957795 },
+        { id: "cod", name: "콜 오브 듀티 / 워존", yaw: 0.0066 },
+        { id: "pubg", name: "배틀그라운드 (PUBG 일반)", yaw: 0.002222 },
+      ];
+
+      const selFrom = document.getElementById("fps-from");
+      const selTo = document.getElementById("fps-to");
+      GAMES.forEach((g) => {
+        selFrom.add(new Option(g.name, g.id));
+        selTo.add(new Option(g.name, g.id));
+      });
+      selFrom.value = "valorant";
+      selTo.value = "cs2";
+
+      function getGame(id) {
+        return GAMES.find((g) => g.id === id) || GAMES[0];
+      }
+
+      function update() {
+        const gFrom = getGame(selFrom.value);
+        const gTo = getGame(selTo.value);
+        const sens = Math.max(0.0001, Number(document.getElementById("fps-sens").value) || 0.35);
+        const dpiFrom = Math.max(50, Number(document.getElementById("fps-dpi-from").value) || 800);
+        const dpiTo = Math.max(50, Number(document.getElementById("fps-dpi-to").value) || 800);
+
+        const degPerCountFrom = sens * gFrom.yaw;
+        const in360 = 360 / (dpiFrom * degPerCountFrom);
+        const cm360 = in360 * 2.54;
+
+        const targetSens = (sens * gFrom.yaw * dpiFrom) / (gTo.yaw * dpiTo);
+        const edpiFrom = dpiFrom * sens;
+        const edpiTo = dpiTo * targetSens;
+
+        document.getElementById("fps-target-label").textContent = `${gTo.name} 추천 감도`;
+        document.getElementById("fps-res-sens").textContent = targetSens.toFixed(3);
+        document.getElementById("fps-res-sub").textContent = `목표 eDPI ${edpiTo.toFixed(1)} · 360° 회전 ${cm360.toFixed(1)} cm`;
+        document.getElementById("fps-edpi-from").textContent = edpiFrom.toFixed(1);
+        document.getElementById("fps-cm360").textContent = `${cm360.toFixed(1)} cm`;
+        document.getElementById("fps-in360").textContent = `${in360.toFixed(1)} in`;
+
+        let style = "";
+        if (cm360 < 20) style = "🔥 초고감도 (손목 에임 위주 — 빠른 전환에 유리)";
+        else if (cm360 < 35) style = "⚡ 중·고감도 (오버워치·에이펙스 트래킹에 최적화)";
+        else if (cm360 < 55) style = "🎯 표준·저감도 (발로란트·CS2 프로 평균 구간)";
+        else style = "🧊 초저감도 (팔 에임 위주 — 대형 마우스패드 권장)";
+        document.getElementById("fps-style-desc").textContent = style;
+
+        document.getElementById("fps-all-tbody").innerHTML = GAMES.map((g) => {
+          const s = (sens * gFrom.yaw * dpiFrom) / (g.yaw * dpiTo);
+          const e = s * dpiTo;
+          const isTarget = g.id === gTo.id;
+          return `<tr style="${isTarget ? "background:var(--primary-soft);font-weight:700;" : ""}">
+            <td>${g.name}</td>
+            <td style="color:var(--primary);font-weight:700;">${s.toFixed(3)}</td>
+            <td>${e.toFixed(1)}</td>
+          </tr>`;
+        }).join("");
+      }
+
+      document.getElementById("btn-swap").addEventListener("click", () => {
+        const tmp = selFrom.value;
+        selFrom.value = selTo.value;
+        selTo.value = tmp;
+        update();
+      });
+
+      document.querySelectorAll("[data-dpi]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.getElementById("fps-dpi-from").value = btn.dataset.dpi;
+          document.getElementById("fps-dpi-to").value = btn.dataset.dpi;
+          update();
+        });
+      });
+
+      ["fps-from", "fps-to", "fps-sens", "fps-dpi-from", "fps-dpi-to"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", update);
+        document.getElementById(id).addEventListener("change", update);
+      });
+
+      document.getElementById("btn-copy-fps").addEventListener("click", () => {
+        const lbl = document.getElementById("fps-target-label").textContent;
+        const val = document.getElementById("fps-res-sens").textContent;
+        const cm = document.getElementById("fps-cm360").textContent;
+        TBH.copyText(`[FPS 감도 변환]\n${lbl}: ${val} (${cm} / 360°)`);
+      });
+
+      update();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>전자담배 액상 배합 계산기 (PG/VG/니코틴 비율 & 무게 g) | ToolBox Hub</title>
+  <meta name="description" content="전자담배 DIY 김장 액상 제조 시 목표 용량(ml), PG/VG 비율, 니코틴 농도(mg/ml), 다중 향료 비율에 따른 정확한 용량(ml)과 전자저울 무게(g)를 즉시 계산합니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="전자담배 액상 배합(PG/VG/니코틴) 계산기 | ToolBox Hub" />
+  <meta property="og:description" content="김장 액상 레시피의 PG, VG, 니코틴, 향료 용량(ml)과 비중 적용 무게(g)를 1초 만에 계산하세요." />
+  <meta property="og:url" content="https://example.com/tools/eliquid-calculator.html" />
+  <link rel="canonical" href="https://example.com/tools/eliquid-calculator.html" />
+
+  <meta name="tool:title" content="전자담배 액상 배합 계산기" />
+  <meta name="tool:category" content="게임·취미" />
+  <meta name="tool:category_slug" content="hobby" />
+  <meta name="tool:icon" content="🧪" />
+  <meta name="tool:summary" content="PG/VG 비율, 니코틴 농도, 다중 향료 비율에 따른 DIY 액상 용량(ml)과 저울 무게(g)를 계산합니다." />
+  <meta name="tool:keywords" content="전자담배,액상,김장,PG,VG,니코틴,배합,레시피,계산기,비중" />
+  <meta name="tool:order" content="5" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "전자담배 액상 배합(PG/VG/니코틴) 계산기",
+        "url": "https://example.com/tools/eliquid-calculator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "DIY 전자담배 액상 제조를 위한 PG, VG, 니코틴, 향료 배합 비율(ml 및 g) 계산기입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "입호흡(MTL)과 폐호흡(DTL)의 권장 PG/VG 비율은 어떻게 되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "일반적으로 입호흡(MTL) 기기는 액상 유입이 원활한 PG 50 : VG 50 비율을, 폐호흡(DTL) 기기는 풍부한 무화량과 부드러운 목넘김을 위해 PG 30 : VG 70 비율을 가장 많이 사용합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "왜 ml 대신 무게(g)로 계량하는 것이 더 정확한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "VG(식물성 글리세린)는 점도가 매우 높아 주사기 벽면에 잔여물이 남기 쉽습니다. PG(1.036 g/ml)와 VG(1.261 g/ml)의 비중을 반영해 0.01g 전자저울로 계량하면 오차 없이 위생적으로 배합할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "계산 결과 PG가 음수(-)로 나오는 이유는 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "대부분의 향료와 니코틴 베이스가 PG 기반이기 때문에, 향료 비율이 높으면서 목표 PG 비율을 너무 낮게(예: PG 20%) 잡으면 순수 PG를 넣지 않아도 이미 목표 PG 비중을 초과하게 됩니다. 목표 PG 비율을 높이거나 VG 베이스 향료를 사용해 주세요."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>게임·취미</span> <span>›</span> <span>전자담배 액상 배합 계산기</span>
+    </nav>
+
+    <section class="tool-hero">
+      <h1>🧪 전자담배 액상 배합 (PG/VG/니코틴) 계산기</h1>
+      <p>목표 용량과 비율, 향료 구성을 입력하면 주사기 용량(ml)과 전자저울 무게(g)를 동시에 계산합니다.</p>
+    </section>
+
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <!-- Inputs -->
+        <div>
+          <div class="form-section-title">목표 액상 스펙</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="el-vol">목표 총 용량</label>
+              <div class="input-group has-unit">
+                <input type="number" id="el-vol" value="60" min="5" max="2000" step="5" />
+                <span class="input-unit">ml</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="el-target-nic">목표 니코틴 농도</label>
+              <div class="input-group has-unit">
+                <input type="number" id="el-target-nic" value="9.8" min="0" max="50" step="0.1" />
+                <span class="input-unit">mg/ml</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="preset-chips" style="margin-bottom:16px;">
+            <button type="button" class="chip-btn" data-preset="mtl">입호흡 표준 (30ml · 50:50 · 9.8mg)</button>
+            <button type="button" class="chip-btn" data-preset="dtl">폐호흡 표준 (60ml · 30:70 · 3mg)</button>
+            <button type="button" class="chip-btn" data-preset="zero">무니코틴 (100ml · 30:70 · 0mg)</button>
+          </div>
+
+          <div class="form-group">
+            <label class="field-label" for="el-vg-slider">
+              <span>목표 PG / VG 비율</span>
+              <strong id="el-ratio-label" style="color:var(--primary)">PG 50% : VG 50%</strong>
+            </label>
+            <input type="range" id="el-vg-slider" min="0" max="100" step="5" value="50" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="el-base-nic">보유 니코틴 베이스 농도</label>
+              <div class="input-group has-unit">
+                <input type="number" id="el-base-nic" value="100" min="1" max="1000" step="1" />
+                <span class="input-unit">mg/ml</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="el-base-nic-type">니코틴 베이스 용매</label>
+              <select id="el-base-nic-type">
+                <option value="100-0" selected>PG 100%</option>
+                <option value="50-50">PG 50% / VG 50%</option>
+                <option value="0-100">VG 100%</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:18px;">
+            <span>향료 (Flavor) 구성</span>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-add-flavor">+ 향료 추가</button>
+          </div>
+          <div id="flavors-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;"></div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="btn-copy-el">레시피 복사</button>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label">완성 액상 요약</div>
+            <div class="rh-value" id="el-res-headline">60ml · 9.8mg/ml</div>
+            <div class="rh-sub" id="el-res-sub">PG 50% : VG 50% · 총 무게 0g</div>
+          </div>
+
+          <div id="el-warning" style="display:none;padding:12px 14px;border-radius:10px;background:var(--danger-soft);color:var(--danger);font-size:0.86rem;font-weight:600;margin-bottom:14px;"></div>
+
+          <div class="stacked-bar" id="el-stacked-bar">
+            <div class="bar-seg" id="seg-nic" style="background:var(--danger);width:10%"></div>
+            <div class="bar-seg" id="seg-flv" style="background:var(--purple);width:15%"></div>
+            <div class="bar-seg" id="seg-pg" style="background:var(--primary);width:25%"></div>
+            <div class="bar-seg" id="seg-vg" style="background:var(--success);width:50%"></div>
+          </div>
+          <div class="bar-legend" style="margin-bottom:16px;">
+            <span class="legend-item"><span class="legend-dot" style="background:var(--danger)"></span>니코틴</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--purple)"></span>향료</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--primary)"></span>순수 PG</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--success)"></span>순수 VG</span>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>재료</th>
+                  <th>비율 (%)</th>
+                  <th>용량 (ml)</th>
+                  <th>무게 (g)</th>
+                </tr>
+              </thead>
+              <tbody id="el-result-tbody"></tbody>
+            </table>
+          </div>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-top:10px;">
+            ※ 표준 비중 적용: PG 1.036 g/ml, VG 1.261 g/ml, PG 기반 향료 1.036 g/ml
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>전자담배 액상 배합 원리 및 공식</h2>
+      <p>DIY 액상(김장 액상)은 <strong>PG(프로필렌글리콜)</strong>, <strong>VG(식물성 글리세린)</strong>, <strong>향료</strong>, <strong>니코틴 베이스</strong> 4가지 요소로 구성됩니다. PG는 맛 표현과 목넘김을 담당하고, VG는 부드러운 무화량과 점도를 담당합니다.</p>
+      <div class="formula-box">
+        필요 니코틴 베이스(ml) = (목표 총 용량 × 목표 니코틴 농도) ÷ 보유 니코틴 농도<br />
+        필요 향료(ml) = 목표 총 용량 × (향료 비율 % ÷ 100)<br />
+        추가 PG(ml) = (총 용량 × 목표 PG%) - (니코틴·향료에 포함된 PG 용량)<br />
+        무게(g) = 용량(ml) × 재료별 비중 (PG 1.036 / VG 1.261)
+      </div>
+
+      <h2>안전한 액상 제조 및 숙성(Steeping) 활용 팁</h2>
+      <div class="tip-box">
+        <strong>⚠️ 안전 주의사항:</strong> 고농도 니코틴 베이스를 다룰 때는 반드시 니트릴 장갑을 착용하고, 어린이와 반려동물의 손이 닿지 않는 서늘하고 어두운 곳에 보관하세요.
+      </div>
+      <ul>
+        <li><strong>숙성 기간(Steeping):</strong> 과일·멘솔 계열은 배합 후 1~3일이면 바로 베이핑 가능하지만, 디저트·연초·크림 계열은 직사광선을 피해 1~2주 이상 숙성하면 풍미가 훨씬 깊어집니다.</li>
+        <li><strong>전자저울 활용:</strong> 0.01g 단위 정밀 저울에 공병을 올리고 영점(Tare)을 맞춘 뒤 위 표의 <strong>무게(g)</strong>대로 한 재료씩 넣으면 주사기 세척 없이 가장 깔끔하게 제조할 수 있습니다.</li>
+      </ul>
+
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>입호흡(MTL)과 폐호흡(DTL)의 권장 PG/VG 비율은 어떻게 되나요?</summary>
+          <div class="faq-answer">입호흡(MTL) 팟 디바이스는 점도가 너무 높으면 코일 탄맛이 날 수 있어 PG 50 : VG 50을 권장하며, 폐호흡(DTL) 기기는 누수를 방지하고 풍부한 연무를 위해 PG 30 : VG 70을 주로 사용합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>왜 ml 대신 무게(g)로 계량하는 것이 더 정확한가요?</summary>
+          <div class="faq-answer">VG는 꿀처럼 점도가 높아 주사기나 눈금실린더 벽면에 상당량이 묻어 오차가 커집니다. 비중(PG 1.036, VG 1.261)을 적용한 무게(g) 계량이 훨씬 정확하고 위생적입니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>계산 결과 순수 PG가 부족(음수)으로 표시될 때는 어떻게 하나요?</summary>
+          <div class="faq-answer">향료와 니코틴이 대부분 PG 베이스이기 때문에 목표 PG 비율을 너무 낮게 잡으면 이미 목표 PG 양을 초과할 수 있습니다. 목표 VG 비율을 조금 낮추거나 향료 비율을 줄여 조정해 주세요.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const DENSITY_PG = 1.036;
+      const DENSITY_VG = 1.261;
+
+      let flavors = [
+        { name: "메인 향료 (예: 복숭아)", pct: 12, base: "PG" },
+        { name: "쿨링 에이전트 (WS-23)", pct: 2, base: "PG" },
+      ];
+
+      function renderFlavors() {
+        const wrap = document.getElementById("flavors-list");
+        wrap.innerHTML = flavors
+          .map(
+            (f, idx) => `
+          <div style="display:grid;grid-template-columns:1.5fr 0.8fr 0.7fr auto;gap:6px;align-items:center;">
+            <input type="text" value="${f.name}" data-idx="${idx}" data-key="name" placeholder="향료명" />
+            <div class="input-group has-unit">
+              <input type="number" value="${f.pct}" min="0" max="50" step="0.5" data-idx="${idx}" data-key="pct" />
+              <span class="input-unit">%</span>
+            </div>
+            <select data-idx="${idx}" data-key="base">
+              <option value="PG" ${f.base === "PG" ? "selected" : ""}>PG</option>
+              <option value="VG" ${f.base === "VG" ? "selected" : ""}>VG</option>
+            </select>
+            <button type="button" class="btn btn-secondary btn-sm" data-del="${idx}" title="삭제">✕</button>
+          </div>`
+          )
+          .join("");
+
+        wrap.querySelectorAll("input, select").forEach((el) => {
+          el.addEventListener("input", () => {
+            const i = Number(el.dataset.idx);
+            const k = el.dataset.key;
+            flavors[i][k] = k === "pct" ? Math.max(0, Number(el.value) || 0) : el.value;
+            update();
+          });
+        });
+
+        wrap.querySelectorAll("[data-del]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            flavors.splice(Number(btn.dataset.del), 1);
+            renderFlavors();
+            update();
+          });
+        });
+      }
+
+      let lastTextSummary = "";
+
+      function update() {
+        const totalVol = Math.max(1, Number(document.getElementById("el-vol").value) || 60);
+        const targetNic = Math.max(0, Number(document.getElementById("el-target-nic").value) || 0);
+        const targetVgPct = Number(document.getElementById("el-vg-slider").value);
+        const targetPgPct = 100 - targetVgPct;
+        const baseNic = Math.max(1, Number(document.getElementById("el-base-nic").value) || 100);
+        const [nicPgRatio, nicVgRatio] = document.getElementById("el-base-nic-type").value.split("-").map((v) => Number(v) / 100);
+
+        document.getElementById("el-ratio-label").textContent = `PG ${targetPgPct}% : VG ${targetVgPct}%`;
+
+        const nicMl = (totalVol * targetNic) / baseNic;
+        const nicPgMl = nicMl * nicPgRatio;
+        const nicVgMl = nicMl * nicVgRatio;
+        const nicDensity = nicPgRatio * DENSITY_PG + nicVgRatio * DENSITY_VG;
+        const nicG = nicMl * nicDensity;
+
+        let flvPgMl = 0, flvVgMl = 0, totalFlvMl = 0;
+        const flvRows = flavors.map((f) => {
+          const ml = (totalVol * f.pct) / 100;
+          const density = f.base === "VG" ? DENSITY_VG : DENSITY_PG;
+          if (f.base === "VG") flvVgMl += ml;
+          else flvPgMl += ml;
+          totalFlvMl += ml;
+          return { name: f.name || "향료", pct: f.pct, ml, g: ml * density };
+        });
+
+        const addPgMl = (totalVol * targetPgPct) / 100 - nicPgMl - flvPgMl;
+        const addVgMl = (totalVol * targetVgPct) / 100 - nicVgMl - flvVgMl;
+
+        const warn = document.getElementById("el-warning");
+        if (addPgMl < -0.01 || addVgMl < -0.01) {
+          warn.style.display = "block";
+          warn.textContent = "⚠️ 향료 또는 니코틴 베이스의 PG/VG 비중이 목표 비율을 초과했습니다. 목표 PG/VG 비율이나 향료 함량을 조정해 주세요.";
+        } else {
+          warn.style.display = "none";
+        }
+
+        const safePgMl = Math.max(0, addPgMl);
+        const safeVgMl = Math.max(0, addVgMl);
+        const pgG = safePgMl * DENSITY_PG;
+        const vgG = safeVgMl * DENSITY_VG;
+        const totalG = nicG + flvRows.reduce((s, r) => s + r.g, 0) + pgG + vgG;
+
+        document.getElementById("el-res-headline").textContent = `${totalVol}ml · ${targetNic}mg/ml`;
+        document.getElementById("el-res-sub").textContent = `PG ${targetPgPct}% : VG ${targetVgPct}% · 예상 총 무게 ${totalG.toFixed(2)}g`;
+
+        const rows = [
+          { name: `니코틴 베이스 (${baseNic}mg/ml)`, pct: (nicMl / totalVol) * 100, ml: nicMl, g: nicG },
+          ...flvRows,
+          { name: "순수 PG (프로필렌글리콜)", pct: (safePgMl / totalVol) * 100, ml: safePgMl, g: pgG },
+          { name: "순수 VG (식물성 글리세린)", pct: (safeVgMl / totalVol) * 100, ml: safeVgMl, g: vgG },
+        ];
+
+        document.getElementById("el-result-tbody").innerHTML =
+          rows
+            .map(
+              (r) => `<tr>
+              <td><strong>${r.name}</strong></td>
+              <td>${r.pct.toFixed(1)}%</td>
+              <td>${r.ml.toFixed(2)} ml</td>
+              <td style="color:var(--primary);font-weight:700;">${r.g.toFixed(2)} g</td>
+            </tr>`
+            )
+            .join("") +
+          `<tr style="background:var(--bg-subtle);font-weight:800;">
+            <td>합계</td>
+            <td>100.0%</td>
+            <td>${totalVol.toFixed(2)} ml</td>
+            <td>${totalG.toFixed(2)} g</td>
+          </tr>`;
+
+        document.getElementById("seg-nic").style.width = `${Math.min(100, (nicMl / totalVol) * 100)}%`;
+        document.getElementById("seg-flv").style.width = `${Math.min(100, (totalFlvMl / totalVol) * 100)}%`;
+        document.getElementById("seg-pg").style.width = `${Math.min(100, (safePgMl / totalVol) * 100)}%`;
+        document.getElementById("seg-vg").style.width = `${Math.min(100, (safeVgMl / totalVol) * 100)}%`;
+
+        lastTextSummary = `[액상 배합 레시피: ${totalVol}ml / PG${targetPgPct}:VG${targetVgPct} / ${targetNic}mg]\n` +
+          rows.map((r) => `- ${r.name}: ${r.ml.toFixed(2)}ml (${r.g.toFixed(2)}g)`).join("\n");
+      }
+
+      document.getElementById("btn-add-flavor").addEventListener("click", () => {
+        flavors.push({ name: `추가 향료 ${flavors.length + 1}`, pct: 3, base: "PG" });
+        renderFlavors();
+        update();
+      });
+
+      document.querySelectorAll("[data-preset]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const p = btn.dataset.preset;
+          if (p === "mtl") {
+            document.getElementById("el-vol").value = 30;
+            document.getElementById("el-target-nic").value = 9.8;
+            document.getElementById("el-vg-slider").value = 50;
+          } else if (p === "dtl") {
+            document.getElementById("el-vol").value = 60;
+            document.getElementById("el-target-nic").value = 3;
+            document.getElementById("el-vg-slider").value = 70;
+          } else {
+            document.getElementById("el-vol").value = 100;
+            document.getElementById("el-target-nic").value = 0;
+            document.getElementById("el-vg-slider").value = 70;
+          }
+          update();
+        });
+      });
+
+      ["el-vol", "el-target-nic", "el-vg-slider", "el-base-nic", "el-base-nic-type"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", update);
+        document.getElementById(id).addEventListener("change", update);
+      });
+
+      document.getElementById("btn-copy-el").addEventListener("click", () => TBH.copyText(lastTextSummary));
+
+      renderFlavors();
+      update();
+    })();
+  </script>
+</body>
+</html>

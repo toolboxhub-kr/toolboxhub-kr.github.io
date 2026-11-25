@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이미지 용량 압축 및 WebP/PNG/JPG 포맷 변환기 (무설치·서버전송 없음) | ToolBox Hub</title>
+  <meta name="description" content="서버 업로드 없이 브라우저 Canvas API로 안전하게 이미지 용량을 압축하고 WebP, JPG, PNG 포맷으로 즉시 변환·리사이즈하여 다운로드하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="이미지 용량 압축 & WebP/PNG/JPG 변환기 | ToolBox Hub" />
+  <meta property="og:description" content="개인정보 유출 걱정 없이 브라우저에서 1초 만에 이미지 용량을 줄이고 WebP·JPG·PNG로 변환합니다." />
+  <meta property="og:url" content="https://example.com/tools/image-converter.html" />
+  <link rel="canonical" href="https://example.com/tools/image-converter.html" />
+
+  <meta name="tool:title" content="이미지 용량 압축 & 포맷 변환기" />
+  <meta name="tool:category" content="생활·유틸" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="🖼️" />
+  <meta name="tool:summary" content="서버 전송 없이 브라우저에서 이미지 용량을 압축하고 WebP·PNG·JPG로 즉시 변환합니다." />
+  <meta name="tool:keywords" content="이미지압축,용량줄이기,WebP변환,JPG변환,PNG변환,리사이즈,사진용량" />
+  <meta name="tool:order" content="7" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "이미지 용량 압축 및 포맷(WebP/PNG/JPG) 변환기",
+        "url": "https://example.com/tools/image-converter.html",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "HTML5 Canvas API를 이용해 서버 업로드 없이 브라우저에서 이미지를 압축하고 WebP, JPG, PNG로 변환하는 도구입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "업로드한 사진이 외부 서버로 전송되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "아니요. 모든 이미지 변환과 압축은 사용자의 기기 브라우저(HTML5 Canvas API) 내부 메모리에서만 처리되므로 사진이 인터넷 서버로 전혀 전송되지 않아 안전합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "블로그나 웹사이트용으로 가장 좋은 포맷은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "WebP 포맷은 JPG/PNG 대비 화질 저하가 거의 없으면서 용량을 30~70% 이상 줄여주므로, 블로그 로딩 속도와 구글 SEO 점수(Core Web Vitals) 향상에 가장 유리합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "투명 배경이 있는 PNG를 JPG로 변환하면 어떻게 되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "JPG 포맷은 투명도(알파 채널)를 지원하지 않으므로 투명 영역이 자동으로 깔끔한 흰색 배경으로 채워져 변환됩니다. 투명 배경을 유지하려면 WebP 또는 PNG를 선택하세요."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>생활·유틸</span> <span>›</span> <span>이미지 압축 & 포맷 변환기</span>
+    </nav>
+
+    <section class="tool-hero">
+      <h1>🖼️ 이미지 용량 압축 및 포맷(WebP/PNG/JPG) 변환기</h1>
+      <p>서버 업로드 없이 브라우저에서 안전하고 빠르게 이미지 용량을 줄이고 원하는 포맷으로 변환하세요.</p>
+    </section>
+
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <!-- Upload Dropzone -->
+      <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="이미지 파일 선택 또는 드래그">
+        <div style="font-size:2.4rem;margin-bottom:8px;">📁</div>
+        <div style="font-weight:700;font-size:1.05rem;margin-bottom:4px;">이미지를 이곳에 끌어다 놓거나 클릭하여 선택하세요</div>
+        <div style="font-size:0.86rem;color:var(--text-muted);">JPG, PNG, WebP, GIF, BMP 지원 · 여러 장 동시 선택 가능 · 100% 로컬 처리</div>
+        <input type="file" id="file-input" accept="image/*" multiple style="display:none;" />
+      </div>
+
+      <!-- Conversion Options -->
+      <div class="form-row-3" style="margin-top:20px;">
+        <div class="form-group">
+          <label class="field-label" for="img-format">출력 포맷</label>
+          <select id="img-format">
+            <option value="image/webp" selected>WebP (최고 압축·SEO 추천)</option>
+            <option value="image/jpeg">JPG (범용 사진용)</option>
+            <option value="image/png">PNG (무손실·투명 유지)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="img-quality">
+            <span>압축 품질</span>
+            <strong id="img-quality-val" style="color:var(--primary)">80%</strong>
+          </label>
+          <input type="range" id="img-quality" min="10" max="100" step="5" value="80" />
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="img-max-width">최대 너비 리사이즈 (0 = 원본 유지)</label>
+          <div class="input-group has-unit">
+            <input type="number" id="img-max-width" value="0" min="0" max="8000" step="100" />
+            <span class="input-unit">px</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row" id="batch-actions" style="display:none;margin-top:4px;margin-bottom:18px;">
+        <button type="button" class="btn btn-primary" id="btn-reconvert">설정 적용하여 다시 변환</button>
+        <button type="button" class="btn btn-success" id="btn-download-all">전체 파일 다운로드</button>
+        <button type="button" class="btn btn-secondary" id="btn-clear-files">목록 비우기</button>
+      </div>
+
+      <!-- Summary KPIs -->
+      <div class="kpi-grid cols-3" id="img-summary" style="display:none;">
+        <div class="kpi-box">
+          <div class="kpi-label">원본 총 용량</div>
+          <div class="kpi-value" id="sum-orig">0 KB</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-label">변환 후 총 용량</div>
+          <div class="kpi-value text-primary" id="sum-conv">0 KB</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-label">용량 절감률</div>
+          <div class="kpi-value text-success" id="sum-saved">0%</div>
+        </div>
+      </div>
+
+      <!-- Converted Items List -->
+      <div id="result-list" style="display:flex;flex-direction:column;gap:12px;margin-top:16px;"></div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>브라우저 Canvas API 이미지 압축 원리</h2>
+      <p>이 도구는 HTML5 <strong>Canvas API</strong>를 사용하여 사용자의 컴퓨터·스마트폰 브라우저 메모리에서 이미지를 직접 디코딩한 뒤, 지정한 해상도와 포맷(WebP, JPEG, PNG) 및 품질 계수(0.1~1.0)로 다시 인코딩합니다.</p>
+      <div class="formula-box">
+        압축 절감률(%) = [(원본 용량 - 변환 후 용량) ÷ 원본 용량] × 100<br />
+        리사이즈 높이 = 원본 높이 × (목표 최대 너비 ÷ 원본 너비) — 종횡비 자동 유지
+      </div>
+
+      <h2>용량 절감 및 블로그 SEO 활용 팁</h2>
+      <div class="tip-box">
+        <strong>💡 블로그·쇼핑몰 이미지 최적화 황금 설정:</strong> 출력 포맷 <strong>WebP</strong>, 압축 품질 <strong>75~85%</strong>, 최대 너비 <strong>1200px</strong>으로 설정하면 눈으로 구분하기 어려운 화질에서 파일 용량을 평균 70~85%까지 획기적으로 줄일 수 있습니다.
+      </div>
+      <ul>
+        <li><strong>구글 애드센스 & 검색 상위 노출:</strong> 페이지 로딩 속도(LCP)는 구글 검색 순위의 핵심 지표입니다. 고해상도 PNG 스크린샷을 WebP로 변환해 업로드하면 모바일 로딩 속도가 크게 빨라집니다.</li>
+        <li><strong>입사지원서·공공기관 제출용:</strong> 용량 제한(예: 500KB 이하)이 있는 경우 JPG 포맷으로 선택하고 품질을 70% 내외, 최대 너비를 1000px 이하로 조절해 보세요.</li>
+      </ul>
+
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>업로드한 사진이 외부 서버로 전송되나요?</summary>
+          <div class="faq-answer">절대 전송되지 않습니다. 인터넷 연결을 끊은 상태에서도 작동할 만큼 100% 브라우저 내부에서만 처리되므로 신분증, 계약서, 개인 사진 등 민감한 이미지도 안심하고 변환할 수 있습니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>PNG로 변환했는데 용량이 오히려 커지는 이유는 무엇인가요?</summary>
+          <div class="faq-answer">PNG는 무손실(Lossless) 압축 포맷이므로, 이미 손실 압축된 JPG 사진을 PNG로 바꾸면 파일 크기가 커질 수 있습니다. 용량을 줄이는 것이 목적이라면 WebP 또는 JPG 포맷을 선택해 주세요.</div>
+        </details>
+        <details class="faq-item">
+          <summary>투명 배경이 있는 PNG를 JPG로 변환하면 어떻게 되나요?</summary>
+          <div class="faq-answer">JPG는 투명 채널을 지원하지 않기 때문에 투명 배경 부분이 자동으로 깔끔한 흰색으로 채워집니다. 투명 배경을 그대로 유지하려면 WebP 또는 PNG를 선택하세요.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const dropzone = document.getElementById("dropzone");
+      const fileInput = document.getElementById("file-input");
+      const formatSel = document.getElementById("img-format");
+      const qualitySlider = document.getElementById("img-quality");
+      const qualityVal = document.getElementById("img-quality-val");
+      const maxWidthInput = document.getElementById("img-max-width");
+      const resultList = document.getElementById("result-list");
+      const batchActions = document.getElementById("batch-actions");
+      const imgSummary = document.getElementById("img-summary");
+
+      let sourceFiles = [];
+      let convertedItems = [];
+
+      function fmtBytes(bytes) {
+        if (bytes < 1024) return `${bytes} B`;
+        if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+        return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+      }
+
+      function extFromMime(mime) {
+        if (mime === "image/webp") return "webp";
+        if (mime === "image/png") return "png";
+        return "jpg";
+      }
+
+      function convertSingleFile(file, mime, quality, maxWidth) {
+        return new Promise((resolve, reject) => {
+          const url = URL.createObjectURL(file);
+          const img = new Image();
+          img.onload = () => {
+            let w = img.naturalWidth;
+            let h = img.naturalHeight;
+            if (maxWidth > 0 && w > maxWidth) {
+              h = Math.round((h * maxWidth) / w);
+              w = maxWidth;
+            }
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext("2d");
+            if (mime === "image/jpeg") {
+              ctx.fillStyle = "#ffffff";
+              ctx.fillRect(0, 0, w, h);
+            }
+            ctx.drawImage(img, 0, 0, w, h);
+            URL.revokeObjectURL(url);
+
+            canvas.toBlob(
+              (blob) => {
+                if (!blob) return reject(new Error("변환 실패"));
+                const baseName = file.name.replace(/\.[^/.]+$/, "");
+                const outName = `${baseName}.${extFromMime(mime)}`;
+                const outUrl = URL.createObjectURL(blob);
+                resolve({
+                  origName: file.name,
+                  outName,
+                  origSize: file.size,
+                  outSize: blob.size,
+                  width: w,
+                  height: h,
+                  outUrl,
+                  blob,
+                });
+              },
+              mime,
+              quality
+            );
+          };
+          img.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error("이미지를 읽을 수 없습니다."));
+          };
+          img.src = url;
+        });
+      }
+
+      async function processAll() {
+        if (!sourceFiles.length) return;
+        convertedItems.forEach((it) => URL.revokeObjectURL(it.outUrl));
+        convertedItems = [];
+
+        const mime = formatSel.value;
+        const quality = Number(qualitySlider.value) / 100;
+        const maxWidth = Math.max(0, Number(maxWidthInput.value) || 0);
+
+        resultList.innerHTML = `<div style="text-align:center;padding:16px;color:var(--text-muted);">변환 중...</div>`;
+
+        for (const f of sourceFiles) {
+          try {
+            const item = await convertSingleFile(f, mime, quality, maxWidth);
+            convertedItems.push(item);
+          } catch (err) {
+            console.error(err);
+          }
+        }
+        renderResults();
+      }
+
+      function renderResults() {
+        if (!convertedItems.length) {
+          batchActions.style.display = "none";
+          imgSummary.style.display = "none";
+          resultList.innerHTML = "";
+          return;
+        }
+        batchActions.style.display = "flex";
+        imgSummary.style.display = "grid";
+
+        let totOrig = 0, totOut = 0;
+        resultList.innerHTML = convertedItems
+          .map((it, idx) => {
+            totOrig += it.origSize;
+            totOut += it.outSize;
+            const savedPct = ((it.origSize - it.outSize) / it.origSize) * 100;
+            const badgeColor = savedPct >= 0 ? "var(--success)" : "var(--warning)";
+            const badgeText = savedPct >= 0 ? `-${savedPct.toFixed(1)}% 절감` : `+${Math.abs(savedPct).toFixed(1)}% 증가`;
+
+            return `
+              <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--bg);">
+                <div style="display:flex;align-items:center;gap:14px;min-width:220px;flex:1;">
+                  <img src="${it.outUrl}" alt="${it.outName}" style="width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid var(--border);" />
+                  <div>
+                    <div style="font-weight:700;font-size:0.94rem;word-break:break-all;">${it.outName}</div>
+                    <div style="font-size:0.82rem;color:var(--text-muted);">
+                      ${it.width}×${it.height}px · ${fmtBytes(it.origSize)} → <strong>${fmtBytes(it.outSize)}</strong>
+                      <span style="color:${badgeColor};font-weight:700;margin-left:6px;">(${badgeText})</span>
+                    </div>
+                  </div>
+                </div>
+                <a class="btn btn-primary btn-sm" href="${it.outUrl}" download="${it.outName}">다운로드</a>
+              </div>`;
+          })
+          .join("");
+
+        const totalSaved = totOrig > 0 ? ((totOrig - totOut) / totOrig) * 100 : 0;
+        document.getElementById("sum-orig").textContent = fmtBytes(totOrig);
+        document.getElementById("sum-conv").textContent = fmtBytes(totOut);
+        document.getElementById("sum-saved").textContent = `${totalSaved >= 0 ? "-" : "+"}${Math.abs(totalSaved).toFixed(1)}%`;
+      }
+
+      function handleFiles(fileList) {
+        const valid = Array.from(fileList).filter((f) => f.type.startsWith("image/"));
+        if (!valid.length) {
+          TBH.toast("이미지 파일만 선택할 수 있습니다.");
+          return;
+        }
+        sourceFiles = sourceFiles.concat(valid);
+        processAll();
+      }
+
+      dropzone.addEventListener("click", () => fileInput.click());
+      dropzone.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+      dropzone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropzone.classList.add("dragover");
+      });
+      dropzone.addEventListener("dragleave", () => dropzone.classList.remove("dragover"));
+      dropzone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropzone.classList.remove("dragover");
+        handleFiles(e.dataTransfer.files);
+      });
+      fileInput.addEventListener("change", (e) => {
+        handleFiles(e.target.files);
+        fileInput.value = "";
+      });
+
+      qualitySlider.addEventListener("input", () => {
+        qualityVal.textContent = `${qualitySlider.value}%`;
+      });
+
+      document.getElementById("btn-reconvert").addEventListener("click", processAll);
+      document.getElementById("btn-download-all").addEventListener("click", () => {
+        convertedItems.forEach((it, idx) => {
+          setTimeout(() => {
+            const a = document.createElement("a");
+            a.href = it.outUrl;
+            a.download = it.outName;
+            a.click();
+          }, idx * 150);
+        });
+      });
+      document.getElementById("btn-clear-files").addEventListener("click", () => {
+        convertedItems.forEach((it) => URL.revokeObjectURL(it.outUrl));
+        sourceFiles = [];
+        convertedItems = [];
+        renderResults();
+      });
+    })();
+  </script>
+</body>
+</html>

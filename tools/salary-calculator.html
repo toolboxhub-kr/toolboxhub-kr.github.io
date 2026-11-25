@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>연봉 실수령액 & 월급 4대보험 계산기 (2026 최신 요율) | ToolBox Hub</title>
+  <meta name="description" content="2026년 최신 4대보험 요율(국민연금, 건강보험, 장기요양보험, 고용보험)과 근로소득세·지방소득세를 반영해 연봉 및 월급 실수령액을 즉시 계산하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="연봉 실수령액 & 월급 4대보험 계산기 | ToolBox Hub" />
+  <meta property="og:description" content="연봉·월급 입력 시 4대보험 공제액과 실제 통장에 들어오는 월 실수령액을 1초 만에 계산합니다." />
+  <meta property="og:url" content="https://example.com/tools/salary-calculator.html" />
+  <link rel="canonical" href="https://example.com/tools/salary-calculator.html" />
+
+  <meta name="tool:title" content="연봉 실수령액 & 4대보험 계산기" />
+  <meta name="tool:category" content="금융·세금" />
+  <meta name="tool:category_slug" content="finance" />
+  <meta name="tool:icon" content="💰" />
+  <meta name="tool:summary" content="연봉·월급 기준 4대보험과 소득세를 공제한 월 실수령액 및 공제 내역을 즉시 계산합니다." />
+  <meta name="tool:keywords" content="연봉,월급,실수령액,4대보험,국민연금,건강보험,장기요양,고용보험,소득세" />
+  <meta name="tool:order" content="1" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "연봉 실수령액 & 월급 4대보험 계산기",
+        "url": "https://example.com/tools/salary-calculator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "연봉과 비과세액, 부양가족 수를 입력하면 4대보험과 근로소득세를 공제한 월 실수령액을 계산해 주는 무료 웹 도구입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "비과세 식대를 설정하면 왜 실수령액이 늘어나나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "식대(월 최대 20만 원), 자가운전보조금 등 비과세 급여는 4대보험과 근로소득세 산정 기준(과세표준)에서 제외되므로 공제액이 줄어들어 실수령액이 증가합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "국민연금 상한액이란 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "국민연금은 기준소득월액 상한(약 617만 원)이 존재하여, 월 과세급여가 상한액을 초과하더라도 일정 금액 이상으로는 국민연금 보험료가 더 부과되지 않습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "퇴직금 포함 연봉과 별도 연봉의 차이는 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "퇴직금 별도는 연봉을 12로 나누어 월급을 산정하고 퇴직금을 따로 적립하지만, 퇴직금 포함 계약은 연봉을 13으로 나누어 1/13을 퇴직금으로 보므로 월 급여 자체가 낮아집니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "실제 급여명세서와 금액이 조금 다를 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "회사의 원천징수 세율 선택(80%/100%/120%), 추가 비과세 항목(육아수당·연구활동비 등), 상여금 지급 주기에 따라 소액 차이가 발생할 수 있으며 연말정산에서 최종 정산됩니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>금융·세금</span> <span>›</span> <span>연봉 실수령액 계산기</span>
+    </nav>
+
+    <section class="tool-hero">
+      <h1>💰 연봉 실수령액 & 월급 4대보험 계산기</h1>
+      <p>연봉 또는 월급을 입력하면 4대보험과 근로소득세를 공제한 실제 월 통장 입금액을 즉시 계산합니다.</p>
+    </section>
+
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <!-- Input Column -->
+        <div>
+          <div class="form-section-title">급여 정보 입력</div>
+
+          <div class="tabs" role="tablist">
+            <button type="button" class="tab-btn active" data-mode="annual">연봉 기준</button>
+            <button type="button" class="tab-btn" data-mode="monthly">월급 기준</button>
+          </div>
+
+          <div class="form-group">
+            <label class="field-label" for="salary-input">
+              <span id="salary-label">연봉 (세전)</span>
+              <span class="field-hint" id="salary-korean"></span>
+            </label>
+            <div class="input-group has-unit">
+              <input type="number" id="salary-input" value="45000000" min="0" step="100000" />
+              <span class="input-unit">원</span>
+            </div>
+            <div class="preset-chips" id="salary-presets">
+              <button type="button" class="chip-btn" data-val="30000000">3,000만</button>
+              <button type="button" class="chip-btn" data-val="40000000">4,000만</button>
+              <button type="button" class="chip-btn" data-val="50000000">5,000만</button>
+              <button type="button" class="chip-btn" data-val="70000000">7,000만</button>
+              <button type="button" class="chip-btn" data-val="100000000">1억</button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="severance-type">퇴직금 포함 여부</label>
+              <select id="severance-type">
+                <option value="separate" selected>퇴직금 별도 (÷12)</option>
+                <option value="included">퇴직금 포함 (÷13)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="non-taxable">비과세액 (월 식대 등)</label>
+              <div class="input-group has-unit">
+                <input type="number" id="non-taxable" value="200000" min="0" step="10000" />
+                <span class="input-unit">원</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="dependents">부양가족 수 (본인 포함)</label>
+              <select id="dependents">
+                <option value="1" selected>1명 (본인)</option>
+                <option value="2">2명</option>
+                <option value="3">3명</option>
+                <option value="4">4명</option>
+                <option value="5">5명 이상</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="children">8~20세 자녀 수</label>
+              <select id="children">
+                <option value="0" selected>0명</option>
+                <option value="1">1명</option>
+                <option value="2">2명</option>
+                <option value="3">3명 이상</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="btn-copy-result">결과 요약 복사</button>
+            <button type="button" class="btn btn-secondary" id="btn-reset">초기화</button>
+          </div>
+        </div>
+
+        <!-- Result Column -->
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label">예상 월 실수령액</div>
+            <div class="rh-value" id="res-net-monthly">0원</div>
+            <div class="rh-sub" id="res-summary-sub">월 세전 0원 · 공제율 0%</div>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi-box">
+              <div class="kpi-label">연간 실수령액 (예상)</div>
+              <div class="kpi-value text-success" id="res-net-annual">0원</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">월 공제액 합계</div>
+              <div class="kpi-value text-danger" id="res-total-deduct">0원</div>
+            </div>
+          </div>
+
+          <div class="stacked-bar" aria-label="실수령액 및 공제 비율">
+            <div class="bar-seg" id="bar-net" style="background:var(--success);width:85%"></div>
+            <div class="bar-seg" id="bar-ins" style="background:var(--primary);width:10%"></div>
+            <div class="bar-seg" id="bar-tax" style="background:var(--danger);width:5%"></div>
+          </div>
+          <div class="bar-legend" style="margin-bottom:14px;">
+            <span class="legend-item"><span class="legend-dot" style="background:var(--success)"></span>실수령액 <strong id="pct-net">0%</strong></span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--primary)"></span>4대보험 <strong id="pct-ins">0%</strong></span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--danger)"></span>소득세·지방세 <strong id="pct-tax">0%</strong></span>
+          </div>
+
+          <ul class="breakdown-list">
+            <li><span>국민연금 (4.5%)</span><strong id="d-pension">0원</strong></li>
+            <li><span>건강보험 (3.545%)</span><strong id="d-health">0원</strong></li>
+            <li><span>장기요양보험 (건보료의 12.95%)</span><strong id="d-care">0원</strong></li>
+            <li><span>고용보험 (0.9%)</span><strong id="d-emp">0원</strong></li>
+            <li><span>근로소득세 (간이세액 추정)</span><strong id="d-incometax">0원</strong></li>
+            <li><span>지방소득세 (소득세의 10%)</span><strong id="d-localtax">0원</strong></li>
+            <li class="total-row"><span>월 공제액 합계</span><strong id="d-total" style="color:var(--danger)">0원</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick Reference Table -->
+      <div style="margin-top:26px;">
+        <div class="form-section-title">연봉 구간별 실수령액 한눈에 보기 (부양가족 1인, 비과세 20만 원 기준)</div>
+        <div class="table-wrap">
+          <table class="data-table" id="ref-salary-table">
+            <thead>
+              <tr>
+                <th>연봉</th>
+                <th>월 세전 급여</th>
+                <th>4대보험 합계</th>
+                <th>소득세+지방세</th>
+                <th>월 실수령액</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>계산 원리 및 공식 설명</h2>
+      <p>직장인의 월 실수령액은 세전 월 급여에서 <strong>4대보험료(국민연금·건강보험·장기요양보험·고용보험)</strong>와 <strong>근로소득세·지방소득세</strong>를 차감하여 산출됩니다. 이때 식대 등 비과세 급여를 제외한 <strong>월 과세급여</strong>가 모든 공제의 기준이 됩니다.</p>
+      <div class="formula-box">
+        월 과세급여 = (연봉 ÷ 12) - 월 비과세액<br />
+        국민연금 = min(max(과세급여, 390,000), 6,170,000) × 4.5%<br />
+        건강보험 = 과세급여 × 3.545% &nbsp;|&nbsp; 장기요양보험 = 건강보험료 × 12.95%<br />
+        고용보험 = 과세급여 × 0.9%<br />
+        월 실수령액 = 월 세전 급여 - (4대보험 합계 + 근로소득세 + 지방소득세)
+      </div>
+      <p>근로소득세는 국세청 <strong>근로소득 간이세액표</strong> 구조에 따라 연간 추정 근로소득에서 근로소득공제, 기본공제(본인 및 부양가족 1인당 150만 원), 연금보험료 공제, 근로소득세액공제 및 자녀세액공제를 반영한 뒤 12로 나누어 매월 원천징수합니다.</p>
+
+      <h2>연봉 협상 및 실수령액 관리 활용 팁</h2>
+      <div class="tip-box">
+        <strong>💡 비과세 항목을 꼭 확인하세요!</strong> 연봉 총액이 같더라도 근로계약서에 <strong>비과세 식대(월 20만 원)</strong>와 <strong>자가운전보조금(월 20만 원, 본인 명의 차량 업무 활용 시)</strong>이 포함되어 있으면 연간 30만~60만 원 이상의 세금 및 4대보험 절감 효과가 발생합니다.
+      </div>
+      <ul>
+        <li><strong>이직 시 연봉 비교:</strong> 퇴직금 포함 연봉인지 별도 연봉인지 반드시 확인해야 합니다. 퇴직금 포함 4,500만 원은 퇴직금 별도 약 4,154만 원과 동일한 월급 수준입니다.</li>
+        <li><strong>원천징수 비율 선택:</strong> 매월 세금을 덜 내고 싶다면 회사에 원천징수 80%를, 연말정산 환급을 넉넉히 받고 싶다면 120%를 신청할 수 있습니다.</li>
+        <li><strong>중소기업 취업자 소득세 감면:</strong> 만 15~34세 청년이 중소기업에 취업한 경우 5년간 근로소득세의 90%(연 최대 200만 원)를 감면받을 수 있어 실수령액이 크게 늘어납니다.</li>
+      </ul>
+
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>비과세 식대를 설정하면 왜 실수령액이 늘어나나요?</summary>
+          <div class="faq-answer">비과세 식대(월 최대 20만 원)는 4대보험료와 근로소득세를 계산하는 기준 소득에서 빠지기 때문입니다. 예를 들어 월급 350만 원 중 20만 원이 비과세이면 330만 원에 대해서만 세금과 보험료가 부과됩니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>국민연금 상한액이란 무엇인가요?</summary>
+          <div class="faq-answer">국민연금은 기준소득월액 상한(약 617만 원)이 정해져 있어, 월 과세급여가 617만 원을 넘더라도 근로자 부담분은 월 약 277,650원(4.5%)을 초과하지 않습니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>퇴직금 포함 연봉과 별도 연봉의 차이는 무엇인가요?</summary>
+          <div class="faq-answer">퇴직금 별도는 연봉을 12개월로 나누어 월급을 지급하고 퇴직 시 별도의 퇴직금을 지급합니다. 반면 퇴직금 포함은 연봉을 13으로 나누어 매월 1/13을 급여로 지급하므로 같은 연봉이라도 월 실수령액이 약 7~8% 낮습니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>실제 급여명세서와 금액이 조금 다른 이유는 무엇인가요?</summary>
+          <div class="faq-answer">회사별 상여금 지급 방식, 식대 외 추가 비과세 항목(육아수당, 연구활동비 등), 원천징수 비율(80%/100%/120%) 선택에 따라 월별 원천징수액이 소폭 달라질 수 있으며, 모든 차액은 다음 해 연말정산에서 정확히 정산됩니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      let mode = "annual";
+
+      function estimateMonthlyIncomeTax(monthlyTaxable, dependents, children, pensionMonthly) {
+        const annualGross = monthlyTaxable * 12;
+        if (annualGross <= 0) return 0;
+
+        // 근로소득공제
+        let earnedDed = 0;
+        if (annualGross <= 5000000) earnedDed = annualGross * 0.7;
+        else if (annualGross <= 15000000) earnedDed = 3500000 + (annualGross - 5000000) * 0.4;
+        else if (annualGross <= 45000000) earnedDed = 7500000 + (annualGross - 15000000) * 0.15;
+        else if (annualGross <= 100000000) earnedDed = 12000000 + (annualGross - 45000000) * 0.05;
+        else earnedDed = Math.min(20000000, 14750000 + (annualGross - 100000000) * 0.02);
+
+        const earnedIncome = Math.max(0, annualGross - earnedDed);
+        const personalDed = dependents * 1500000;
+        const pensionDed = pensionMonthly * 12;
+        // 표준 특별소득공제 근사 (간이세액표 반영)
+        const specialDed = dependents === 1
+          ? 3100000 + annualGross * 0.04
+          : dependents === 2
+          ? 3600000 + annualGross * 0.04
+          : 5000000 + annualGross * 0.07;
+
+        const taxBase = Math.max(0, earnedIncome - personalDed - pensionDed - specialDed);
+
+        // 2024~2026 종합소득세 기본세율 구간
+        let calcTax = 0;
+        if (taxBase <= 14000000) calcTax = taxBase * 0.06;
+        else if (taxBase <= 50000000) calcTax = 840000 + (taxBase - 14000000) * 0.15;
+        else if (taxBase <= 88000000) calcTax = 6240000 + (taxBase - 50000000) * 0.24;
+        else if (taxBase <= 150000000) calcTax = 15360000 + (taxBase - 88000000) * 0.35;
+        else if (taxBase <= 300000000) calcTax = 37060000 + (taxBase - 150000000) * 0.38;
+        else if (taxBase <= 500000000) calcTax = 94060000 + (taxBase - 300000000) * 0.40;
+        else if (taxBase <= 1000000000) calcTax = 174060000 + (taxBase - 500000000) * 0.42;
+        else calcTax = 384060000 + (taxBase - 1000000000) * 0.45;
+
+        // 근로소득세액공제
+        let taxCredit = calcTax <= 1300000 ? calcTax * 0.55 : 715000 + (calcTax - 1300000) * 0.30;
+        const creditCap = annualGross <= 33000000 ? 740000 : annualGross <= 70000000 ? 660000 : 500000;
+        taxCredit = Math.min(taxCredit, creditCap);
+
+        // 자녀세액공제 (월 환산 반영)
+        let childCredit = 0;
+        if (children === 1) childCredit = 150000;
+        else if (children === 2) childCredit = 350000;
+        else if (children >= 3) childCredit = 350000 + (children - 2) * 300000;
+
+        const annualTax = Math.max(0, calcTax - taxCredit - childCredit);
+        return Math.floor((annualTax / 12) / 10) * 10;
+      }
+
+      function computeSalary(monthlyGross, nonTaxable, dependents, children) {
+        const taxable = Math.max(0, monthlyGross - nonTaxable);
+        const pensionBase = taxable > 0 ? Math.min(Math.max(taxable, 390000), 6170000) : 0;
+        const pension = Math.floor((pensionBase * 0.045) / 10) * 10;
+        const health = Math.floor((taxable * 0.03545) / 10) * 10;
+        const care = Math.floor((health * 0.1295) / 10) * 10;
+        const emp = Math.floor((taxable * 0.009) / 10) * 10;
+        const incomeTax = estimateMonthlyIncomeTax(taxable, dependents, children, pension);
+        const localTax = Math.floor((incomeTax * 0.1) / 10) * 10;
+
+        const insTotal = pension + health + care + emp;
+        const taxTotal = incomeTax + localTax;
+        const totalDeduct = insTotal + taxTotal;
+        const netMonthly = Math.max(0, monthlyGross - totalDeduct);
+
+        return { monthlyGross, pension, health, care, emp, incomeTax, localTax, insTotal, taxTotal, totalDeduct, netMonthly };
+      }
+
+      function toKoreanMoney(num) {
+        if (!num || num <= 0) return "";
+        const eok = Math.floor(num / 100000000);
+        const man = Math.floor((num % 100000000) / 10000);
+        let str = "";
+        if (eok > 0) str += `${eok}억 `;
+        if (man > 0) str += `${man.toLocaleString("ko-KR")}만 원`;
+        else if (eok > 0) str += "원";
+        return str.trim();
+      }
+
+      function update() {
+        const raw = Number(document.getElementById("salary-input").value) || 0;
+        const sevType = document.getElementById("severance-type").value;
+        const nonTaxable = Number(document.getElementById("non-taxable").value) || 0;
+        const dependents = Number(document.getElementById("dependents").value) || 1;
+        const children = Number(document.getElementById("children").value) || 0;
+
+        document.getElementById("salary-korean").textContent = toKoreanMoney(raw);
+
+        const divisor = sevType === "included" ? 13 : 12;
+        const monthlyGross = mode === "annual" ? raw / divisor : raw;
+        const r = computeSalary(monthlyGross, nonTaxable, dependents, children);
+
+        document.getElementById("res-net-monthly").textContent = TBH.fmtWon(r.netMonthly);
+        document.getElementById("res-net-annual").textContent = TBH.fmtWon(r.netMonthly * 12);
+        document.getElementById("res-total-deduct").textContent = TBH.fmtWon(r.totalDeduct);
+
+        const deductPct = monthlyGross > 0 ? (r.totalDeduct / monthlyGross) * 100 : 0;
+        const netPct = monthlyGross > 0 ? (r.netMonthly / monthlyGross) * 100 : 0;
+        const insPct = monthlyGross > 0 ? (r.insTotal / monthlyGross) * 100 : 0;
+        const taxPct = monthlyGross > 0 ? (r.taxTotal / monthlyGross) * 100 : 0;
+
+        document.getElementById("res-summary-sub").textContent =
+          `월 세전 ${TBH.fmtWon(monthlyGross)} · 공제율 ${deductPct.toFixed(1)}%`;
+        document.getElementById("bar-net").style.width = `${netPct}%`;
+        document.getElementById("bar-ins").style.width = `${insPct}%`;
+        document.getElementById("bar-tax").style.width = `${taxPct}%`;
+        document.getElementById("pct-net").textContent = `${netPct.toFixed(1)}%`;
+        document.getElementById("pct-ins").textContent = `${insPct.toFixed(1)}%`;
+        document.getElementById("pct-tax").textContent = `${taxPct.toFixed(1)}%`;
+
+        document.getElementById("d-pension").textContent = TBH.fmtWon(r.pension);
+        document.getElementById("d-health").textContent = TBH.fmtWon(r.health);
+        document.getElementById("d-care").textContent = TBH.fmtWon(r.care);
+        document.getElementById("d-emp").textContent = TBH.fmtWon(r.emp);
+        document.getElementById("d-incometax").textContent = TBH.fmtWon(r.incomeTax);
+        document.getElementById("d-localtax").textContent = TBH.fmtWon(r.localTax);
+        document.getElementById("d-total").textContent = TBH.fmtWon(r.totalDeduct);
+      }
+
+      function renderRefTable() {
+        const tbody = document.querySelector("#ref-salary-table tbody");
+        const samples = [3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 10000];
+        tbody.innerHTML = samples
+          .map((man) => {
+            const r = computeSalary((man * 10000) / 12, 200000, 1, 0);
+            return `<tr>
+              <td><strong>${man.toLocaleString("ko-KR")}만 원</strong></td>
+              <td>${TBH.fmtWon(r.monthlyGross)}</td>
+              <td>${TBH.fmtWon(r.insTotal)}</td>
+              <td>${TBH.fmtWon(r.taxTotal)}</td>
+              <td style="color:var(--primary);font-weight:700;">${TBH.fmtWon(r.netMonthly)}</td>
+            </tr>`;
+          })
+          .join("");
+      }
+
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          mode = btn.dataset.mode;
+          const inp = document.getElementById("salary-input");
+          const lbl = document.getElementById("salary-label");
+          const presets = document.getElementById("salary-presets");
+          if (mode === "annual") {
+            lbl.textContent = "연봉 (세전)";
+            inp.value = 45000000;
+            presets.innerHTML = `
+              <button type="button" class="chip-btn" data-val="30000000">3,000만</button>
+              <button type="button" class="chip-btn" data-val="40000000">4,000만</button>
+              <button type="button" class="chip-btn" data-val="50000000">5,000만</button>
+              <button type="button" class="chip-btn" data-val="70000000">7,000만</button>
+              <button type="button" class="chip-btn" data-val="100000000">1억</button>`;
+          } else {
+            lbl.textContent = "월급 (세전)";
+            inp.value = 3500000;
+            presets.innerHTML = `
+              <button type="button" class="chip-btn" data-val="2500000">250만</button>
+              <button type="button" class="chip-btn" data-val="3000000">300만</button>
+              <button type="button" class="chip-btn" data-val="4000000">400만</button>
+              <button type="button" class="chip-btn" data-val="5000000">500만</button>
+              <button type="button" class="chip-btn" data-val="7000000">700만</button>`;
+          }
+          bindPresets();
+          update();
+        });
+      });
+
+      function bindPresets() {
+        document.querySelectorAll("#salary-presets .chip-btn").forEach((c) => {
+          c.addEventListener("click", () => {
+            document.getElementById("salary-input").value = c.dataset.val;
+            update();
+          });
+        });
+      }
+
+      ["salary-input", "severance-type", "non-taxable", "dependents", "children"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", update);
+        document.getElementById(id).addEventListener("change", update);
+      });
+
+      document.getElementById("btn-copy-result").addEventListener("click", () => {
+        const net = document.getElementById("res-net-monthly").textContent;
+        const sub = document.getElementById("res-summary-sub").textContent;
+        const ded = document.getElementById("res-total-deduct").textContent;
+        TBH.copyText(`[연봉 실수령액 계산 결과]\n예상 월 실수령액: ${net}\n${sub}\n월 공제액 합계: ${ded}`);
+      });
+
+      document.getElementById("btn-reset").addEventListener("click", () => {
+        document.getElementById("salary-input").value = mode === "annual" ? 45000000 : 3500000;
+        document.getElementById("severance-type").value = "separate";
+        document.getElementById("non-taxable").value = 200000;
+        document.getElementById("dependents").value = "1";
+        document.getElementById("children").value = "0";
+        update();
+      });
+
+      bindPresets();
+      renderRefTable();
+      update();
+    })();
+  </script>
+</body>
+</html>

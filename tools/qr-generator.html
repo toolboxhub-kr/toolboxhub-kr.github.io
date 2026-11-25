@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>무료 QR코드 즉시 생성 및 PNG/SVG 이미지 다운로드 | ToolBox Hub</title>
+  <meta name="description" content="URL 링크, 텍스트, Wi-Fi 자동 연결, 이메일, 전화번호 QR코드를 회원가입과 만료 기간 없이 무료로 즉시 생성하고 고화질 PNG·SVG로 다운로드하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="무료 QR코드 즉시 생성 및 다운로드 | ToolBox Hub" />
+  <meta property="og:description" content="만료 없는 영구 무료 QR코드를 1초 만에 생성하고 PNG·SVG 이미지로 저장하세요." />
+  <meta property="og:url" content="https://example.com/tools/qr-generator.html" />
+  <link rel="canonical" href="https://example.com/tools/qr-generator.html" />
+
+  <meta name="tool:title" content="QR코드 즉시 생성기 (PNG/SVG)" />
+  <meta name="tool:category" content="생활·유틸" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="📱" />
+  <meta name="tool:summary" content="URL, 텍스트, Wi-Fi 접속용 만료 없는 영구 QR코드를 즉시 생성하고 PNG·SVG로 다운로드합니다." />
+  <meta name="tool:keywords" content="QR코드,QR생성기,와이파이QR,무료QR,PNG다운로드,SVG,링크QR" />
+  <meta name="tool:order" content="9" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "무료 QR코드 즉시 생성 및 이미지 다운로드 도구",
+        "url": "https://example.com/tools/qr-generator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "URL, 텍스트, Wi-Fi, 이메일, 전화번호용 영구 QR코드를 브라우저에서 직접 생성하고 PNG 및 SVG로 다운로드하는 무료 도구입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "여기서 만든 QR코드는 유효기간이나 스캔 횟수 제한이 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "아니요. 외부 단축 URL 서버를 거치지 않고 입력한 데이터를 QR 매트릭스에 직접 인코딩하는 정적(Static) QR코드이므로 유효기간이나 스캔 제한 없이 영구적으로 무료 사용할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "오류 정정 레벨(L, M, Q, H)은 무엇을 선택하는 것이 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "일반 웹·명함 용도는 M(15% 복원)이 가장 균형 잡혀 있으며, 야외 포스터나 오염·손상 가능성이 있는 인쇄물에는 Q(25%) 또는 H(30%) 레벨을 권장합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "인쇄물 제작에는 PNG와 SVG 중 어떤 파일이 좋나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SVG는 벡터 형식이라 아무리 크게 확대해도 깨지지 않으므로 현수막, 포스터, 명함 인쇄 디자인에는 SVG를, 블로그·SNS·문서 첨부에는 PNG를 추천합니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>생활·유틸</span> <span>›</span> <span>QR코드 즉시 생성기</span>
+    </nav>
+
+    <section class="tool-hero">
+      <h1>📱 무료 QR코드 즉시 생성 및 이미지 다운로드</h1>
+      <p>유효기간 없는 영구 무료 QR코드를 100% 브라우저에서 생성하고 고화질 PNG · SVG로 저장하세요.</p>
+    </section>
+
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <!-- Input Controls -->
+        <div>
+          <div class="tabs" role="tablist">
+            <button type="button" class="tab-btn active" data-qr-type="url">URL / 텍스트</button>
+            <button type="button" class="tab-btn" data-qr-type="wifi">Wi-Fi 자동연결</button>
+            <button type="button" class="tab-btn" data-qr-type="tel">전화번호</button>
+            <button type="button" class="tab-btn" data-qr-type="email">이메일</button>
+          </div>
+
+          <!-- Type: URL/Text -->
+          <div id="qr-panel-url">
+            <div class="form-group">
+              <label class="field-label" for="qr-text">웹사이트 주소(URL) 또는 텍스트</label>
+              <textarea id="qr-text" rows="3" placeholder="https://example.com">https://toolboxhub.example.com</textarea>
+            </div>
+          </div>
+
+          <!-- Type: Wi-Fi -->
+          <div id="qr-panel-wifi" style="display:none;">
+            <div class="form-group">
+              <label class="field-label" for="wifi-ssid">와이파이 이름 (SSID)</label>
+              <input type="text" id="wifi-ssid" placeholder="MyCafe_WiFi" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="field-label" for="wifi-pass">비밀번호</label>
+                <input type="text" id="wifi-pass" placeholder="password1234" />
+              </div>
+              <div class="form-group">
+                <label class="field-label" for="wifi-enc">보안 방식</label>
+                <select id="wifi-enc">
+                  <option value="WPA" selected>WPA / WPA2</option>
+                  <option value="WEP">WEP</option>
+                  <option value="nopass">암호 없음</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Type: Tel -->
+          <div id="qr-panel-tel" style="display:none;">
+            <div class="form-group">
+              <label class="field-label" for="qr-tel">전화번호</label>
+              <input type="tel" id="qr-tel" placeholder="010-1234-5678" />
+            </div>
+          </div>
+
+          <!-- Type: Email -->
+          <div id="qr-panel-email" style="display:none;">
+            <div class="form-group">
+              <label class="field-label" for="qr-email">받는 이메일 주소</label>
+              <input type="email" id="qr-email" placeholder="hello@example.com" />
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="qr-email-sub">이메일 제목 (선택)</label>
+              <input type="text" id="qr-email-sub" placeholder="문의드립니다" />
+            </div>
+          </div>
+
+          <!-- Styling Options -->
+          <div class="form-section-title" style="margin-top:18px;">디자인 및 품질 옵션</div>
+          <div class="form-row-3">
+            <div class="form-group">
+              <label class="field-label" for="qr-size">이미지 크기</label>
+              <select id="qr-size">
+                <option value="240">240 × 240 px</option>
+                <option value="360" selected>360 × 360 px</option>
+                <option value="512">512 × 512 px</option>
+                <option value="800">800 × 800 px (인쇄용)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="qr-ec">오류 정정 레벨</label>
+              <select id="qr-ec">
+                <option value="L">L (7% 복원)</option>
+                <option value="M" selected>M (15% 표준)</option>
+                <option value="Q">Q (25% 높음)</option>
+                <option value="H">H (30% 최대)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="field-label">색상 (전경 / 배경)</label>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <input type="color" id="qr-fg" value="#0f172a" style="width:44px;height:40px;padding:2px;cursor:pointer;" title="전경색" />
+                <input type="color" id="qr-bg" value="#ffffff" style="width:44px;height:40px;padding:2px;cursor:pointer;" title="배경색" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview & Download -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:var(--bg-subtle);border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <div style="background:#ffffff;padding:14px;border-radius:14px;box-shadow:var(--shadow-md);margin-bottom:14px;">
+            <canvas id="qr-canvas" style="width:240px;height:240px;image-rendering:pixelated;"></canvas>
+          </div>
+          <div id="qr-meta" style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;">QR Version - · Error Correction M</div>
+          <div id="qr-error" style="display:none;color:var(--danger);font-size:0.85rem;font-weight:600;margin-bottom:10px;text-align:center;"></div>
+          <div class="btn-row" style="margin:0;justify-content:center;">
+            <button type="button" class="btn btn-primary" id="btn-dl-png">PNG 다운로드</button>
+            <button type="button" class="btn btn-secondary" id="btn-dl-svg">SVG 벡터 다운로드</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>QR코드 생성 원리 및 오류 정정(Reed-Solomon)</h2>
+      <p>QR(Quick Response) 코드는 ISO/IEC 18004 표준에 따라 입력된 문자열을 UTF-8 바이트 스트림으로 변환한 뒤, <strong>리드-솔로몬(Reed-Solomon) 오류 정정 부호</strong>를 덧붙여 2차원 흑백 격자(모듈)로 배치합니다. 덕분에 코드의 일부가 찢어지거나 오염되어도 스마트폰 카메라가 데이터를 완벽히 복원할 수 있습니다.</p>
+      <div class="formula-box">
+        Wi-Fi QR 표준 포맷: WIFI:T:WPA;S:네트워크이름;P:비밀번호;;<br />
+        오류 정정 복원율: L (7%) · M (15%) · Q (25%) · H (30%)
+      </div>
+
+      <h2>스캔 인식률을 높이는 실전 활용 팁</h2>
+      <div class="tip-box">
+        <strong>💡 명함·매장 Wi-Fi QR 제작 팁:</strong> 전경색은 어둡게, 배경색은 밝게 설정하여 충분한 명도 대비를 유지해야 어두운 카페나 실내에서도 스마트폰 카메라가 0.5초 만에 인식합니다.
+      </div>
+      <ul>
+        <li><strong>여백(Quiet Zone) 유지:</strong> QR코드 테두리 주변의 흰색 여백을 잘라내면 스캔 인식이 실패할 수 있습니다. 본 도구는 국제 표준인 4모듈 여백을 자동으로 포함해 저장합니다.</li>
+        <li><strong>인쇄용 고해상도:</strong> 전단지나 배너에 넣을 때는 깨짐이 전혀 없는 <strong>SVG 벡터 파일</strong>을 다운로드하여 일러스트레이터·미리캔버스·피그마 등에 바로 불러오세요.</li>
+      </ul>
+
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>여기서 만든 QR코드는 유효기간이나 스캔 횟수 제한이 있나요?</summary>
+          <div class="faq-answer">없습니다. 유료 구독을 유도하는 동적 리다이렉트 방식이 아니라, 입력하신 링크와 정보를 코드 자체에 직접 기록하는 순수 정적 QR코드이므로 영구적으로 무료 사용 가능합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Wi-Fi QR코드는 아이폰과 갤럭시 모두에서 작동하나요?</summary>
+          <div class="faq-answer">네. iOS와 안드로이드 기본 카메라 앱으로 Wi-Fi QR코드를 비추기만 하면 비밀번호를 직접 입력할 필요 없이 원터치로 와이파이에 자동 연결됩니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>URL이 너무 길면 어떻게 되나요?</summary>
+          <div class="faq-answer">문자열이 길어질수록 QR코드의 점(모듈)이 촘촘해져 작은 크기에서는 스캔이 어려워질 수 있습니다. 가능한 짧은 링크를 사용하거나 오류 정정 레벨을 L/M으로 설정하세요.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/qr-engine.js"></script>
+  <script>
+    (function () {
+      let qrType = "url";
+      let lastQR = null;
+      const canvas = document.getElementById("qr-canvas");
+      const errEl = document.getElementById("qr-error");
+      const metaEl = document.getElementById("qr-meta");
+
+      function getPayload() {
+        if (qrType === "url") {
+          return document.getElementById("qr-text").value.trim() || "https://toolboxhub.example.com";
+        }
+        if (qrType === "wifi") {
+          const ssid = document.getElementById("wifi-ssid").value.replace(/([\\;,:"])/g, "\\$1");
+          const pass = document.getElementById("wifi-pass").value.replace(/([\\;,:"])/g, "\\$1");
+          const enc = document.getElementById("wifi-enc").value;
+          return `WIFI:T:${enc};S:${ssid || "MyWiFi"};P:${enc === "nopass" ? "" : pass};;`;
+        }
+        if (qrType === "tel") {
+          const tel = document.getElementById("qr-tel").value.replace(/[^0-9+]/g, "");
+          return `tel:${tel || "01012345678"}`;
+        }
+        if (qrType === "email") {
+          const email = document.getElementById("qr-email").value.trim() || "hello@example.com";
+          const sub = document.getElementById("qr-email-sub").value.trim();
+          return sub ? `mailto:${email}?subject=${encodeURIComponent(sub)}` : `mailto:${email}`;
+        }
+        return "https://toolboxhub.example.com";
+      }
+
+      function renderQR() {
+        const payload = getPayload();
+        const size = Number(document.getElementById("qr-size").value) || 360;
+        const ec = document.getElementById("qr-ec").value;
+        const fg = document.getElementById("qr-fg").value;
+        const bg = document.getElementById("qr-bg").value;
+
+        try {
+          lastQR = QREngine.generate(payload, ec);
+          QREngine.drawToCanvas(lastQR, canvas, { size, fg, bg, margin: 4 });
+          errEl.style.display = "none";
+          metaEl.textContent = `QR Version ${lastQR.version} (${lastQR.size}×${lastQR.size}) · 오류 정정 ${ec}`;
+        } catch (e) {
+          errEl.style.display = "block";
+          errEl.textContent = e.message;
+        }
+      }
+
+      document.querySelectorAll("[data-qr-type]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-qr-type]").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          qrType = btn.dataset.qrType;
+          ["url", "wifi", "tel", "email"].forEach((t) => {
+            document.getElementById(`qr-panel-${t}`).style.display = t === qrType ? "block" : "none";
+          });
+          renderQR();
+        });
+      });
+
+      ["qr-text", "wifi-ssid", "wifi-pass", "wifi-enc", "qr-tel", "qr-email", "qr-email-sub", "qr-size", "qr-ec", "qr-fg", "qr-bg"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", renderQR);
+        document.getElementById(id).addEventListener("change", renderQR);
+      });
+
+      document.getElementById("btn-dl-png").addEventListener("click", () => {
+        if (!lastQR) return;
+        const a = document.createElement("a");
+        a.download = `qrcode-${qrType}.png`;
+        a.href = canvas.toDataURL("image/png");
+        a.click();
+        TBH.toast("PNG 이미지가 다운로드되었습니다.");
+      });
+
+      document.getElementById("btn-dl-svg").addEventListener("click", () => {
+        if (!lastQR) return;
+        const svg = QREngine.toSVG(lastQR, {
+          fg: document.getElementById("qr-fg").value,
+          bg: document.getElementById("qr-bg").value,
+          margin: 4,
+        });
+        const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.download = `qrcode-${qrType}.svg`;
+        a.href = url;
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        TBH.toast("SVG 벡터 파일이 다운로드되었습니다.");
+      });
+
+      renderQR();
+    })();
+  </script>
+</body>
+</html>

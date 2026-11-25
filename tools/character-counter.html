@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>글자수 세기 & 바이트(Byte) 계산기 (자소서·이력서 공백포함/제외) | ToolBox Hub</title>
+  <meta name="description" content="자기소개서·이력서·블로그 작성 시 공백 포함/제외 글자수, 한글 2바이트(EUC-KR) 및 3바이트(UTF-8) 용량, 단어 수, 200자 원고지 매수를 실시간으로 계산합니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="글자수 / 바이트(Byte) 계산기 | ToolBox Hub" />
+  <meta property="og:description" content="이력서·자소서용 공백 포함/제외 글자수와 EUC-KR·UTF-8 바이트를 실시간으로 확인하세요." />
+  <meta property="og:url" content="https://example.com/tools/character-counter.html" />
+  <link rel="canonical" href="https://example.com/tools/character-counter.html" />
+
+  <meta name="tool:title" content="글자수 & 바이트(Byte) 계산기" />
+  <meta name="tool:category" content="생활·유틸" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="✍️" />
+  <meta name="tool:summary" content="이력서·자소서용 공백 포함/제외 글자수, EUC-KR·UTF-8 바이트, 원고지 매수를 실시간 계산합니다." />
+  <meta name="tool:keywords" content="글자수세기,바이트계산기,자소서,이력서,공백포함,공백제외,UTF-8,EUC-KR,원고지" />
+  <meta name="tool:order" content="8" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "글자수 / 바이트(Byte) 계산기",
+        "url": "https://example.com/tools/character-counter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "공백 포함/제외 글자수와 EUC-KR, UTF-8 바이트, 단어 수, 원고지 매수를 실시간 계산하는 무료 도구입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "취업 사이트 자소서의 바이트(Byte) 기준은 EUC-KR인가요, UTF-8인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "국내 대기업 채용 시스템과 사람인·잡코리아 등은 전통적으로 한글 1자를 2바이트(영문·숫자·공백 1바이트)로 계산하는 EUC-KR(CP949) 기준을 많이 사용합니다. 다만 최신 웹 플랫폼이나 학교 생기부(NEIS)는 한글 3바이트(UTF-8) 기준을 쓰므로 두 값을 함께 확인하는 것이 안전합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "줄바꿈(엔터)도 글자수나 바이트에 포함되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "대부분의 채용 사이트에서 줄바꿈(Enter)은 공백 포함 글자수에서 1자 또는 2바이트(CRLF)로 계산됩니다. 제출 전 목표 글자수 대비 95~98% 수준으로 여유를 두는 것이 좋습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "입력한 자소서 내용이 서버에 저장되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "아니요. 입력하신 텍스트는 오직 브라우저 메모리에서만 실시간 계산되며 외부 서버로 전송되지 않습니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>생활·유틸</span> <span>›</span> <span>글자수 & 바이트 계산기</span>
+    </nav>
+
+    <section class="tool-hero">
+      <h1>✍️ 글자수 / 바이트(Byte) 계산기</h1>
+      <p>자기소개서 · 이력서 · 생기부 · 블로그 글자수와 EUC-KR / UTF-8 바이트를 실시간으로 확인하세요.</p>
+    </section>
+
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <!-- Live KPI Strip -->
+      <div class="kpi-grid cols-4" style="margin-bottom:16px;">
+        <div class="kpi-box">
+          <div class="kpi-label">공백 포함 글자수</div>
+          <div class="kpi-value text-primary" id="cc-with-space">0자</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-label">공백 제외 글자수</div>
+          <div class="kpi-value text-success" id="cc-no-space">0자</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-label">EUC-KR (한글 2B)</div>
+          <div class="kpi-value" id="cc-euckr">0 Byte</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-label">UTF-8 (한글 3B / 생기부)</div>
+          <div class="kpi-value" id="cc-utf8">0 Byte</div>
+        </div>
+      </div>
+
+      <!-- Target Goal Progress -->
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:0.86rem;font-weight:600;color:var(--text-secondary);">
+          <span>목표 글자수 (공백 포함):</span>
+          <input type="number" id="cc-goal" value="1000" min="0" step="100" style="width:100px;padding:5px 8px;font-size:0.86rem;" />
+          <div class="preset-chips" style="margin:0;">
+            <button type="button" class="chip-btn" data-goal="500">500자</button>
+            <button type="button" class="chip-btn" data-goal="1000">1,000자</button>
+            <button type="button" class="chip-btn" data-goal="1500">1,500자</button>
+            <button type="button" class="chip-btn" data-goal="2000">2,000자</button>
+          </div>
+        </div>
+        <div id="cc-goal-status" style="font-size:0.84rem;font-weight:700;color:var(--primary);">0 / 1,000자 (0%)</div>
+      </div>
+      <div style="height:8px;background:var(--bg-subtle);border-radius:999px;overflow:hidden;margin-bottom:14px;">
+        <div id="cc-progress" style="height:100%;width:0%;background:var(--primary);transition:width 0.15s ease;"></div>
+      </div>
+
+      <!-- Textarea -->
+      <textarea id="cc-text" rows="11" placeholder="여기에 자기소개서, 이력서, 보고서 또는 블로그 글을 입력하거나 붙여넣으세요..." style="resize:vertical;line-height:1.7;"></textarea>
+
+      <!-- Secondary Metrics & Action Buttons -->
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;">
+        <div style="display:flex;flex-wrap:wrap;gap:16px;font-size:0.85rem;color:var(--text-secondary);">
+          <span>단어 수: <strong id="cc-words">0</strong></span>
+          <span>줄 수: <strong id="cc-lines">0</strong></span>
+          <span>문단 수: <strong id="cc-paras">0</strong></span>
+          <span>200자 원고지: <strong id="cc-manuscript">0.0매</strong></span>
+        </div>
+        <div class="btn-row" style="margin:0;">
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-trim-spaces">중복 공백 정리</button>
+          <button type="button" class="btn btn-primary btn-sm" id="btn-copy-text">전체 복사</button>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-clear-text">비우기</button>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>글자수 및 바이트(Byte) 계산 원리</h2>
+      <p>문서 플랫폼마다 글자 용량을 측정하는 인코딩 방식이 다릅니다. 본 계산기는 한국 환경에서 쓰이는 <strong>EUC-KR(CP949)</strong>과 국제 표준인 <strong>UTF-8</strong> 바이트를 동시에 산출합니다.</p>
+      <div class="formula-box">
+        EUC-KR (자소서·문자메시지 기준): 영문·숫자·공백 = 1 Byte / 한글·한자 = 2 Byte<br />
+        UTF-8 (생기부 NEIS·최신 웹 기준): 영문·숫자·공백 = 1 Byte / 한글 = 3 Byte / 이모지 = 4 Byte<br />
+        200자 원고지 매수 = 공백 포함 글자수 ÷ 200
+      </div>
+
+      <h2>합격 자소서 & 블로그 글쓰기 활용 팁</h2>
+      <div class="tip-box">
+        <strong>💡 자소서 분량 황금 비율:</strong> 기업이 제시한 최대 글자수의 <strong>85% ~ 95%</strong>를 채우는 것이 가장 성의 있고 가독성 좋게 보입니다. 예를 들어 1,000자 제한이라면 880~960자 사이로 마무리하세요.
+      </div>
+      <ul>
+        <li><strong>학교생활기록부(NEIS) 입력 시:</strong> 나이스(NEIS)는 UTF-8 기준(한글 3바이트, 줄바꿈 2바이트)으로 바이트를 제한하므로 우측 상단의 <strong>UTF-8 바이트</strong> 수치를 기준으로 확인하세요.</li>
+        <li><strong>네이버·구글 SEO 블로그 포스팅:</strong> 정보성 포스팅은 공백 제외 1,500~2,500자 이상으로 작성할 때 검색엔진 체류시간과 상위 노출 확률이 높아집니다.</li>
+      </ul>
+
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>취업 사이트 자소서의 바이트(Byte) 기준은 EUC-KR인가요, UTF-8인가요?</summary>
+          <div class="faq-answer">대부분의 국내 채용 포털(사람인, 잡코리아 등)과 SMS/LMS는 한글 1자를 2바이트로 계산하는 EUC-KR 기준을 사용하며, 학교 생기부(NEIS)나 최신 글로벌 서비스는 한글 3바이트인 UTF-8을 사용합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>줄바꿈(엔터)도 글자수에 포함되나요?</summary>
+          <div class="faq-answer">네, 공백 포함 글자수에는 띄어쓰기와 줄바꿈이 포함되며, 공백 제외 글자수에서는 모든 띄어쓰기·탭·줄바꿈이 제외됩니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>입력한 자소서 내용이 서버에 저장되나요?</summary>
+          <div class="faq-answer">아니요. 100% 브라우저 내부에서만 계산되므로 어떤 서버에도 저장되거나 전송되지 않습니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const textarea = document.getElementById("cc-text");
+      const goalInput = document.getElementById("cc-goal");
+
+      function calcEucKrBytes(str) {
+        let bytes = 0;
+        for (let i = 0; i < str.length; i++) {
+          const code = str.charCodeAt(i);
+          bytes += code > 127 ? 2 : 1;
+        }
+        return bytes;
+      }
+
+      function calcUtf8Bytes(str) {
+        return new TextEncoder().encode(str).length;
+      }
+
+      function update() {
+        const text = textarea.value;
+        const withSpace = text.length;
+        const noSpace = text.replace(/\s/g, "").length;
+        const euckr = calcEucKrBytes(text);
+        const utf8 = calcUtf8Bytes(text);
+        const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+        const lines = text ? text.split(/\r\n|\r|\n/).length : 0;
+        const paras = text.trim() ? text.trim().split(/\n\s*\n/).length : 0;
+        const manuscript = (withSpace / 200).toFixed(1);
+
+        document.getElementById("cc-with-space").textContent = `${TBH.fmtNum(withSpace)}자`;
+        document.getElementById("cc-no-space").textContent = `${TBH.fmtNum(noSpace)}자`;
+        document.getElementById("cc-euckr").textContent = `${TBH.fmtNum(euckr)} Byte`;
+        document.getElementById("cc-utf8").textContent = `${TBH.fmtNum(utf8)} Byte`;
+        document.getElementById("cc-words").textContent = TBH.fmtNum(words);
+        document.getElementById("cc-lines").textContent = TBH.fmtNum(lines);
+        document.getElementById("cc-paras").textContent = TBH.fmtNum(paras);
+        document.getElementById("cc-manuscript").textContent = `${manuscript}매`;
+
+        const goal = Math.max(0, Number(goalInput.value) || 0);
+        const bar = document.getElementById("cc-progress");
+        const status = document.getElementById("cc-goal-status");
+        if (goal > 0) {
+          const pct = Math.min(100, (withSpace / goal) * 100);
+          bar.style.width = `${pct}%`;
+          bar.style.background = withSpace > goal ? "var(--danger)" : "var(--primary)";
+          status.style.color = withSpace > goal ? "var(--danger)" : "var(--primary)";
+          status.textContent = `${TBH.fmtNum(withSpace)} / ${TBH.fmtNum(goal)}자 (${Math.round((withSpace / goal) * 100)}%)`;
+        } else {
+          bar.style.width = "0%";
+          status.textContent = "목표 없음";
+        }
+      }
+
+      textarea.addEventListener("input", update);
+      goalInput.addEventListener("input", update);
+
+      document.querySelectorAll("[data-goal]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          goalInput.value = btn.dataset.goal;
+          update();
+        });
+      });
+
+      document.getElementById("btn-trim-spaces").addEventListener("click", () => {
+        textarea.value = textarea.value.replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+        update();
+        TBH.toast("중복 공백과 빈 줄을 정리했습니다.");
+      });
+
+      document.getElementById("btn-copy-text").addEventListener("click", () => {
+        if (!textarea.value) return TBH.toast("복사할 텍스트가 없습니다.");
+        TBH.copyText(textarea.value);
+      });
+
+      document.getElementById("btn-clear-text").addEventListener("click", () => {
+        textarea.value = "";
+        update();
+      });
+
+      update();
+    })();
+  </script>
+</body>
+</html>

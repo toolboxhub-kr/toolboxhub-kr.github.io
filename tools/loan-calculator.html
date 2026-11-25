@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>대출 이자 계산기 (원리금균등·원금균등·만기일시 비교) | ToolBox Hub</title>
+  <meta name="description" content="대출 원금, 연 금리, 상환 기간을 입력해 원리금균등·원금균등·만기일시 상환 방식별 월 납입금과 총 이자를 한눈에 비교하고 월별 상환 스케줄을 확인하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="대출 이자 계산기 (3가지 상환 방식 비교) | ToolBox Hub" />
+  <meta property="og:description" content="원리금균등, 원금균등, 만기일시 상환의 총 이자 차이와 월별 납입 스케줄을 즉시 비교합니다." />
+  <meta property="og:url" content="https://example.com/tools/loan-calculator.html" />
+  <link rel="canonical" href="https://example.com/tools/loan-calculator.html" />
+
+  <meta name="tool:title" content="대출 이자 비교 계산기" />
+  <meta name="tool:category" content="금융·세금" />
+  <meta name="tool:category_slug" content="finance" />
+  <meta name="tool:icon" content="🏠" />
+  <meta name="tool:summary" content="원리금균등·원금균등·만기일시 3가지 상환 방식의 총 이자와 월별 납입 스케줄을 한 번에 비교합니다." />
+  <meta name="tool:keywords" content="대출이자,주담대,원리금균등,원금균등,만기일시,상환스케줄,대출계산기" />
+  <meta name="tool:order" content="3" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "대출 이자 계산기 (원리금균등·원금균등·만기일시 비교)",
+        "url": "https://example.com/tools/loan-calculator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+        "description": "주택담보대출, 전세대출, 신용대출의 원리금균등·원금균등·만기일시 상환 이자와 월 납입 스케줄을 비교하는 계산기입니다."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "원리금균등과 원금균등 중 어떤 방식이 총 이자가 더 적은가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "원금균등 상환이 초기에 원금을 더 빠르게 줄여 나가기 때문에 동일한 금리와 기간 조건에서 총 이자 부담이 가장 적습니다. 다만 첫 달 납입 부담은 원금균등이 더 큽니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "거치기간을 설정하면 이자가 왜 늘어나나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "거치기간 동안에는 원금을 갚지 않고 이자만 납부하므로 원금 잔액이 줄어들지 않습니다. 따라서 거치기간이 길수록 전체 대출 기간 동안 지불하는 총 이자가 크게 증가합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "DSR(총부채원리금상환비율) 계산에는 어떤 방식이 유리한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "원리금균등 상환은 매월 상환액이 일정하여 초기 현금흐름 관리가 쉽고, 대출 만기를 길게 설정할수록 연간 원리금 상환액이 줄어들어 DSR 한도 확보에 유리합니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="경로">
+      <a href="../index.html">홈</a> <span>›</span> <span>금융·세금</span> <span>›</span> <span>대출 이자 계산기</span>
+    </nav>
+
+    <section class="tool-hero">
+      <h1>🏠 대출 이자 계산기 (3가지 상환 방식 비교)</h1>
+      <p>원리금균등 · 원금균등 · 만기일시 상환 방식의 월 납입액과 총 이자를 즉시 비교해 보세요.</p>
+    </section>
+
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <!-- Inputs -->
+        <div>
+          <div class="form-section-title">대출 조건 입력</div>
+
+          <div class="form-group">
+            <label class="field-label" for="loan-amount">대출 원금</label>
+            <div class="input-group has-unit">
+              <input type="number" id="loan-amount" value="300000000" min="0" step="1000000" />
+              <span class="input-unit">원</span>
+            </div>
+            <div class="preset-chips">
+              <button type="button" class="chip-btn" data-loan="50000000">5,000만</button>
+              <button type="button" class="chip-btn" data-loan="100000000">1억</button>
+              <button type="button" class="chip-btn" data-loan="300000000">3억</button>
+              <button type="button" class="chip-btn" data-loan="500000000">5억</button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="loan-rate">연 이자율</label>
+              <div class="input-group has-unit">
+                <input type="number" id="loan-rate" value="4.2" min="0" max="30" step="0.05" />
+                <span class="input-unit">%</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="loan-months">대출 기간 (개월)</label>
+              <div class="input-group has-unit">
+                <input type="number" id="loan-months" value="360" min="1" max="600" step="12" />
+                <span class="input-unit">개월</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="field-label" for="grace-months">거치 기간 (이자만 납부, 선택)</label>
+            <div class="input-group has-unit">
+              <input type="number" id="grace-months" value="0" min="0" max="120" step="1" />
+              <span class="input-unit">개월</span>
+            </div>
+            <div class="preset-chips">
+              <button type="button" class="chip-btn" data-months="120">10년</button>
+              <button type="button" class="chip-btn" data-months="240">20년</button>
+              <button type="button" class="chip-btn" data-months="360">30년</button>
+              <button type="button" class="chip-btn" data-months="480">40년</button>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary" id="btn-copy-loan">비교 결과 복사</button>
+          </div>
+        </div>
+
+        <!-- Comparison Results -->
+        <div>
+          <div class="form-section-title">상환 방식별 한눈에 비교</div>
+          <div class="table-wrap" style="margin-bottom:16px;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>상환 방식</th>
+                  <th>첫 달 납입액</th>
+                  <th>총 이자</th>
+                  <th>총 상환금액</th>
+                </tr>
+              </thead>
+              <tbody id="compare-tbody"></tbody>
+            </table>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi-box">
+              <div class="kpi-label">원금균등 vs 원리금균등 이자 절감</div>
+              <div class="kpi-value text-success" id="res-save-ep">0원</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">만기일시 대비 최대 절감</div>
+              <div class="kpi-value text-primary" id="res-save-bullet">0원</div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <div style="font-size:0.84rem;font-weight:700;margin-bottom:8px;color:var(--text-secondary);">총 이자 규모 비교</div>
+            <div id="interest-bars" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly Schedule Viewer -->
+      <div style="margin-top:26px;">
+        <div class="form-section-title">
+          <span>월별 상환 스케줄 (최대 24회차 미리보기 / 전체 보기)</span>
+          <div class="tabs" style="margin:0;">
+            <button type="button" class="tab-btn active" data-sched="epi">원리금균등</button>
+            <button type="button" class="tab-btn" data-sched="ep">원금균등</button>
+            <button type="button" class="tab-btn" data-sched="bullet">만기일시</button>
+          </div>
+        </div>
+        <div class="table-wrap" style="max-height:380px;overflow-y:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>회차</th>
+                <th>월 납입금</th>
+                <th>상환 원금</th>
+                <th>납입 이자</th>
+                <th>남은 원금</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>대출 상환 방식별 계산 원리 및 공식</h2>
+      <p>대출 이자는 매월 남은 원금 잔액에 월 이자율(연 이자율 ÷ 12)을 곱해 산출됩니다. 상환 방식에 따라 원금이 줄어드는 속도가 달라지므로 총 이자액에 큰 차이가 발생합니다.</p>
+      <div class="formula-box">
+        월 이자율(r) = 연 이자율 ÷ 12<br />
+        원리금균등 월 납입액 = P × [r(1+r)^n] ÷ [(1+r)^n - 1]<br />
+        원금균등 k회차 납입액 = (P ÷ n) + [남은 원금 × r]<br />
+        만기일시 매월 이자 = P × r (만기 시 원금 P 전액 상환)
+      </div>
+
+      <h2>대출 이자를 줄이는 실전 활용 팁</h2>
+      <div class="tip-box">
+        <strong>💡 원금균등 vs 원리금균등 선택 기준:</strong> 총 이자를 최소화하고 싶다면 <strong>원금균등</strong>이 가장 유리하지만, 초기 월 납입금이 부담스럽다면 매월 고정 금액을 내는 <strong>원리금균등</strong>을 선택하고 여유 자금이 생길 때 중도상환을 병행하는 전략이 효과적입니다.
+      </div>
+      <ul>
+        <li><strong>금리인하요구권 활용:</strong> 승진, 연봉 인상, 신용점수 상승 등 신용 상태가 개선되었다면 은행 앱을 통해 비대면으로 금리인하요구권을 신청해 이자를 줄일 수 있습니다.</li>
+        <li><strong>중도상환수수료 면제 구간 확인:</strong> 주택담보대출은 통상 3년 경과 시 중도상환수수료가 면제되며, 일부 은행은 매년 대출 원금의 10%까지 수수료 없이 조기 상환할 수 있습니다.</li>
+      </ul>
+
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>원리금균등과 원금균등 중 어떤 방식이 총 이자가 더 적은가요?</summary>
+          <div class="faq-answer">원금균등 상환은 매달 동일한 원금을 갚아나가므로 초기에 원금이 더 빠르게 줄어들어 총 이자가 가장 적습니다. 3억 원, 연 4.2%, 30년 기준 원금균등이 원리금균등보다 약 3,900만 원 이상 이자가 적습니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>거치기간을 설정하면 이자가 왜 늘어나나요?</summary>
+          <div class="faq-answer">거치기간 동안에는 원금을 전혀 갚지 않고 이자만 납부하므로, 전체 대출 원금이 그대로 유지되어 누적 이자액이 크게 증가합니다.</div>
+        </details>
+        <details class="faq-item">
+          <summary>만기일시 상환은 언제 유리한가요?</summary>
+          <div class="faq-answer">전세자금대출처럼 만기 시 보증금을 돌려받아 일시에 상환할 수 있거나, 단기 자금 운용으로 월 현금흐름 부담을 최소화해야 할 때 주로 활용합니다.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../assets/js/ads-config.js"></script>
+  <script src="../assets/js/tools-registry.js"></script>
+  <script src="../assets/js/common.js"></script>
+  <script>
+    (function () {
+      let currentSchedType = "epi";
+      let lastSchedules = {};
+
+      function calcEPI(P, r, n, grace) {
+        const rows = [];
+        let bal = P;
+        let totalInt = 0;
+        const repayN = Math.max(1, n - grace);
+        const pmt = r === 0 ? P / repayN : (P * r * Math.pow(1 + r, repayN)) / (Math.pow(1 + r, repayN) - 1);
+
+        for (let i = 1; i <= n; i++) {
+          const interest = bal * r;
+          let principal = 0;
+          if (i > grace) {
+            principal = i === n ? bal : Math.min(bal, pmt - interest);
+          }
+          bal = Math.max(0, bal - principal);
+          totalInt += interest;
+          rows.push({ m: i, pay: principal + interest, principal, interest, bal });
+        }
+        return { rows, totalInt, firstPay: rows[0]?.pay || 0, totalPay: P + totalInt };
+      }
+
+      function calcEP(P, r, n, grace) {
+        const rows = [];
+        let bal = P;
+        let totalInt = 0;
+        const repayN = Math.max(1, n - grace);
+        const fixedPrincipal = P / repayN;
+
+        for (let i = 1; i <= n; i++) {
+          const interest = bal * r;
+          let principal = 0;
+          if (i > grace) {
+            principal = i === n ? bal : Math.min(bal, fixedPrincipal);
+          }
+          bal = Math.max(0, bal - principal);
+          totalInt += interest;
+          rows.push({ m: i, pay: principal + interest, principal, interest, bal });
+        }
+        return { rows, totalInt, firstPay: rows[0]?.pay || 0, totalPay: P + totalInt };
+      }
+
+      function calcBullet(P, r, n) {
+        const rows = [];
+        let totalInt = 0;
+        for (let i = 1; i <= n; i++) {
+          const interest = P * r;
+          const principal = i === n ? P : 0;
+          const bal = i === n ? 0 : P;
+          totalInt += interest;
+          rows.push({ m: i, pay: principal + interest, principal, interest, bal });
+        }
+        return { rows, totalInt, firstPay: rows[0]?.pay || 0, totalPay: P + totalInt };
+      }
+
+      function renderSchedule() {
+        const list = lastSchedules[currentSchedType]?.rows || [];
+        const tbody = document.getElementById("schedule-tbody");
+        tbody.innerHTML = list
+          .map(
+            (row) => `<tr>
+            <td>${row.m}회차</td>
+            <td><strong>${TBH.fmtWon(row.pay)}</strong></td>
+            <td>${TBH.fmtWon(row.principal)}</td>
+            <td style="color:var(--danger)">${TBH.fmtWon(row.interest)}</td>
+            <td>${TBH.fmtWon(row.bal)}</td>
+          </tr>`
+          )
+          .join("");
+      }
+
+      function update() {
+        const P = Math.max(0, Number(document.getElementById("loan-amount").value) || 0);
+        const annualRate = Math.max(0, Number(document.getElementById("loan-rate").value) || 0);
+        const n = Math.max(1, Math.min(600, Math.floor(Number(document.getElementById("loan-months").value) || 12)));
+        const grace = Math.max(0, Math.min(n - 1, Math.floor(Number(document.getElementById("grace-months").value) || 0)));
+        const r = annualRate / 100 / 12;
+
+        const epi = calcEPI(P, r, n, grace);
+        const ep = calcEP(P, r, n, grace);
+        const bullet = calcBullet(P, r, n);
+        lastSchedules = { epi, ep, bullet };
+
+        const items = [
+          { name: "원리금균등", data: epi, color: "var(--primary)" },
+          { name: "원금균등", data: ep, color: "var(--success)" },
+          { name: "만기일시", data: bullet, color: "var(--warning)" },
+        ];
+
+        document.getElementById("compare-tbody").innerHTML = items
+          .map(
+            (it) => `<tr>
+            <td><strong>${it.name}</strong></td>
+            <td>${TBH.fmtWon(it.data.firstPay)}</td>
+            <td style="color:var(--danger);font-weight:700;">${TBH.fmtWon(it.data.totalInt)}</td>
+            <td>${TBH.fmtWon(it.data.totalPay)}</td>
+          </tr>`
+          )
+          .join("");
+
+        document.getElementById("res-save-ep").textContent = TBH.fmtWon(Math.max(0, epi.totalInt - ep.totalInt));
+        document.getElementById("res-save-bullet").textContent = TBH.fmtWon(Math.max(0, bullet.totalInt - ep.totalInt));
+
+        const maxInt = Math.max(1, epi.totalInt, ep.totalInt, bullet.totalInt);
+        document.getElementById("interest-bars").innerHTML = items
+          .map((it) => {
+            const pct = Math.round((it.data.totalInt / maxInt) * 100);
+            return `<div>
+              <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:3px;">
+                <span>${it.name}</span><strong>${TBH.fmtWon(it.data.totalInt)}</strong>
+              </div>
+              <div style="height:10px;background:var(--bg-subtle);border-radius:999px;overflow:hidden;">
+                <div style="height:100%;width:${pct}%;background:${it.color};border-radius:999px;"></div>
+              </div>
+            </div>`;
+          })
+          .join("");
+
+        renderSchedule();
+      }
+
+      document.querySelectorAll("[data-loan]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.getElementById("loan-amount").value = btn.dataset.loan;
+          update();
+        });
+      });
+
+      document.querySelectorAll("[data-months]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.getElementById("loan-months").value = btn.dataset.months;
+          update();
+        });
+      });
+
+      document.querySelectorAll("[data-sched]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("[data-sched]").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentSchedType = btn.dataset.sched;
+          renderSchedule();
+        });
+      });
+
+      ["loan-amount", "loan-rate", "loan-months", "grace-months"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", update);
+      });
+
+      document.getElementById("btn-copy-loan").addEventListener("click", () => {
+        const { epi, ep, bullet } = lastSchedules;
+        TBH.copyText(
+          `[대출 이자 비교]\n원리금균등 총이자: ${TBH.fmtWon(epi.totalInt)}\n원금균등 총이자: ${TBH.fmtWon(ep.totalInt)}\n만기일시 총이자: ${TBH.fmtWon(bullet.totalInt)}`
+        );
+      });
+
+      update();
+    })();
+  </script>
+</body>
+</html>
