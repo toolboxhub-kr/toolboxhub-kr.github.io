@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Permanent QR Code Generator (PNG &amp; SVG Download) | ToolBox Hub</title>
+  <meta name="description" content="Create permanent, non-expiring QR codes for URLs, Wi-Fi auto-connect, phone numbers, and emails. Customize colors and error correction, and download high-res PNG or vector SVG." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="Free Permanent QR Code Generator (PNG &amp; SVG) | ToolBox Hub" />
+  <meta property="og:description" content="Generate static QR codes that never expire — 100% free and offline-capable." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/qr-generator.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/qr-generator.html" />
+  <link rel="alternate" hreflang="en" href="https://toolboxhub-kr.github.io/en/tools/qr-generator.html" />
+  <link rel="alternate" hreflang="ko" href="https://toolboxhub-kr.github.io/tools/qr-generator.html" />
+
+  <meta name="tool:title" content="Free QR Code Generator" />
+  <meta name="tool:category" content="Utilities" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="📱" />
+  <meta name="tool:summary" content="Generate permanent URL, Wi-Fi, Phone, and Email QR codes and download as PNG or vector SVG." />
+  <meta name="tool:keywords" content="qr code generator,free qr code,wifi qr code,svg qr code,png qr code,permanent qr" />
+  <meta name="tool:order" content="6" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Free Permanent QR Code Generator",
+        "url": "https://toolboxhub-kr.github.io/en/tools/qr-generator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free client-side static QR code generator supporting URL, Wi-Fi, phone, and email with PNG and SVG export."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do QR codes created here ever expire?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. These are 100% static QR codes encoded directly inside your browser without any redirect server, so they work forever with unlimited scans."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Should I download PNG or SVG for printing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Choose SVG for business cards, posters, and banners because vector graphics scale infinitely without blur. Choose PNG for websites, slides, and social media."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does the Wi-Fi QR code work on both iPhone and Android?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Both iOS and Android built-in cameras natively recognize the WIFI QR standard and prompt users to join your network with one tap."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Utilities</span> <span>›</span> <span>QR Code Generator</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>📱 Free Permanent QR Code Generator (PNG &amp; SVG)</h1>
+      <p>Create non-expiring static QR codes for links, Wi-Fi networks, phone numbers, and emails — 100% free.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="tabs" role="tablist">
+            <button type="button" class="tab-btn active" data-qr-type="url">URL / Text</button>
+            <button type="button" class="tab-btn" data-qr-type="wifi">Wi-Fi</button>
+            <button type="button" class="tab-btn" data-qr-type="tel">Phone</button>
+            <button type="button" class="tab-btn" data-qr-type="email">Email</button>
+          </div>
+          <div id="qr-panel-url"><div class="form-group"><label class="field-label" for="qr-text">Website URL or Text</label><textarea id="qr-text" rows="3">https://toolboxhub-kr.github.io/en/</textarea></div></div>
+          <div id="qr-panel-wifi" style="display:none;">
+            <div class="form-group"><label class="field-label" for="wifi-ssid">Wi-Fi Network Name (SSID)</label><input type="text" id="wifi-ssid" placeholder="MyCafe_WiFi" /></div>
+            <div class="form-row">
+              <div class="form-group"><label class="field-label" for="wifi-pass">Password</label><input type="text" id="wifi-pass" placeholder="password1234" /></div>
+              <div class="form-group"><label class="field-label" for="wifi-enc">Encryption</label><select id="wifi-enc"><option value="WPA" selected>WPA / WPA2</option><option value="WEP">WEP</option><option value="nopass">None</option></select></div>
+            </div>
+          </div>
+          <div id="qr-panel-tel" style="display:none;"><div class="form-group"><label class="field-label" for="qr-tel">Phone Number</label><input type="tel" id="qr-tel" placeholder="+1-555-123-4567" /></div></div>
+          <div id="qr-panel-email" style="display:none;">
+            <div class="form-group"><label class="field-label" for="qr-email">Recipient Email</label><input type="email" id="qr-email" placeholder="hello@example.com" /></div>
+            <div class="form-group"><label class="field-label" for="qr-email-sub">Subject (Optional)</label><input type="text" id="qr-email-sub" placeholder="Hello!" /></div>
+          </div>
+
+          <div class="form-section-title" style="margin-top:18px;">Customization</div>
+          <div class="form-row-3">
+            <div class="form-group"><label class="field-label" for="qr-size">Size</label><select id="qr-size"><option value="240">240 px</option><option value="360" selected>360 px</option><option value="512">512 px</option><option value="800">800 px (Print)</option></select></div>
+            <div class="form-group"><label class="field-label" for="qr-ec">Error Correction</label><select id="qr-ec"><option value="L">L (7%)</option><option value="M" selected>M (15%)</option><option value="Q">Q (25%)</option><option value="H">H (30%)</option></select></div>
+            <div class="form-group"><label class="field-label">Colors (FG / BG)</label><div style="display:flex;gap:8px;"><input type="color" id="qr-fg" value="#0f172a" style="width:44px;height:40px;padding:2px;" /><input type="color" id="qr-bg" value="#ffffff" style="width:44px;height:40px;padding:2px;" /></div></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:var(--bg-subtle);border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <div style="background:#ffffff;padding:14px;border-radius:14px;box-shadow:var(--shadow-md);margin-bottom:14px;">
+            <canvas id="qr-canvas" style="width:240px;height:240px;image-rendering:pixelated;"></canvas>
+          </div>
+          <div id="qr-meta" style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px;">QR Version -</div>
+          <div id="qr-error" style="display:none;color:var(--danger);font-size:0.85rem;font-weight:600;margin-bottom:10px;"></div>
+          <div class="btn-row" style="margin:0;justify-content:center;">
+            <button type="button" class="btn btn-primary" id="btn-dl-png">Download PNG</button>
+            <button type="button" class="btn btn-secondary" id="btn-dl-svg">Download SVG</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>How Static QR Codes Work</h2>
+      <p>This generator implements the ISO/IEC 18004 QR Code standard directly in JavaScript with Reed-Solomon error correction, encoding your exact data with zero third-party tracking redirects.</p>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Do QR codes created here ever expire?</summary>
+          <div class="faq-answer">No! Because your URL or Wi-Fi credentials are stored directly inside the QR pattern, these codes work forever with unlimited scans.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Which error correction level should I pick?</summary>
+          <div class="faq-answer">Level M (15%) is ideal for screens and business cards. Use Q (25%) or H (30%) for outdoor signage that may get scratched or weathered.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is my Wi-Fi password sent to any server?</summary>
+          <div class="faq-answer">No. Everything is generated 100% offline inside your browser.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script src="../../assets/js/qr-engine.js"></script>
+  <script>
+    (function () {
+      let qrType = "url", lastQR = null;
+      const canvas = document.getElementById("qr-canvas"), errEl = document.getElementById("qr-error"), metaEl = document.getElementById("qr-meta");
+      function getPayload() {
+        if (qrType === "url") return document.getElementById("qr-text").value.trim() || "https://toolboxhub-kr.github.io/en/";
+        if (qrType === "wifi") {
+          const s = document.getElementById("wifi-ssid").value.replace(/([\\;,:"])/g, "\\$1");
+          const p = document.getElementById("wifi-pass").value.replace(/([\\;,:"])/g, "\\$1");
+          const e = document.getElementById("wifi-enc").value;
+          return `WIFI:T:${e};S:${s || "MyWiFi"};P:${e === "nopass" ? "" : p};;`;
+        }
+        if (qrType === "tel") return `tel:${document.getElementById("qr-tel").value.replace(/[^0-9+]/g, "") || "+15551234567"}`;
+        const em = document.getElementById("qr-email").value.trim() || "hello@example.com";
+        const sub = document.getElementById("qr-email-sub").value.trim();
+        return sub ? `mailto:${em}?subject=${encodeURIComponent(sub)}` : `mailto:${em}`;
+      }
+      function renderQR() {
+        try {
+          const ec = document.getElementById("qr-ec").value;
+          lastQR = QREngine.generate(getPayload(), ec);
+          QREngine.drawToCanvas(lastQR, canvas, { size: Number(document.getElementById("qr-size").value) || 360, fg: document.getElementById("qr-fg").value, bg: document.getElementById("qr-bg").value, margin: 4 });
+          errEl.style.display = "none";
+          metaEl.textContent = `QR Version ${lastQR.version} (${lastQR.size}×${lastQR.size}) · Error Correction ${ec}`;
+        } catch (e) { errEl.style.display = "block"; errEl.textContent = "Text too long — please shorten under ~270 bytes."; }
+      }
+      document.querySelectorAll("[data-qr-type]").forEach((b) => b.addEventListener("click", () => {
+        document.querySelectorAll("[data-qr-type]").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active"); qrType = b.dataset.qrType;
+        ["url", "wifi", "tel", "email"].forEach((t) => { document.getElementById(`qr-panel-${t}`).style.display = t === qrType ? "block" : "none"; });
+        renderQR();
+      }));
+      ["qr-text", "wifi-ssid", "wifi-pass", "wifi-enc", "qr-tel", "qr-email", "qr-email-sub", "qr-size", "qr-ec", "qr-fg", "qr-bg"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", renderQR);
+        document.getElementById(id).addEventListener("change", renderQR);
+      });
+      document.getElementById("btn-dl-png").addEventListener("click", () => { if (!lastQR) return; const a = document.createElement("a"); a.download = `qrcode-${qrType}.png`; a.href = canvas.toDataURL("image/png"); a.click(); TBH.toast("PNG downloaded!"); });
+      document.getElementById("btn-dl-svg").addEventListener("click", () => {
+        if (!lastQR) return;
+        const svg = QREngine.toSVG(lastQR, { fg: document.getElementById("qr-fg").value, bg: document.getElementById("qr-bg").value, margin: 4 });
+        const u = URL.createObjectURL(new Blob([svg], { type: "image/svg+xml;charset=utf-8" }));
+        const a = document.createElement("a"); a.download = `qrcode-${qrType}.svg`; a.href = u; a.click();
+        setTimeout(() => URL.revokeObjectURL(u), 1000); TBH.toast("SVG downloaded!");
+      });
+      renderQR();
+    })();
+  </script>
+</body>
+</html>

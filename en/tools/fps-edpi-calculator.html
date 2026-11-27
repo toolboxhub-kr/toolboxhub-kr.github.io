@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FPS Mouse Sensitivity &amp; eDPI Converter (Valorant, CS2, Overwatch 2, Apex) | ToolBox Hub</title>
+  <meta name="description" content="Convert your mouse sensitivity accurately between Valorant, CS2, Overwatch 2, Apex Legends, Fortnite, Rainbow Six Siege, Call of Duty, and PUBG with eDPI and cm/360." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="FPS Mouse Sensitivity &amp; eDPI Converter | ToolBox Hub" />
+  <meta property="og:description" content="Keep identical muscle memory (cm/360) across Valorant, CS2, Overwatch 2, Apex, and more." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/fps-edpi-calculator.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/fps-edpi-calculator.html" />
+  <link rel="alternate" hreflang="en" href="https://toolboxhub-kr.github.io/en/tools/fps-edpi-calculator.html" />
+  <link rel="alternate" hreflang="ko" href="https://toolboxhub-kr.github.io/tools/fps-edpi-calculator.html" />
+
+  <meta name="tool:title" content="FPS Sensitivity & eDPI Converter" />
+  <meta name="tool:category" content="Gaming & DIY" />
+  <meta name="tool:category_slug" content="hobby" />
+  <meta name="tool:icon" content="🎯" />
+  <meta name="tool:summary" content="Convert mouse sensitivity, eDPI, and cm/360° across Valorant, CS2, Overwatch 2, Apex, Fortnite &amp; more." />
+  <meta name="tool:keywords" content="edpi calculator,valorant sensitivity converter,cs2 sensitivity,cm per 360,overwatch 2,apex legends,mouse dpi" />
+  <meta name="tool:order" content="3" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "FPS Mouse Sensitivity & eDPI Converter",
+        "url": "https://toolboxhub-kr.github.io/en/tools/fps-edpi-calculator.html",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free FPS mouse sensitivity converter calculating exact eDPI, cm/360, and in/360 across major PC shooter games."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is the difference between eDPI and cm/360?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "eDPI (DPI × in-game sensitivity) is great for comparing players within the same game, while cm/360 measures the exact physical distance your mouse moves to turn 360 degrees — making it the universal metric across all FPS games."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I switch from 800 DPI to 1600 DPI without changing my aim?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simply cut your in-game sensitivity in half when doubling your DPI (e.g., 800 DPI × 0.40 = 1600 DPI × 0.20). Your eDPI and cm/360 stay identical."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the average pro eDPI in Valorant and CS2?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most Valorant pros play between 240 and 320 eDPI (about 40–54 cm/360), and most CS2 pros play around 800–950 eDPI (about 43–52 cm/360)."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Gaming &amp; DIY</span> <span>›</span> <span>FPS Sensitivity &amp; eDPI Converter</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>🎯 FPS Mouse Sensitivity &amp; eDPI Converter</h1>
+      <p>Convert your exact cm/360° aim across Valorant, CS2, Overwatch 2, Apex Legends, Fortnite, R6 Siege, and PUBG.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">Current Game &amp; Mouse Settings</div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="fps-from">Convert From</label><select id="fps-from"></select></div>
+            <div class="form-group"><label class="field-label" for="fps-to">Convert To</label><select id="fps-to"></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="fps-sens">In-Game Sensitivity</label><input type="number" id="fps-sens" value="0.35" min="0.001" step="0.01" /></div>
+            <div class="form-group"><label class="field-label" for="fps-dpi-from">Current DPI</label><input type="number" id="fps-dpi-from" value="800" min="50" max="25600" step="50" /></div>
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="fps-dpi-to">Target Mouse DPI</label>
+            <input type="number" id="fps-dpi-to" value="800" min="50" max="25600" step="50" />
+            <div class="preset-chips">
+              <button type="button" class="chip-btn" data-dpi="400">400 DPI</button>
+              <button type="button" class="chip-btn" data-dpi="800">800 DPI</button>
+              <button type="button" class="chip-btn" data-dpi="1600">1600 DPI</button>
+              <button type="button" class="chip-btn" data-dpi="3200">3200 DPI</button>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-secondary" id="btn-swap">⇄ Swap Games</button>
+            <button type="button" class="btn btn-primary" id="btn-copy-fps">Copy Result</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label" id="fps-target-label">Converted Sensitivity</div>
+            <div class="rh-value" id="fps-res-sens">0.000</div>
+            <div class="rh-sub" id="fps-res-sub">Target eDPI 0 · 0 cm/360°</div>
+          </div>
+          <div class="kpi-grid cols-3">
+            <div class="kpi-box"><div class="kpi-label">Current eDPI</div><div class="kpi-value text-primary" id="fps-edpi-from">0</div></div>
+            <div class="kpi-box"><div class="kpi-label">cm / 360°</div><div class="kpi-value text-success" id="fps-cm360">0 cm</div></div>
+            <div class="kpi-box"><div class="kpi-label">inches / 360°</div><div class="kpi-value" id="fps-in360">0 in</div></div>
+          </div>
+          <div class="kpi-box" style="margin-bottom:14px;">
+            <div class="kpi-label">Aim Style Classification</div>
+            <div style="font-size:0.95rem;font-weight:700;" id="fps-style-desc">-</div>
+          </div>
+          <div class="form-section-title" style="margin-top:16px;">All Supported Games Comparison</div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Game</th><th>Converted Sens</th><th>eDPI</th></tr></thead>
+              <tbody id="fps-all-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>How FPS Sensitivity &amp; cm/360° Conversion Works</h2>
+      <p>Each game engine rotates the camera by a specific degree increment per mouse count, called <strong>Yaw</strong> (e.g., Valorant = <code>0.07°</code>, CS2 &amp; Apex = <code>0.022°</code>, Overwatch 2 = <code>0.0066°</code>).</p>
+      <div class="formula-box">
+        eDPI = Mouse DPI × In-Game Sensitivity<br />
+        cm/360° = [360 ÷ (DPI × Sensitivity × Game Yaw)] × 2.54<br />
+        Target Sens = Current Sens × (From Yaw ÷ To Yaw) × (From DPI ÷ To DPI)
+      </div>
+      <h2>Pro Aim Setup Tips</h2>
+      <div class="tip-box">
+        <strong>💡 Disable Windows Mouse Acceleration:</strong> Uncheck <em>"Enhance pointer precision"</em> in Windows Mouse Settings and keep pointer speed at 6/11 so your muscle memory stays 100% consistent.
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>What is the difference between eDPI and cm/360?</summary>
+          <div class="faq-answer">eDPI only compares sensitivity within the same game. cm/360 measures the actual mousepad distance needed for a full 360° turn, making it universal across every FPS title.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is 1600 DPI better than 400 or 800 DPI?</summary>
+          <div class="faq-answer">Modern sensors show slightly lower motion latency at 1600 DPI with half the in-game sensitivity, while keeping the exact same cm/360 feel.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Why do tactical shooters use lower sensitivity than arena shooters?</summary>
+          <div class="faq-answer">Valorant and CS2 reward micro-adjustments for headshots (40–55 cm/360), while Overwatch 2 and Apex require fast 180° turns and vertical tracking (25–40 cm/360).</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const GAMES = [
+        { id: "valorant", name: "Valorant", yaw: 0.07 },
+        { id: "cs2", name: "Counter-Strike 2 (CS2)", yaw: 0.022 },
+        { id: "overwatch2", name: "Overwatch 2", yaw: 0.0066 },
+        { id: "apex", name: "Apex Legends", yaw: 0.022 },
+        { id: "fortnite", name: "Fortnite (%)", yaw: 0.005555 },
+        { id: "r6", name: "Rainbow Six Siege", yaw: 0.00572957795 },
+        { id: "cod", name: "Call of Duty / Warzone", yaw: 0.0066 },
+        { id: "pubg", name: "PUBG (General)", yaw: 0.002222 },
+      ];
+      const selFrom = document.getElementById("fps-from");
+      const selTo = document.getElementById("fps-to");
+      GAMES.forEach((g) => { selFrom.add(new Option(g.name, g.id)); selTo.add(new Option(g.name, g.id)); });
+      selFrom.value = "valorant"; selTo.value = "cs2";
+
+      function update() {
+        const gF = GAMES.find((g) => g.id === selFrom.value) || GAMES[0];
+        const gT = GAMES.find((g) => g.id === selTo.value) || GAMES[1];
+        const sens = Math.max(0.0001, Number(document.getElementById("fps-sens").value) || 0.35);
+        const dF = Math.max(50, Number(document.getElementById("fps-dpi-from").value) || 800);
+        const dT = Math.max(50, Number(document.getElementById("fps-dpi-to").value) || 800);
+
+        const in360 = 360 / (dF * sens * gF.yaw);
+        const cm360 = in360 * 2.54;
+        const targetSens = (sens * gF.yaw * dF) / (gT.yaw * dT);
+
+        document.getElementById("fps-target-label").textContent = `${gT.name} Sensitivity`;
+        document.getElementById("fps-res-sens").textContent = targetSens.toFixed(3);
+        document.getElementById("fps-res-sub").textContent = `Target eDPI ${(targetSens * dT).toFixed(1)} · ${cm360.toFixed(1)} cm/360°`;
+        document.getElementById("fps-edpi-from").textContent = (dF * sens).toFixed(1);
+        document.getElementById("fps-cm360").textContent = `${cm360.toFixed(1)} cm`;
+        document.getElementById("fps-in360").textContent = `${in360.toFixed(1)} in`;
+
+        let style = "🧊 Ultra-Low Sens (Arm aim — large desk mat recommended)";
+        if (cm360 < 20) style = "🔥 High Sens (Wrist aim — fast flicks & turns)";
+        else if (cm360 < 35) style = "⚡ Medium-High Sens (Great for Overwatch 2 & Apex tracking)";
+        else if (cm360 < 55) style = "🎯 Balanced / Low Sens (Valorant & CS2 Pro Sweet Spot)";
+        document.getElementById("fps-style-desc").textContent = style;
+
+        document.getElementById("fps-all-tbody").innerHTML = GAMES.map((g) => {
+          const s = (sens * gF.yaw * dF) / (g.yaw * dT);
+          return `<tr style="${g.id === gT.id ? "background:var(--primary-soft);font-weight:700;" : ""}"><td>${g.name}</td><td style="color:var(--primary);font-weight:700;">${s.toFixed(3)}</td><td>${(s * dT).toFixed(1)}</td></tr>`;
+        }).join("");
+      }
+
+      document.getElementById("btn-swap").addEventListener("click", () => { const t = selFrom.value; selFrom.value = selTo.value; selTo.value = t; update(); });
+      document.querySelectorAll("[data-dpi]").forEach((b) => b.addEventListener("click", () => {
+        document.getElementById("fps-dpi-from").value = b.dataset.dpi;
+        document.getElementById("fps-dpi-to").value = b.dataset.dpi;
+        update();
+      }));
+      ["fps-from", "fps-to", "fps-sens", "fps-dpi-from", "fps-dpi-to"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", update);
+        document.getElementById(id).addEventListener("change", update);
+      });
+      document.getElementById("btn-copy-fps").addEventListener("click", () => {
+        TBH.copyText(`${document.getElementById("fps-target-label").textContent}: ${document.getElementById("fps-res-sens").textContent} (${document.getElementById("fps-cm360").textContent}/360°)`);
+      });
+      update();
+    })();
+  </script>
+</body>
+</html>

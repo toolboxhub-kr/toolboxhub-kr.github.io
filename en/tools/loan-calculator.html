@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mortgage &amp; Loan Payment Calculator (Amortization Schedule) | ToolBox Hub</title>
+  <meta name="description" content="Calculate monthly mortgage, auto, or personal loan payments, compare total interest across repayment methods, and inspect a complete monthly amortization schedule." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="Mortgage &amp; Loan Payment Calculator | ToolBox Hub" />
+  <meta property="og:description" content="Instant monthly payment, total interest comparison, and full amortization schedule." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/loan-calculator.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/loan-calculator.html" />
+  <link rel="alternate" hreflang="en" href="https://toolboxhub-kr.github.io/en/tools/loan-calculator.html" />
+  <link rel="alternate" hreflang="ko" href="https://toolboxhub-kr.github.io/tools/loan-calculator.html" />
+
+  <meta name="tool:title" content="Mortgage & Loan Calculator" />
+  <meta name="tool:category" content="Finance" />
+  <meta name="tool:category_slug" content="finance" />
+  <meta name="tool:icon" content="🏠" />
+  <meta name="tool:summary" content="Calculate monthly mortgage or loan payments, total interest, and full amortization schedule." />
+  <meta name="tool:keywords" content="mortgage calculator,loan payment,amortization,interest rate,auto loan,personal loan" />
+  <meta name="tool:order" content="2" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Mortgage & Loan Payment Calculator",
+        "url": "https://toolboxhub-kr.github.io/en/tools/loan-calculator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free mortgage and loan calculator with monthly payment breakdown and full amortization schedule."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is a fixed monthly mortgage payment calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Fixed-rate loans use the standard amortization formula M = P × [r(1+r)^n] / [(1+r)^n - 1], where P is loan principal, r is monthly interest rate, and n is total number of monthly payments."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much interest does a 15-year vs 30-year mortgage save?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A 15-year mortgage typically cuts total lifetime interest by more than half compared to a 30-year loan at the same rate, though the monthly payment is higher."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do extra monthly principal payments help?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Every extra dollar applied directly to principal reduces the remaining balance immediately, shrinking future interest charges and shortening your payoff timeline."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Finance</span> <span>›</span> <span>Mortgage &amp; Loan Calculator</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>🏠 Mortgage &amp; Loan Payment Calculator</h1>
+      <p>Estimate your monthly payment, total interest cost, and payoff savings with extra monthly principal payments.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">Loan Details</div>
+          <div class="form-group">
+            <label class="field-label" for="l-amt">Loan Amount ($)</label>
+            <input type="number" id="l-amt" value="350000" min="0" step="5000" />
+            <div class="preset-chips">
+              <button type="button" class="chip-btn" data-la="30000">$30K Auto</button>
+              <button type="button" class="chip-btn" data-la="250000">$250K</button>
+              <button type="button" class="chip-btn" data-la="350000">$350K</button>
+              <button type="button" class="chip-btn" data-la="500000">$500K</button>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="l-rate">Annual Interest Rate (%)</label>
+              <div class="input-group has-unit"><input type="number" id="l-rate" value="6.5" min="0" max="30" step="0.1" /><span class="input-unit">%</span></div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="l-years">Loan Term (Years)</label>
+              <div class="input-group has-unit"><input type="number" id="l-years" value="30" min="1" max="40" step="1" /><span class="input-unit">yr</span></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="l-extra">Extra Monthly Principal Payment (Optional, $)</label>
+            <input type="number" id="l-extra" value="0" min="0" step="50" />
+            <div class="preset-chips">
+              <button type="button" class="chip-btn" data-ly="5">5 yr</button>
+              <button type="button" class="chip-btn" data-ly="15">15 yr</button>
+              <button type="button" class="chip-btn" data-ly="30">30 yr</button>
+            </div>
+          </div>
+          <div class="btn-row"><button type="button" class="btn btn-primary" id="btn-copy-l">Copy Results</button></div>
+        </div>
+
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label">Estimated Monthly Payment</div>
+            <div class="rh-value" id="l-pmt">$0</div>
+            <div class="rh-sub" id="l-sub">Principal + Interest · Payoff in 360 months</div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">Total Interest Paid</div><div class="kpi-value text-danger" id="l-int">$0</div></div>
+            <div class="kpi-box"><div class="kpi-label">Total Cost of Loan</div><div class="kpi-value" id="l-tot">$0</div></div>
+          </div>
+          <div id="l-extra-box" class="tip-box" style="display:none;margin-top:12px;"></div>
+          <div class="stacked-bar">
+            <div class="bar-seg" id="l-bar-p" style="background:var(--primary);width:50%"></div>
+            <div class="bar-seg" id="l-bar-i" style="background:var(--danger);width:50%"></div>
+          </div>
+          <div class="bar-legend">
+            <span class="legend-item"><span class="legend-dot" style="background:var(--primary)"></span>Principal <strong id="l-pct-p">0%</strong></span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--danger)"></span>Interest <strong id="l-pct-i">0%</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;">
+        <div class="form-section-title">Monthly Amortization Schedule</div>
+        <div class="table-wrap" style="max-height:360px;overflow-y:auto;">
+          <table class="data-table">
+            <thead><tr><th>Month</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Remaining Balance</th></tr></thead>
+            <tbody id="l-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>Loan Amortization Formula</h2>
+      <div class="formula-box">
+        r = Annual Rate ÷ 12 &nbsp;|&nbsp; n = Loan Years × 12<br />
+        Monthly Payment (M) = P × [r(1 + r)^n] ÷ [(1 + r)^n - 1]
+      </div>
+      <h2>Smart Tips to Save on Loan Interest</h2>
+      <div class="tip-box">
+        <strong>💡 Even $100–$200/month extra makes a huge difference:</strong> Adding $200/month in extra principal on a $350,000 30-year mortgage at 6.5% saves over $105,000 in interest and cuts more than 6 years off your loan!
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Why is most of my early payment going toward interest?</summary>
+          <div class="faq-answer">Interest is calculated each month on your remaining balance. Because the balance is highest at the start, early payments are interest-heavy and gradually shift toward principal over time.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does this include property taxes and homeowners insurance?</summary>
+          <div class="faq-answer">This calculator shows Principal &amp; Interest (P&amp;I). For total monthly housing cost (PITI), add your local property tax, homeowners insurance, and HOA/PMI if applicable.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is a 15-year or 30-year mortgage better?</summary>
+          <div class="faq-answer">A 15-year mortgage drastically reduces total interest, while a 30-year mortgage keeps mandatory monthly payments lower for cash-flow flexibility.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script>
+    (function () {
+      function simulate(P, r, n, extra) {
+        const basePmt = r === 0 ? P / n : (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+        let bal = P, totInt = 0;
+        const rows = [];
+        for (let m = 1; m <= n && bal > 0.01; m++) {
+          const interest = bal * r;
+          let principal = Math.min(bal, Math.max(0, basePmt - interest) + extra);
+          bal = Math.max(0, bal - principal);
+          totInt += interest;
+          rows.push({ m, pay: principal + interest, principal, interest, bal });
+        }
+        return { basePmt, totInt, rows };
+      }
+
+      function update() {
+        const P = Math.max(0, Number(document.getElementById("l-amt").value) || 0);
+        const rate = Math.max(0, Number(document.getElementById("l-rate").value) || 0);
+        const yrs = Math.max(1, Math.min(40, Math.floor(Number(document.getElementById("l-years").value) || 30)));
+        const extra = Math.max(0, Number(document.getElementById("l-extra").value) || 0);
+        const r = rate / 100 / 12, n = yrs * 12;
+
+        const baseSim = simulate(P, r, n, 0);
+        const sim = extra > 0 ? simulate(P, r, n, extra) : baseSim;
+        const totalCost = P + sim.totInt;
+
+        document.getElementById("l-pmt").textContent = TBH.fmtUSD(sim.basePmt + extra, 2);
+        document.getElementById("l-sub").textContent = `Payoff in ${sim.rows.length} months (${(sim.rows.length / 12).toFixed(1)} years)`;
+        document.getElementById("l-int").textContent = TBH.fmtUSD(Math.round(sim.totInt));
+        document.getElementById("l-tot").textContent = TBH.fmtUSD(Math.round(totalCost));
+
+        const pPct = totalCost > 0 ? (P / totalCost) * 100 : 100;
+        const iPct = 100 - pPct;
+        document.getElementById("l-bar-p").style.width = `${pPct}%`;
+        document.getElementById("l-bar-i").style.width = `${iPct}%`;
+        document.getElementById("l-pct-p").textContent = `${pPct.toFixed(1)}%`;
+        document.getElementById("l-pct-i").textContent = `${iPct.toFixed(1)}%`;
+
+        const exBox = document.getElementById("l-extra-box");
+        if (extra > 0) {
+          const savedInt = Math.max(0, baseSim.totInt - sim.totInt);
+          const savedMos = Math.max(0, baseSim.rows.length - sim.rows.length);
+          exBox.style.display = "block";
+          exBox.innerHTML = `<strong>Extra Payment Savings:</strong> You save <strong>${TBH.fmtUSD(Math.round(savedInt))}</strong> in interest and pay off <strong>${savedMos} months (${(savedMos / 12).toFixed(1)} yrs)</strong> faster!`;
+        } else {
+          exBox.style.display = "none";
+        }
+
+        document.getElementById("l-tbody").innerHTML = sim.rows.map((row) => `
+          <tr>
+            <td>#${row.m}</td>
+            <td><strong>${TBH.fmtUSD(row.pay, 2)}</strong></td>
+            <td>${TBH.fmtUSD(row.principal, 2)}</td>
+            <td style="color:var(--danger)">${TBH.fmtUSD(row.interest, 2)}</td>
+            <td>${TBH.fmtUSD(row.bal, 2)}</td>
+          </tr>`).join("");
+      }
+
+      document.querySelectorAll("[data-la]").forEach((b) => b.addEventListener("click", () => { document.getElementById("l-amt").value = b.dataset.la; update(); }));
+      document.querySelectorAll("[data-ly]").forEach((b) => b.addEventListener("click", () => { document.getElementById("l-years").value = b.dataset.ly; update(); }));
+      ["l-amt", "l-rate", "l-years", "l-extra"].forEach((id) => document.getElementById(id).addEventListener("input", update));
+      document.getElementById("btn-copy-l").addEventListener("click", () => {
+        TBH.copyText(`Loan Payment: ${document.getElementById("l-pmt").textContent}/mo | Total Interest: ${document.getElementById("l-int").textContent}`);
+      });
+      update();
+    })();
+  </script>
+</body>
+</html>

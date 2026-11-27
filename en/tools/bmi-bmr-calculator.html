@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BMI, BMR &amp; Daily Calorie (TDEE) Calculator (Metric &amp; Imperial) | ToolBox Hub</title>
+  <meta name="description" content="Calculate your Body Mass Index (BMI), Basal Metabolic Rate (BMR), and daily calorie needs (TDEE) for weight loss, maintenance, or muscle gain in Metric (cm/kg) or Imperial (ft/lbs)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="BMI, BMR &amp; Daily Calorie (TDEE) Calculator | ToolBox Hub" />
+  <meta property="og:description" content="Free WHO BMI &amp; Mifflin-St Jeor TDEE calorie calculator supporting both Metric and US Imperial units." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/bmi-bmr-calculator.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/bmi-bmr-calculator.html" />
+  <link rel="alternate" hreflang="en" href="https://toolboxhub-kr.github.io/en/tools/bmi-bmr-calculator.html" />
+  <link rel="alternate" hreflang="ko" href="https://toolboxhub-kr.github.io/tools/bmi-bmr-calculator.html" />
+
+  <meta name="tool:title" content="BMI & Daily Calorie (TDEE) Calculator" />
+  <meta name="tool:category" content="Utilities" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="⚖️" />
+  <meta name="tool:summary" content="Calculate BMI, BMR, and daily calorie targets (TDEE) in Metric (cm/kg) or Imperial (ft/lbs)." />
+  <meta name="tool:keywords" content="bmi calculator,tdee calculator,bmr,daily calories,weight loss,metric imperial" />
+  <meta name="tool:order" content="8" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "BMI, BMR & Daily Calorie (TDEE) Calculator",
+        "url": "https://toolboxhub-kr.github.io/en/tools/bmi-bmr-calculator.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free WHO BMI, Mifflin-St Jeor BMR, and daily TDEE calorie calculator supporting Metric and Imperial units."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What are the WHO standard BMI categories?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Underweight: below 18.5; Normal weight: 18.5–24.9; Overweight: 25.0–29.9; Obese: 30.0 and above."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between BMR and TDEE?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "BMR (Basal Metabolic Rate) is the calories your body burns at complete rest. TDEE (Total Daily Energy Expenditure) multiplies BMR by your activity level to estimate total daily calories burned."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many calories should I cut to lose 1 pound per week?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "One pound of body fat equals roughly 3,500 calories, so a sustainable 500-calorie daily deficit below your TDEE yields about 1 lb (0.45 kg) of fat loss per week."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Utilities</span> <span>›</span> <span>BMI &amp; TDEE Calculator</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>⚖️ BMI, BMR &amp; Daily Calorie (TDEE) Calculator</h1>
+      <p>Supports both Metric (cm / kg) and Imperial (ft / in / lbs) units for accurate BMI and daily calorie goals.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="tabs" role="tablist">
+            <button type="button" class="tab-btn active" data-unit="metric">Metric (cm / kg)</button>
+            <button type="button" class="tab-btn" data-unit="imperial">US Imperial (ft / lbs)</button>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="bm-gender">Gender</label><select id="bm-gender"><option value="male" selected>Male</option><option value="female">Female</option></select></div>
+            <div class="form-group"><label class="field-label" for="bm-age">Age</label><input type="number" id="bm-age" value="30" min="10" max="100" /></div>
+          </div>
+
+          <div id="unit-metric" class="form-row">
+            <div class="form-group"><label class="field-label" for="bm-h-cm">Height (cm)</label><div class="input-group has-unit"><input type="number" id="bm-h-cm" value="175" min="100" max="230" /><span class="input-unit">cm</span></div></div>
+            <div class="form-group"><label class="field-label" for="bm-w-kg">Weight (kg)</label><div class="input-group has-unit"><input type="number" id="bm-w-kg" value="72" min="25" max="250" /><span class="input-unit">kg</span></div></div>
+          </div>
+
+          <div id="unit-imperial" class="form-row-3" style="display:none;">
+            <div class="form-group"><label class="field-label" for="bm-h-ft">Feet</label><div class="input-group has-unit"><input type="number" id="bm-h-ft" value="5" min="3" max="7" /><span class="input-unit">ft</span></div></div>
+            <div class="form-group"><label class="field-label" for="bm-h-in">Inches</label><div class="input-group has-unit"><input type="number" id="bm-h-in" value="9" min="0" max="11" /><span class="input-unit">in</span></div></div>
+            <div class="form-group"><label class="field-label" for="bm-w-lb">Weight</label><div class="input-group has-unit"><input type="number" id="bm-w-lb" value="160" min="60" max="500" /><span class="input-unit">lbs</span></div></div>
+          </div>
+
+          <div class="form-group">
+            <label class="field-label" for="bm-act">Activity Level</label>
+            <select id="bm-act">
+              <option value="1.2">Sedentary (desk job, little exercise)</option>
+              <option value="1.375" selected>Lightly Active (1–3 days/week)</option>
+              <option value="1.55">Moderately Active (3–5 days/week)</option>
+              <option value="1.725">Very Active (6–7 days/week)</option>
+              <option value="1.9">Super Active (athlete / physical job)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <div class="result-highlight" id="bm-hl">
+            <div class="rh-label">Body Mass Index (WHO Standard)</div>
+            <div class="rh-value" id="bm-bmi">23.5 · Normal</div>
+            <div class="rh-sub" id="bm-range">Healthy Weight Range: -</div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">Basal Metabolic Rate (BMR)</div><div class="kpi-value text-primary" id="bm-bmr">0 kcal</div></div>
+            <div class="kpi-box"><div class="kpi-label">Maintenance Calories (TDEE)</div><div class="kpi-value text-success" id="bm-tdee">0 kcal</div></div>
+          </div>
+          <ul class="breakdown-list">
+            <li><span>🥗 Fat Loss (-500 kcal/day ≈ 1 lb/wk)</span><strong id="bm-cut" style="color:var(--primary)">0 kcal</strong></li>
+            <li><span>⚖️ Maintain Weight (TDEE)</span><strong id="bm-maint">0 kcal</strong></li>
+            <li><span>💪 Lean Bulk (+300 kcal/day)</span><strong id="bm-bulk" style="color:var(--success)">0 kcal</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>BMI &amp; Mifflin-St Jeor BMR Formula</h2>
+      <div class="formula-box">
+        BMI = Weight (kg) ÷ Height (m)²<br />
+        Male BMR = 10×kg + 6.25×cm - 5×age + 5 &nbsp;|&nbsp; Female BMR = 10×kg + 6.25×cm - 5×age - 161
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>What are the WHO standard BMI categories?</summary>
+          <div class="faq-answer">Below 18.5 is Underweight, 18.5–24.9 is Normal, 25.0–29.9 is Overweight, and 30.0+ is Obese.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Should I eat below my BMR to lose weight faster?</summary>
+          <div class="faq-answer">Eating below your BMR for long periods can cause muscle loss and fatigue. Aiming for 300–500 kcal below your TDEE is much more sustainable.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script>
+    (function () {
+      let unit = "metric";
+      function update() {
+        const g = document.getElementById("bm-gender").value;
+        const age = Math.max(10, Number(document.getElementById("bm-age").value) || 30);
+        const act = Number(document.getElementById("bm-act").value) || 1.375;
+        let hCm, wKg;
+        if (unit === "metric") {
+          hCm = Math.max(100, Number(document.getElementById("bm-h-cm").value) || 175);
+          wKg = Math.max(25, Number(document.getElementById("bm-w-kg").value) || 72);
+        } else {
+          const ft = Number(document.getElementById("bm-h-ft").value) || 5;
+          const inc = Number(document.getElementById("bm-h-in").value) || 9;
+          const lb = Number(document.getElementById("bm-w-lb").value) || 160;
+          hCm = (ft * 12 + inc) * 2.54;
+          wKg = lb * 0.45359237;
+        }
+        const hM = hCm / 100, bmi = wKg / (hM * hM);
+        let grade = "Normal", bg = "linear-gradient(135deg, #059669 0%, #10b981 100%)";
+        if (bmi < 18.5) { grade = "Underweight"; bg = "linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%)"; }
+        else if (bmi < 25) { grade = "Normal"; }
+        else if (bmi < 30) { grade = "Overweight"; bg = "linear-gradient(135deg, #d97706 0%, #f59e0b 100%)"; }
+        else { grade = "Obese"; bg = "linear-gradient(135deg, #dc2626 0%, #991b1b 100%)"; }
+
+        const minKg = 18.5 * hM * hM, maxKg = 24.9 * hM * hM;
+        const rangeTxt = unit === "metric"
+          ? `${minKg.toFixed(1)} kg – ${maxKg.toFixed(1)} kg`
+          : `${(minKg * 2.20462).toFixed(0)} lbs – ${(maxKg * 2.20462).toFixed(0)} lbs`;
+        const bmr = 10 * wKg + 6.25 * hCm - 5 * age + (g === "male" ? 5 : -161);
+        const tdee = bmr * act;
+        document.getElementById("bm-hl").style.background = bg;
+        document.getElementById("bm-bmi").textContent = `${bmi.toFixed(1)} · ${grade}`;
+        document.getElementById("bm-range").textContent = `Healthy Weight Range: ${rangeTxt}`;
+        document.getElementById("bm-bmr").textContent = `${TBH.fmtNum(Math.round(bmr))} kcal`;
+        document.getElementById("bm-tdee").textContent = `${TBH.fmtNum(Math.round(tdee))} kcal`;
+        document.getElementById("bm-cut").textContent = `${TBH.fmtNum(Math.round(Math.max(bmr, tdee - 500)))} kcal`;
+        document.getElementById("bm-maint").textContent = `${TBH.fmtNum(Math.round(tdee))} kcal`;
+        document.getElementById("bm-bulk").textContent = `${TBH.fmtNum(Math.round(tdee + 300))} kcal`;
+      }
+      document.querySelectorAll("[data-unit]").forEach((b) => b.addEventListener("click", () => {
+        document.querySelectorAll("[data-unit]").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active"); unit = b.dataset.unit;
+        document.getElementById("unit-metric").style.display = unit === "metric" ? "grid" : "none";
+        document.getElementById("unit-imperial").style.display = unit === "imperial" ? "grid" : "none";
+        update();
+      }));
+      ["bm-gender", "bm-age", "bm-h-cm", "bm-w-kg", "bm-h-ft", "bm-h-in", "bm-w-lb", "bm-act"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", update);
+        document.getElementById(id).addEventListener("change", update);
+      });
+      update();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Image Compressor &amp; WebP / JPG / PNG Converter (No Upload) | ToolBox Hub</title>
+  <meta name="description" content="Compress images and convert to WebP, JPG, or PNG right in your browser using HTML5 Canvas API. 100% private — your photos are never uploaded to any server." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="Free Image Compressor &amp; WebP Converter | ToolBox Hub" />
+  <meta property="og:description" content="Batch compress, resize, and convert images to WebP, JPG, or PNG locally in your browser." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/image-converter.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/image-converter.html" />
+  <link rel="alternate" hreflang="en" href="https://toolboxhub-kr.github.io/en/tools/image-converter.html" />
+  <link rel="alternate" hreflang="ko" href="https://toolboxhub-kr.github.io/tools/image-converter.html" />
+
+  <meta name="tool:title" content="Image Compressor & WebP Converter" />
+  <meta name="tool:category" content="Utilities" />
+  <meta name="tool:category_slug" content="utility" />
+  <meta name="tool:icon" content="🖼️" />
+  <meta name="tool:summary" content="Compress, resize, and convert photos to WebP, JPG, or PNG locally with zero server uploads." />
+  <meta name="tool:keywords" content="image compressor,webp converter,png to webp,jpg compressor,resize image,browser canvas" />
+  <meta name="tool:order" content="5" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Free Image Compressor & WebP/JPG/PNG Converter",
+        "url": "https://toolboxhub-kr.github.io/en/tools/image-converter.html",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Privacy-first client-side image compressor and format converter (WebP, JPG, PNG) powered by HTML5 Canvas."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are my images uploaded to a server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Never. All decoding, resizing, and re-encoding happens 100% locally inside your web browser's memory via HTML5 Canvas API."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why should I convert images to WebP for websites?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "WebP files are typically 30%–70% smaller than equivalent JPG or PNG files, improving Core Web Vitals (LCP), mobile load speed, and Google SEO rankings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens to transparent PNG backgrounds when converting to JPG?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Because JPG does not support transparency, transparent pixels are automatically filled with clean white. Choose WebP or PNG to preserve transparency."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Utilities</span> <span>›</span> <span>Image Compressor &amp; Converter</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>🖼️ Free Image Compressor &amp; WebP / JPG / PNG Converter</h1>
+      <p>Batch shrink file sizes and convert formats right in your browser — 100% private with zero server uploads.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Select or drop images">
+        <div style="font-size:2.4rem;margin-bottom:8px;">📁</div>
+        <div style="font-weight:700;font-size:1.05rem;margin-bottom:4px;">Drag &amp; drop images here, or click to browse</div>
+        <div style="font-size:0.86rem;color:var(--text-muted);">Supports JPG, PNG, WebP, GIF, BMP · Multiple files allowed · 100% local processing</div>
+        <input type="file" id="file-input" accept="image/*" multiple style="display:none;" />
+      </div>
+
+      <div class="form-row-3" style="margin-top:20px;">
+        <div class="form-group">
+          <label class="field-label" for="img-format">Output Format</label>
+          <select id="img-format">
+            <option value="image/webp" selected>WebP (Best Compression &amp; SEO)</option>
+            <option value="image/jpeg">JPG (Universal Photo)</option>
+            <option value="image/png">PNG (Lossless &amp; Transparent)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="img-quality"><span>Quality</span><strong id="img-quality-val" style="color:var(--primary)">80%</strong></label>
+          <input type="range" id="img-quality" min="10" max="100" step="5" value="80" />
+        </div>
+        <div class="form-group">
+          <label class="field-label" for="img-max-width">Max Width (0 = Original)</label>
+          <div class="input-group has-unit"><input type="number" id="img-max-width" value="0" min="0" max="8000" step="100" /><span class="input-unit">px</span></div>
+        </div>
+      </div>
+
+      <div class="btn-row" id="batch-actions" style="display:none;margin-top:4px;margin-bottom:18px;">
+        <button type="button" class="btn btn-primary" id="btn-reconvert">Apply Settings &amp; Re-Convert</button>
+        <button type="button" class="btn btn-success" id="btn-download-all">Download All</button>
+        <button type="button" class="btn btn-secondary" id="btn-clear-files">Clear List</button>
+      </div>
+
+      <div class="kpi-grid cols-3" id="img-summary" style="display:none;">
+        <div class="kpi-box"><div class="kpi-label">Original Total</div><div class="kpi-value" id="sum-orig">0 KB</div></div>
+        <div class="kpi-box"><div class="kpi-label">Compressed Total</div><div class="kpi-value text-primary" id="sum-conv">0 KB</div></div>
+        <div class="kpi-box"><div class="kpi-label">Space Saved</div><div class="kpi-value text-success" id="sum-saved">0%</div></div>
+      </div>
+      <div id="result-list" style="display:flex;flex-direction:column;gap:12px;margin-top:16px;"></div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>How Browser-Side Image Compression Works</h2>
+      <p>Using the native HTML5 <strong>Canvas API</strong>, your browser decodes each image locally, scales dimensions proportionally if a max width is set, and re-encodes it into WebP, JPEG, or PNG at your chosen quality factor.</p>
+      <div class="tip-box">
+        <strong>💡 Sweet Spot for Web &amp; Blogs:</strong> Convert screenshots and photos to <strong>WebP</strong> at <strong>80% quality</strong> with a max width of <strong>1200px</strong> to shrink file sizes by 70%–85% with virtually invisible quality loss.
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Are my images uploaded to a server?</summary>
+          <div class="faq-answer">No. Everything runs strictly in your browser memory — you can even disconnect your internet and it still works.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Why is a PNG output sometimes larger than the original JPG?</summary>
+          <div class="faq-answer">PNG uses lossless compression, so converting a lossy JPG to PNG increases file size. Use WebP or JPG when smaller file size is your goal.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is there a file count or size limit?</summary>
+          <div class="faq-answer">No artificial limits — you can batch process multiple photos at once as fast as your device's CPU allows.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const dz = document.getElementById("dropzone"), fi = document.getElementById("file-input");
+      const fmtSel = document.getElementById("img-format"), qSlider = document.getElementById("img-quality");
+      const qVal = document.getElementById("img-quality-val"), mwIn = document.getElementById("img-max-width");
+      const listEl = document.getElementById("result-list"), batchEl = document.getElementById("batch-actions"), sumEl = document.getElementById("img-summary");
+      let srcFiles = [], outItems = [];
+
+      const fmtBytes = (b) => b < 1024 ? `${b} B` : b < 1048576 ? `${(b / 1024).toFixed(1)} KB` : `${(b / 1048576).toFixed(2)} MB`;
+      const extOf = (m) => m === "image/webp" ? "webp" : m === "image/png" ? "png" : "jpg";
+
+      function convertOne(file, mime, q, maxW) {
+        return new Promise((res, rej) => {
+          const u = URL.createObjectURL(file), img = new Image();
+          img.onload = () => {
+            let w = img.naturalWidth, h = img.naturalHeight;
+            if (maxW > 0 && w > maxW) { h = Math.round((h * maxW) / w); w = maxW; }
+            const c = document.createElement("canvas"); c.width = w; c.height = h;
+            const ctx = c.getContext("2d");
+            if (mime === "image/jpeg") { ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h); }
+            ctx.drawImage(img, 0, 0, w, h); URL.revokeObjectURL(u);
+            c.toBlob((blob) => {
+              if (!blob) return rej(new Error("Conversion failed"));
+              const outName = `${file.name.replace(/\.[^/.]+$/, "")}.${extOf(mime)}`;
+              res({ outName, origSize: file.size, outSize: blob.size, w, h, outUrl: URL.createObjectURL(blob) });
+            }, mime, q);
+          };
+          img.onerror = () => { URL.revokeObjectURL(u); rej(new Error("Read error")); };
+          img.src = u;
+        });
+      }
+
+      async function processAll() {
+        if (!srcFiles.length) return;
+        outItems.forEach((i) => URL.revokeObjectURL(i.outUrl)); outItems = [];
+        listEl.innerHTML = `<div style="text-align:center;padding:16px;color:var(--text-muted);">Converting...</div>`;
+        for (const f of srcFiles) {
+          try { outItems.push(await convertOne(f, fmtSel.value, Number(qSlider.value) / 100, Math.max(0, Number(mwIn.value) || 0))); } catch (e) {}
+        }
+        render();
+      }
+
+      function render() {
+        if (!outItems.length) { batchEl.style.display = "none"; sumEl.style.display = "none"; listEl.innerHTML = ""; return; }
+        batchEl.style.display = "flex"; sumEl.style.display = "grid";
+        let o = 0, c = 0;
+        listEl.innerHTML = outItems.map((it) => {
+          o += it.origSize; c += it.outSize;
+          const pct = ((it.origSize - it.outSize) / it.origSize) * 100;
+          const col = pct >= 0 ? "var(--success)" : "var(--warning)";
+          return `<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--bg);">
+            <div style="display:flex;align-items:center;gap:14px;min-width:220px;flex:1;">
+              <img src="${it.outUrl}" alt="${it.outName}" style="width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid var(--border);" />
+              <div>
+                <div style="font-weight:700;font-size:0.94rem;word-break:break-all;">${it.outName}</div>
+                <div style="font-size:0.82rem;color:var(--text-muted);">${it.w}×${it.h}px · ${fmtBytes(it.origSize)} → <strong>${fmtBytes(it.outSize)}</strong> <span style="color:${col};font-weight:700;">(${pct >= 0 ? "-" : "+"}${Math.abs(pct).toFixed(1)}%)</span></div>
+              </div>
+            </div>
+            <a class="btn btn-primary btn-sm" href="${it.outUrl}" download="${it.outName}">Download</a>
+          </div>`;
+        }).join("");
+        const s = o > 0 ? ((o - c) / o) * 100 : 0;
+        document.getElementById("sum-orig").textContent = fmtBytes(o);
+        document.getElementById("sum-conv").textContent = fmtBytes(c);
+        document.getElementById("sum-saved").textContent = `${s >= 0 ? "-" : "+"}${Math.abs(s).toFixed(1)}%`;
+      }
+
+      const addFiles = (fl) => { const v = Array.from(fl).filter((f) => f.type.startsWith("image/")); if (v.length) { srcFiles = srcFiles.concat(v); processAll(); } };
+      dz.addEventListener("click", () => fi.click());
+      dz.addEventListener("dragover", (e) => { e.preventDefault(); dz.classList.add("dragover"); });
+      dz.addEventListener("dragleave", () => dz.classList.remove("dragover"));
+      dz.addEventListener("drop", (e) => { e.preventDefault(); dz.classList.remove("dragover"); addFiles(e.dataTransfer.files); });
+      fi.addEventListener("change", (e) => { addFiles(e.target.files); fi.value = ""; });
+      qSlider.addEventListener("input", () => { qVal.textContent = `${qSlider.value}%`; });
+      document.getElementById("btn-reconvert").addEventListener("click", processAll);
+      document.getElementById("btn-download-all").addEventListener("click", () => outItems.forEach((it, i) => setTimeout(() => { const a = document.createElement("a"); a.href = it.outUrl; a.download = it.outName; a.click(); }, i * 150)));
+      document.getElementById("btn-clear-files").addEventListener("click", () => { outItems.forEach((i) => URL.revokeObjectURL(i.outUrl)); srcFiles = []; outItems = []; render(); });
+    })();
+  </script>
+</body>
+</html>
