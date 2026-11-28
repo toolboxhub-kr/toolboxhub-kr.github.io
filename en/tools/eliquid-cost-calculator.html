@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DIY E-Liquid Cost &amp; Savings Calculator (Cost Per Bottle &amp; Yearly Savings) | ToolBox Hub</title>
+  <meta name="description" content="Calculate the exact cost per ml and per 60ml/100ml bottle of your DIY e-liquid, and see how much money you save per month and per year compared to store-bought vape juice." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="DIY E-Liquid Cost &amp; Yearly Savings Calculator | ToolBox Hub" />
+  <meta property="og:description" content="Find your exact DIY vape juice cost per bottle and annual savings vs commercial e-liquid." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/eliquid-cost-calculator.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/eliquid-cost-calculator.html" />
+
+  <meta name="tool:title" content="DIY E-Liquid Cost & Savings Calculator" />
+  <meta name="tool:category" content="Gaming & DIY" />
+  <meta name="tool:category_slug" content="hobby" />
+  <meta name="tool:icon" content="💵" />
+  <meta name="tool:summary" content="Calculate exact DIY vape juice cost per ml, per bottle, and annual savings vs retail e-liquid." />
+  <meta name="tool:keywords" content="diy eliquid cost,vape savings calculator,cost per ml,vape juice budget,diy vs commercial" />
+  <meta name="tool:order" content="11" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "DIY E-Liquid Cost & Savings Calculator",
+        "url": "https://toolboxhub-kr.github.io/en/tools/eliquid-cost-calculator.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free calculator to compute DIY e-liquid cost per ml, cost per bottle, and yearly savings compared to store-bought vape juice."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does it cost to make 100ml of DIY e-liquid?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Buying VG, PG, flavor concentrates, and nicotine base in bulk typically brings the cost of a 100ml bottle of DIY e-liquid down to $2.00–$4.50 — roughly 80%–90% cheaper than $20–$30 retail bottles."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How much money can DIY mixing save in a year?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A typical vaper using 60ml per week spends over $1,000/year on commercial bottles, whereas DIY mixing costs roughly $100–$180/year — saving $800+ annually."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Gaming &amp; DIY</span> <span>›</span> <span>DIY E-Liquid Cost Calculator</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>💵 DIY E-Liquid Cost &amp; Yearly Savings Calculator</h1>
+      <p>See your exact DIY cost per bottle and how much money you save each year compared to commercial vape juice.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">Supply Prices &amp; Usage</div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="ec-vg">VG Price (per 1,000ml / 1L)</label><input type="number" id="ec-vg" value="14" min="0" step="1" /></div>
+            <div class="form-group"><label class="field-label" for="ec-pg">PG Price (per 1,000ml / 1L)</label><input type="number" id="ec-pg" value="15" min="0" step="1" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="ec-flv">Flavor Price (per 30ml)</label><input type="number" id="ec-flv" value="5" min="0" step="0.5" /></div>
+            <div class="form-group"><label class="field-label" for="ec-nic">Nicotine Base (per 100ml)</label><input type="number" id="ec-nic" value="15" min="0" step="1" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="ec-weekly">Weekly Consumption (ml)</label><div class="input-group has-unit"><input type="number" id="ec-weekly" value="60" min="5" max="500" step="5" /><span class="input-unit">ml/wk</span></div></div>
+            <div class="form-group"><label class="field-label" for="ec-retail">Retail Juice Price (per 60ml)</label><input type="number" id="ec-retail" value="20" min="0" step="1" /></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="result-highlight" style="background:linear-gradient(135deg,#059669,#10b981);">
+            <div class="rh-label">Estimated Yearly Savings with DIY</div>
+            <div class="rh-value" id="ec-year-save">$0</div>
+            <div class="rh-sub" id="ec-save-pct">You save 0% vs commercial e-liquid</div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">DIY Cost per 60ml Bottle</div><div class="kpi-value text-primary" id="ec-60">$0.00</div></div>
+            <div class="kpi-box"><div class="kpi-label">DIY Cost per 100ml Bottle</div><div class="kpi-value text-success" id="ec-100">$0.00</div></div>
+          </div>
+          <ul class="breakdown-list">
+            <li><span>DIY Cost per ml</span><strong id="ec-per-ml">$0.000</strong></li>
+            <li><span>Retail Yearly Spend</span><strong id="ec-ret-yr" style="color:var(--danger)">$0</strong></li>
+            <li><span>DIY Yearly Spend</span><strong id="ec-diy-yr" style="color:var(--success)">$0</strong></li>
+            <li class="total-row"><span>Monthly Savings</span><strong id="ec-mo-save" style="color:var(--primary)">$0 / mo</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>How DIY E-Liquid Cost Is Calculated</h2>
+      <p>Assuming a typical sub-ohm blend (70% VG / 18% PG / 10% flavor concentrate / 2%–3% nicotine base), we compute exact per-milliliter ingredient costs and compare them against your retail bottle spending over 52 weeks.</p>
+      <div class="tip-box">
+        <strong>💡 Ready to mix your batch?</strong> Head over to our <a href="eliquid-calculator.html">DIY E-Liquid Calculator</a> or <a href="nic-shot-calculator.html">Nicotine Shot Calculator</a> to get exact ml &amp; gram weights.
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>How much does 100ml of DIY vape juice cost?</summary>
+          <div class="faq-answer">Usually $2.00 to $4.50 per 100ml when buying VG and PG by the liter, saving 80%–90% over retail bottles.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does this work with GBP (£) or EUR (€)?</summary>
+          <div class="faq-answer">Yes! The math is currency-agnostic — just enter all prices in £ or € and read the output in your local currency.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script>
+    (function () {
+      function update() {
+        const vg = (Number(document.getElementById("ec-vg").value) || 0) / 1000;
+        const pg = (Number(document.getElementById("ec-pg").value) || 0) / 1000;
+        const flv = (Number(document.getElementById("ec-flv").value) || 0) / 30;
+        const nic = (Number(document.getElementById("ec-nic").value) || 0) / 100;
+        const weekly = Math.max(1, Number(document.getElementById("ec-weekly").value) || 60);
+        const retailPerMl = (Number(document.getElementById("ec-retail").value) || 0) / 60;
+
+        // Typical 70% VG, 17% PG, 10% Flavor, 3% Nic base
+        const diyPerMl = vg * 0.70 + pg * 0.17 + flv * 0.10 + nic * 0.03;
+        const annualMl = weekly * 52;
+        const diyYr = diyPerMl * annualMl;
+        const retYr = retailPerMl * annualMl;
+        const saveYr = Math.max(0, retYr - diyYr);
+        const savePct = retYr > 0 ? (saveYr / retYr) * 100 : 0;
+
+        document.getElementById("ec-year-save").textContent = TBH.fmtUSD(Math.round(saveYr));
+        document.getElementById("ec-save-pct").textContent = `You save ${savePct.toFixed(1)}% vs retail vape juice`;
+        document.getElementById("ec-60").textContent = TBH.fmtUSD(diyPerMl * 60, 2);
+        document.getElementById("ec-100").textContent = TBH.fmtUSD(diyPerMl * 100, 2);
+        document.getElementById("ec-per-ml").textContent = `$${diyPerMl.toFixed(3)} / ml`;
+        document.getElementById("ec-ret-yr").textContent = TBH.fmtUSD(Math.round(retYr));
+        document.getElementById("ec-diy-yr").textContent = TBH.fmtUSD(Math.round(diyYr));
+        document.getElementById("ec-mo-save").textContent = `${TBH.fmtUSD(Math.round(saveYr / 12))} / mo`;
+      }
+      ["ec-vg", "ec-pg", "ec-flv", "ec-nic", "ec-weekly", "ec-retail"].forEach((id) => document.getElementById(id).addEventListener("input", update));
+      update();
+    })();
+  </script>
+</body>
+</html>

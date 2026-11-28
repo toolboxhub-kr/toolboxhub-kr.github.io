@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FPS FOV Converter &amp; Scoped / ADS Sensitivity Calculator | ToolBox Hub</title>
+  <meta name="description" content="Convert horizontal and vertical Field of View (FOV) across 16:9, 4:3, and 21:9 aspect ratios, and calculate Monitor Distance 0% ADS / Scoped sensitivity multipliers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="FPS FOV &amp; ADS Sensitivity Calculator | ToolBox Hub" />
+  <meta property="og:description" content="Convert Horizontal/Vertical FOV (16:9, 4:3, 21:9) and calculate exact scoped/ADS sensitivity multipliers." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/monitor-distance-converter.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/monitor-distance-converter.html" />
+
+  <meta name="tool:title" content="FPS FOV & ADS Sens Calculator" />
+  <meta name="tool:category" content="Gaming & DIY" />
+  <meta name="tool:category_slug" content="hobby" />
+  <meta name="tool:icon" content="🔭" />
+  <meta name="tool:summary" content="Convert Horizontal/Vertical FOV across aspect ratios and calculate MDH 0% scoped/ADS sensitivity." />
+  <meta name="tool:keywords" content="fov converter,ads sensitivity calculator,monitor distance 0%,valorant scope sens,cs2 zoom sens,horizontal vertical fov" />
+  <meta name="tool:order" content="13" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "FPS FOV Converter & ADS Sensitivity Calculator",
+        "url": "https://toolboxhub-kr.github.io/en/tools/monitor-distance-converter.html",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free FPS Field of View (FOV) converter and Monitor Distance 0% scoped/ADS sensitivity multiplier calculator."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Why is 90 FOV in CS2 equal to 106.26° on a 16:9 monitor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CS2 defines FOV using 4:3 horizontal base (Hor+ scaling). On a 16:9 widescreen monitor, 90° 4:3 horizontal FOV expands to 106.26° actual horizontal FOV (and 73.74° vertical FOV)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is Monitor Distance 0% (MDH 0%) for ADS sensitivity?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MDH 0% (Focal Length Scaling) matches tracking speed right at the crosshair center using the ratio tan(ADS_FOV/2) ÷ tan(Hipfire_FOV/2). It is the gold standard used by pros for scoped aim consistency."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Gaming &amp; DIY</span> <span>›</span> <span>FOV &amp; ADS Sensitivity Calculator</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>🔭 FPS FOV Converter &amp; Scoped / ADS Sensitivity Calculator</h1>
+      <p>Convert Horizontal ↔ Vertical FOV across aspect ratios and calculate Focal Length (MDH 0%) scoped multipliers.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">FOV &amp; Zoom Parameters</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="fv-in">Input FOV Value (°)</label>
+              <input type="number" id="fv-in" value="103" min="30" max="150" step="0.5" />
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="fv-type">Input FOV Type</label>
+              <select id="fv-type">
+                <option value="h169" selected>16:9 Horizontal (Valorant / OW2)</option>
+                <option value="h43">4:3 Base Horizontal (CS2 / Apex)</option>
+                <option value="vert">Vertical FOV (R6 Siege / Battlefield)</option>
+              </select>
+            </div>
+          </div>
+          <div class="preset-chips" style="margin-bottom:18px;">
+            <button type="button" class="chip-btn" data-fv="103-h169">Valorant / OW2 (103° 16:9)</button>
+            <button type="button" class="chip-btn" data-fv="90-h43">CS2 Default (90° 4:3)</button>
+            <button type="button" class="chip-btn" data-fv="110-h43">Apex 110 (4:3)</button>
+            <button type="button" class="chip-btn" data-fv="90-vert">R6 Siege (90° Vert)</button>
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="fv-zoom">Scope / ADS Zoom Factor (e.g., 1.25x, 2.5x Operator)</label>
+            <input type="number" id="fv-zoom" value="2.5" min="1.05" max="12" step="0.05" />
+          </div>
+        </div>
+
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label">True 16:9 Horizontal FOV</div>
+            <div class="rh-value" id="fv-h169">103.00°</div>
+            <div class="rh-sub" id="fv-sub">Vertical: 70.53° · 4:3 Base: 86.63°</div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">21:9 Ultrawide Horizontal</div><div class="kpi-value text-primary" id="fv-h219">0°</div></div>
+            <div class="kpi-box"><div class="kpi-label">MDH 0% Scoped Sens Multiplier</div><div class="kpi-value text-success" id="fv-ads">0.000</div></div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--text-muted);margin-top:8px;">
+            ※ For MDH 0% Focal Length Scaling, multiply your hipfire sensitivity by the multiplier above (or set game zoom multiplier accordingly).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>FOV &amp; Monitor Distance 0% Formulas</h2>
+      <div class="formula-box">
+        Vertical FOV = 2 × atan(tan(Horizontal_FOV / 2) ÷ Aspect_Ratio)<br />
+        MDH 0% Multiplier = tan(Zoomed_FOV / 2) ÷ tan(Hipfire_FOV / 2)
+      </div>
+      <div class="tip-box">
+        <strong>💡 Also converting hipfire sensitivity?</strong> Use our <a href="fps-edpi-calculator.html">FPS eDPI &amp; Sensitivity Converter</a> or dial in your personal aim with the <a href="psa-sensitivity-finder.html">PSA Method Sensitivity Finder</a>.
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Why is 90 FOV in CS2 wider than 90 FOV in Overwatch 2?</summary>
+          <div class="faq-answer">CS2 measures FOV on a 4:3 base (which stretches to 106.26° on 16:9), whereas Overwatch 2 and Valorant measure directly on 16:9 horizontal (103°).</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is the CS2 AWP zoom sensitivity for MDH 0%?</summary>
+          <div class="faq-answer">In CS2/CS:GO, setting <code>zoom_sensitivity_ratio 0.818933</code> matches Monitor Distance 0% for the first AWP zoom level.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const toRad = (d) => (d * Math.PI) / 180;
+      const toDeg = (r) => (r * 180) / Math.PI;
+      const hToV = (hDeg, ar) => toDeg(2 * Math.atan(Math.tan(toRad(hDeg) / 2) / ar));
+      const vToH = (vDeg, ar) => toDeg(2 * Math.atan(Math.tan(toRad(vDeg) / 2) * ar));
+
+      function update() {
+        const val = Math.min(160, Math.max(20, Number(document.getElementById("fv-in").value) || 103));
+        const type = document.getElementById("fv-type").value;
+        const zoom = Math.max(1.01, Number(document.getElementById("fv-zoom").value) || 2.5);
+
+        let vFov;
+        if (type === "h169") vFov = hToV(val, 16 / 9);
+        else if (type === "h43") vFov = hToV(val, 4 / 3);
+        else vFov = val;
+
+        const h169 = vToH(vFov, 16 / 9);
+        const h43 = vToH(vFov, 4 / 3);
+        const h219 = vToH(vFov, 21 / 9);
+        const zoomedV = toDeg(2 * Math.atan(Math.tan(toRad(vFov) / 2) / zoom));
+        const mdh0 = Math.tan(toRad(zoomedV) / 2) / Math.tan(toRad(vFov) / 2);
+
+        document.getElementById("fv-h169").textContent = `${h169.toFixed(2)}°`;
+        document.getElementById("fv-sub").textContent = `Vertical: ${vFov.toFixed(2)}° · 4:3 Base: ${h43.toFixed(2)}°`;
+        document.getElementById("fv-h219").textContent = `${h219.toFixed(2)}°`;
+        document.getElementById("fv-ads").textContent = `${mdh0.toFixed(4)}x`;
+      }
+      document.querySelectorAll("[data-fv]").forEach((b) => b.addEventListener("click", () => {
+        const [v, t] = b.dataset.fv.split("-");
+        document.getElementById("fv-in").value = v;
+        document.getElementById("fv-type").value = t;
+        update();
+      }));
+      ["fv-in", "fv-type", "fv-zoom"].forEach((id) => { document.getElementById(id).addEventListener("input", update); document.getElementById(id).addEventListener("change", update); });
+      update();
+    })();
+  </script>
+</body>
+</html>

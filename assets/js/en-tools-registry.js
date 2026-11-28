@@ -79,5 +79,55 @@ window.EN_TOOLS_REGISTRY = [
     "icon": "⚖️",
     "summary": "Calculate BMI, BMR, and daily calorie targets (TDEE) in Metric (cm/kg) or Imperial (ft/lbs).",
     "keywords": "bmi calculator,tdee calculator,bmr,daily calories,weight loss,metric imperial"
+  },
+  {
+    "slug": "nic-shot-calculator",
+    "url": "en/tools/nic-shot-calculator.html",
+    "title": "Nicotine Shot & Shortfill Calculator",
+    "category": "Gaming & DIY",
+    "category_slug": "hobby",
+    "icon": "💧",
+    "summary": "Calculate how many 10ml nic shots (18mg/20mg) to add to 50ml or 100ml shortfills plus final PG/VG.",
+    "keywords": "nic shot calculator,shortfill calculator,100ml shortfill 3mg,50ml shortfill,uk vape,nicotine shot,pg vg"
+  },
+  {
+    "slug": "vape-ohm-law-calculator",
+    "url": "en/tools/vape-ohm-law-calculator.html",
+    "title": "Vape Ohm's Law & Amp Calculator",
+    "category": "Gaming & DIY",
+    "category_slug": "hobby",
+    "icon": "⚡",
+    "summary": "Calculate coil wattage, resistance (Ω), voltage, and battery amp draw with CDR safety check.",
+    "keywords": "vape ohm law calculator,coil wattage,battery amp draw,18650 cdr,ohms law,resistance"
+  },
+  {
+    "slug": "eliquid-cost-calculator",
+    "url": "en/tools/eliquid-cost-calculator.html",
+    "title": "DIY E-Liquid Cost & Savings Calculator",
+    "category": "Gaming & DIY",
+    "category_slug": "hobby",
+    "icon": "💵",
+    "summary": "Calculate exact DIY vape juice cost per ml, per bottle, and annual savings vs retail e-liquid.",
+    "keywords": "diy eliquid cost,vape savings calculator,cost per ml,vape juice budget,diy vs commercial"
+  },
+  {
+    "slug": "psa-sensitivity-finder",
+    "url": "en/tools/psa-sensitivity-finder.html",
+    "title": "PSA Method Sensitivity Finder",
+    "category": "Gaming & DIY",
+    "category_slug": "hobby",
+    "icon": "🖱️",
+    "summary": "Interactive 7-step PSA Method calculator to find your mathematically ideal FPS mouse sensitivity.",
+    "keywords": "psa method calculator,perfect sensitivity finder,valorant sensitivity finder,cs2 aim,fps sensitivity"
+  },
+  {
+    "slug": "monitor-distance-converter",
+    "url": "en/tools/monitor-distance-converter.html",
+    "title": "FPS FOV & ADS Sens Calculator",
+    "category": "Gaming & DIY",
+    "category_slug": "hobby",
+    "icon": "🔭",
+    "summary": "Convert Horizontal/Vertical FOV across aspect ratios and calculate MDH 0% scoped/ADS sensitivity.",
+    "keywords": "fov converter,ads sensitivity calculator,monitor distance 0%,valorant scope sens,cs2 zoom sens,horizontal vertical fov"
   }
 ];

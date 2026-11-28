@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vape Ohm's Law &amp; Battery Amp Draw Calculator (Watts / Ohms / Volts) | ToolBox Hub</title>
+  <meta name="description" content="Calculate coil wattage, battery current draw (Amps), voltage, and resistance (Ohms) for regulated and mechanical vape mods with instant CDR safety check." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="Vape Ohm's Law &amp; Battery Amp Draw Calculator | ToolBox Hub" />
+  <meta property="og:description" content="Instant Ohm's Law calculator for vape coils and battery safety amp draw." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/vape-ohm-law-calculator.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/vape-ohm-law-calculator.html" />
+
+  <meta name="tool:title" content="Vape Ohm's Law & Amp Calculator" />
+  <meta name="tool:category" content="Gaming & DIY" />
+  <meta name="tool:category_slug" content="hobby" />
+  <meta name="tool:icon" content="⚡" />
+  <meta name="tool:summary" content="Calculate coil wattage, resistance (Ω), voltage, and battery amp draw with CDR safety check." />
+  <meta name="tool:keywords" content="vape ohm law calculator,coil wattage,battery amp draw,18650 cdr,ohms law,resistance" />
+  <meta name="tool:order" content="10" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Vape Ohm's Law & Battery Amp Draw Calculator",
+        "url": "https://toolboxhub-kr.github.io/en/tools/vape-ohm-law-calculator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free Ohm's Law and battery amp draw calculator for vape coils, regulated mods, and mechanical mods."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is battery amp draw calculated on a regulated mod vs mechanical mod?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On a mechanical mod, current is determined by Ohm's Law (I = V ÷ R, using 4.2V freshly charged). On a regulated mod, coil resistance does not control battery drain — instead, max amp draw is Watts ÷ (Number of Batteries × Minimum Cutoff Voltage 3.2V × Chip Efficiency 0.9)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is battery CDR (Continuous Discharge Rating)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CDR is the maximum continuous current (in Amps) a lithium-ion battery (such as 18650 or 21700) can safely deliver without overheating. Always stay comfortably below your cell's true CDR."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Gaming &amp; DIY</span> <span>›</span> <span>Vape Ohm's Law Calculator</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>⚡ Vape Ohm's Law &amp; Battery Amp Draw Calculator</h1>
+      <p>Check coil wattage, voltage, and real battery amp draw (CDR safety) for both mechanical and regulated mods.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab-btn active" data-ohm-tab="mech">Ohm's Law (Volts &amp; Ohms)</button>
+        <button type="button" class="tab-btn" data-ohm-tab="reg">Regulated Mod Battery Draw</button>
+      </div>
+
+      <div id="ohm-tab-mech" class="tool-layout">
+        <div>
+          <div class="form-section-title">Coil &amp; Voltage Inputs</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="om-r">Coil Resistance (Ω)</label>
+              <div class="input-group has-unit"><input type="number" id="om-r" value="0.25" min="0.05" max="5" step="0.05" /><span class="input-unit">Ω</span></div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="om-v">Battery Voltage (V)</label>
+              <div class="input-group has-unit"><input type="number" id="om-v" value="4.2" min="2.5" max="8.4" step="0.1" /><span class="input-unit">V</span></div>
+            </div>
+          </div>
+          <div class="preset-chips" style="margin-bottom:14px;">
+            <button type="button" class="chip-btn" data-ov="4.2">Full 18650 (4.2V)</button>
+            <button type="button" class="chip-btn" data-ov="3.7">Nominal (3.7V)</button>
+            <button type="button" class="chip-btn" data-ov="8.4">Dual Series (8.4V)</button>
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="om-cdr">Your Battery CDR Rating (Amps)</label>
+            <div class="input-group has-unit"><input type="number" id="om-cdr" value="25" min="5" max="45" step="5" /><span class="input-unit">A</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="result-highlight" id="om-hl">
+            <div class="rh-label">Calculated Power &amp; Amp Draw</div>
+            <div class="rh-value" id="om-watts">70.6 W</div>
+            <div class="rh-sub" id="om-status">16.8 A draw · Within 25A CDR</div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">Current Draw (Amps)</div><div class="kpi-value text-primary" id="om-amps">16.8 A</div></div>
+            <div class="kpi-box"><div class="kpi-label">CDR Load %</div><div class="kpi-value" id="om-load">67%</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ohm-tab-reg" class="tool-layout" style="display:none;">
+        <div>
+          <div class="form-section-title">Regulated Mod Settings</div>
+          <div class="form-row">
+            <div class="form-group"><label class="field-label" for="rg-w">Target Wattage (W)</label><div class="input-group has-unit"><input type="number" id="rg-w" value="75" min="5" max="250" step="5" /><span class="input-unit">W</span></div></div>
+            <div class="form-group"><label class="field-label" for="rg-cells">Number of Batteries</label><select id="rg-cells"><option value="1" selected>Single Battery (1 cell)</option><option value="2">Dual Battery (2 cells)</option><option value="3">Triple Battery (3 cells)</option></select></div>
+          </div>
+          <div class="form-group"><label class="field-label" for="rg-cdr">Battery CDR Rating (per cell)</label><div class="input-group has-unit"><input type="number" id="rg-cdr" value="25" min="5" max="45" step="5" /><span class="input-unit">A</span></div></div>
+        </div>
+        <div>
+          <div class="result-highlight" id="rg-hl">
+            <div class="rh-label">Worst-Case Amp Draw (at 3.2V Low Battery)</div>
+            <div class="rh-value" id="rg-amps">26.0 A</div>
+            <div class="rh-sub" id="rg-sub">Includes 90% regulator efficiency margin</div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">Watts Per Battery</div><div class="kpi-value text-primary" id="rg-wpb">75 W</div></div>
+            <div class="kpi-box"><div class="kpi-label">Safe Max Wattage (for CDR)</div><div class="kpi-value text-success" id="rg-maxw">72 W</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>Ohm's Law Formulas for Vaping</h2>
+      <div class="formula-box">
+        Current (I, Amps) = Voltage (V) ÷ Resistance (Ω)<br />
+        Power (P, Watts) = Voltage² ÷ Resistance = V × I<br />
+        Regulated Max Amp Draw = Watts ÷ (Cells × 3.2V × 0.90)
+      </div>
+      <div class="tip-box">
+        <strong>⚠️ Battery Safety Note:</strong> Always inspect battery wraps for nicks or tears, use trusted authentic cells (Molicel, Sony/Murata, Samsung), and leave at least a 15–20% safety buffer below your battery's true CDR.
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Why do regulated mods draw more amps when the battery is low?</summary>
+          <div class="faq-answer">A regulated chip boosts voltage to maintain your set wattage as battery voltage drops from 4.2V down to ~3.2V, which increases current draw (Amps = Watts ÷ Volts).</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does coil resistance change battery amp draw on a regulated mod?</summary>
+          <div class="faq-answer">No — on regulated devices, battery current depends on your set wattage, cell count, and battery voltage, not the coil's resistance.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script>
+    (function () {
+      function updateMech() {
+        const r = Math.max(0.05, Number(document.getElementById("om-r").value) || 0.25);
+        const v = Math.max(1, Number(document.getElementById("om-v").value) || 4.2);
+        const cdr = Math.max(5, Number(document.getElementById("om-cdr").value) || 25);
+        const amps = v / r, watts = v * amps, load = (amps / cdr) * 100;
+        const hl = document.getElementById("om-hl");
+        let msg = `${amps.toFixed(1)} A draw · Safe within ${cdr}A CDR ✅`;
+        if (load > 100) { hl.style.background = "linear-gradient(135deg,#dc2626,#991b1b)"; msg = `⚠️ EXCEEDS ${cdr}A CDR! Higher resistance or stronger cell needed.`; }
+        else if (load > 85) { hl.style.background = "linear-gradient(135deg,#d97706,#ea580c)"; msg = `⚠️ Near CDR limit (${load.toFixed(0)}%) — leave more safety margin.`; }
+        else { hl.style.background = "linear-gradient(135deg,#059669,#10b981)"; }
+        document.getElementById("om-watts").textContent = `${watts.toFixed(1)} W`;
+        document.getElementById("om-status").textContent = msg;
+        document.getElementById("om-amps").textContent = `${amps.toFixed(2)} A`;
+        document.getElementById("om-load").textContent = `${load.toFixed(0)}%`;
+      }
+      function updateReg() {
+        const w = Math.max(1, Number(document.getElementById("rg-w").value) || 75);
+        const cells = Number(document.getElementById("rg-cells").value) || 1;
+        const cdr = Math.max(5, Number(document.getElementById("rg-cdr").value) || 25);
+        const amps = w / (cells * 3.2 * 0.9);
+        const maxW = Math.floor(cdr * cells * 3.2 * 0.9);
+        const hl = document.getElementById("rg-hl");
+        hl.style.background = amps > cdr ? "linear-gradient(135deg,#dc2626,#991b1b)" : "linear-gradient(135deg,#2563eb,#4f46e5)";
+        document.getElementById("rg-amps").textContent = `${amps.toFixed(1)} A / cell`;
+        document.getElementById("rg-sub").textContent = amps > cdr ? `⚠️ Exceeds ${cdr}A CDR at low battery — lower wattage or use dual battery.` : `✅ Safe within ${cdr}A CDR (includes 90% chip efficiency)`;
+        document.getElementById("rg-wpb").textContent = `${(w / cells).toFixed(1)} W`;
+        document.getElementById("rg-maxw").textContent = `${maxW} W`;
+      }
+      document.querySelectorAll("[data-ohm-tab]").forEach((b) => b.addEventListener("click", () => {
+        document.querySelectorAll("[data-ohm-tab]").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        const t = b.dataset.ohmTab;
+        document.getElementById("ohm-tab-mech").style.display = t === "mech" ? "grid" : "none";
+        document.getElementById("ohm-tab-reg").style.display = t === "reg" ? "grid" : "none";
+      }));
+      document.querySelectorAll("[data-ov]").forEach((b) => b.addEventListener("click", () => { document.getElementById("om-v").value = b.dataset.ov; updateMech(); }));
+      ["om-r", "om-v", "om-cdr"].forEach((id) => document.getElementById(id).addEventListener("input", updateMech));
+      ["rg-w", "rg-cells", "rg-cdr"].forEach((id) => { document.getElementById(id).addEventListener("input", updateReg); document.getElementById(id).addEventListener("change", updateReg); });
+      updateMech(); updateReg();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSA Method Mouse Sensitivity Finder (Find Your Perfect FPS Aim) | ToolBox Hub</title>
+  <meta name="description" content="Find your mathematically ideal mouse sensitivity for Valorant, CS2, Overwatch 2, or Apex Legends using the interactive 7-step Perfect Sensitivity Approximation (PSA) method." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="PSA Method Mouse Sensitivity Finder | ToolBox Hub" />
+  <meta property="og:description" content="Interactive 7-iteration PSA method calculator to dial in your exact personal FPS mouse sensitivity." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/psa-sensitivity-finder.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/psa-sensitivity-finder.html" />
+
+  <meta name="tool:title" content="PSA Method Sensitivity Finder" />
+  <meta name="tool:category" content="Gaming & DIY" />
+  <meta name="tool:category_slug" content="hobby" />
+  <meta name="tool:icon" content="🖱️" />
+  <meta name="tool:summary" content="Interactive 7-step PSA Method calculator to find your mathematically ideal FPS mouse sensitivity." />
+  <meta name="tool:keywords" content="psa method calculator,perfect sensitivity finder,valorant sensitivity finder,cs2 aim,fps sensitivity" />
+  <meta name="tool:order" content="12" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "PSA Method Mouse Sensitivity Finder",
+        "url": "https://toolboxhub-kr.github.io/en/tools/psa-sensitivity-finder.html",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Interactive 7-iteration Perfect Sensitivity Approximation (PSA) method calculator for FPS gamers."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do I find my starting Base Sensitivity for the PSA method?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open your game's practice range and adjust your sensitivity until one full swipe from the left edge to the right edge of your mousepad turns your character exactly 360 degrees. Enter that value as your Starting Sensitivity."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many iterations does the PSA method take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The classic PSA method runs 7 iterations, gradually narrowing the low/high multiplier bracket (from ±50% down to ±5%) until you converge on your natural muscle-memory sweet spot."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Gaming &amp; DIY</span> <span>›</span> <span>PSA Sensitivity Finder</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>🖱️ PSA Method Mouse Sensitivity Finder</h1>
+      <p>Use the 7-step Perfect Sensitivity Approximation (PSA) algorithm to discover your ideal personal aim sensitivity.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">Step 1: Enter Your Starting 360° Base Sensitivity</div>
+          <div class="form-group">
+            <label class="field-label" for="psa-start">Starting Sensitivity (1 full mousepad swipe = 360°)</label>
+            <input type="number" id="psa-start" value="0.40" min="0.01" step="0.01" />
+          </div>
+          <div class="btn-row" style="margin-bottom:20px;">
+            <button type="button" class="btn btn-primary" id="btn-psa-start">Start / Reset 7-Step Test</button>
+          </div>
+
+          <div id="psa-active-box" style="padding:18px;border:1.5px solid var(--primary);border-radius:14px;background:var(--primary-soft);">
+            <div style="font-size:0.84rem;font-weight:700;color:var(--primary);margin-bottom:6px;" id="psa-step-label">Iteration 1 of 7</div>
+            <p style="margin:0 0 14px;font-size:0.9rem;color:var(--text-secondary);">Test BOTH sensitivities below in your practice range (track a bot's head while strafing), then click whichever feels smoother and more controllable:</p>
+            <div class="form-row">
+              <button type="button" class="btn btn-primary" id="btn-pick-low" style="padding:16px;flex-direction:column;">
+                <span style="font-size:0.78rem;opacity:0.85;">LOWER SENS</span>
+                <span style="font-size:1.35rem;" id="psa-low-val">0.200</span>
+              </button>
+              <button type="button" class="btn btn-success" id="btn-pick-high" style="padding:16px;flex-direction:column;">
+                <span style="font-size:0.78rem;opacity:0.85;">HIGHER SENS</span>
+                <span style="font-size:1.35rem;" id="psa-high-val">0.600</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label" id="psa-res-title">Current Center Sensitivity</div>
+            <div class="rh-value" id="psa-base-val">0.400</div>
+            <div class="rh-sub" id="psa-res-sub">Complete all 7 iterations to lock in your perfect sensitivity.</div>
+          </div>
+          <div class="form-section-title">Iteration History</div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Step</th><th>Lower</th><th>Base</th><th>Higher</th><th>Choice</th></tr></thead>
+              <tbody id="psa-hist-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>How the PSA Method Works</h2>
+      <p>The <strong>Perfect Sensitivity Approximation (PSA)</strong> method uses a binary-narrowing bracket across 7 rounds (multipliers: <code>0.5/1.5 → 0.6/1.4 → 0.7/1.3 → 0.8/1.2 → 0.85/1.15 → 0.9/1.1 → 0.95/1.05</code>). Each time you pick Lower or Higher, your new center becomes the average of the current base and your choice.</p>
+      <div class="tip-box">
+        <strong>💡 Transfer your result to other games:</strong> Once you finish step 7, plug your new sensitivity into our <a href="fps-edpi-calculator.html">FPS eDPI &amp; Sensitivity Converter</a> to match it across Valorant, CS2, Overwatch 2, and Apex!
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>How do I test Lower vs Higher sensitivity in-game?</summary>
+          <div class="faq-answer">Pick a stationary target or bot in the practice range, strafe left and right continuously, and try to keep your crosshair glued to the target's head. Choose whichever sensitivity causes less over-flicking or jitter.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does this work for every FPS game?</summary>
+          <div class="faq-answer">Yes! The PSA algorithm is completely game-independent and works for Valorant, CS2, Overwatch 2, Apex Legends, Fortnite, and Call of Duty.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script>
+    (function () {
+      const STEPS = [[0.5, 1.5], [0.6, 1.4], [0.7, 1.3], [0.8, 1.2], [0.85, 1.15], [0.9, 1.1], [0.95, 1.05]];
+      let step = 0, base = 0.4, hist = [];
+
+      function render() {
+        document.getElementById("psa-base-val").textContent = base.toFixed(3);
+        const box = document.getElementById("psa-active-box");
+        if (step >= STEPS.length) {
+          document.getElementById("psa-res-title").textContent = "🎯 Your Perfect Sensitivity (PSA Complete!)";
+          document.getElementById("psa-res-sub").textContent = "All 7 iterations completed — stick with this sensitivity for 1–2 weeks!";
+          box.style.display = "none";
+        } else {
+          box.style.display = "block";
+          const [loM, hiM] = STEPS[step];
+          document.getElementById("psa-step-label").textContent = `Iteration ${step + 1} of ${STEPS.length}`;
+          document.getElementById("psa-low-val").textContent = (base * loM).toFixed(3);
+          document.getElementById("psa-high-val").textContent = (base * hiM).toFixed(3);
+          document.getElementById("psa-res-title").textContent = "Current Center Sensitivity";
+          document.getElementById("psa-res-sub").textContent = `Step ${step + 1}/${STEPS.length} in progress...`;
+        }
+        document.getElementById("psa-hist-tbody").innerHTML = hist.map((h) =>
+          `<tr><td>#${h.s}</td><td>${h.lo}</td><td>${h.b}</td><td>${h.hi}</td><td style="font-weight:700;color:var(--primary);">${h.pick}</td></tr>`
+        ).join("");
+      }
+
+      function pick(side) {
+        if (step >= STEPS.length) return;
+        const [loM, hiM] = STEPS[step];
+        const lo = base * loM, hi = base * hiM;
+        hist.push({ s: step + 1, lo: lo.toFixed(3), b: base.toFixed(3), hi: hi.toFixed(3), pick: side === "low" ? "Lower" : "Higher" });
+        base = side === "low" ? (base + lo) / 2 : (base + hi) / 2;
+        step++;
+        render();
+      }
+
+      function reset() {
+        base = Math.max(0.01, Number(document.getElementById("psa-start").value) || 0.4);
+        step = 0; hist = []; render();
+      }
+
+      document.getElementById("btn-psa-start").addEventListener("click", reset);
+      document.getElementById("btn-pick-low").addEventListener("click", () => pick("low"));
+      document.getElementById("btn-pick-high").addEventListener("click", () => pick("high"));
+      reset();
+    })();
+  </script>
+</body>
+</html>

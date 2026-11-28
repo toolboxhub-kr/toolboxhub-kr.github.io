@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nicotine Shot &amp; Shortfill Calculator (50ml / 100ml UK &amp; EU) | ToolBox Hub</title>
+  <meta name="description" content="Calculate exactly how many 10ml nicotine shots (18mg or 20mg) to add to your 50ml, 100ml, or custom shortfill e-liquid bottle, plus final nicotine mg/ml and PG/VG ratio." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ToolBox Hub" />
+  <meta property="og:title" content="Nicotine Shot &amp; Shortfill Calculator (UK/EU) | ToolBox Hub" />
+  <meta property="og:description" content="Instant 10ml nic shot calculator for 50ml &amp; 100ml shortfills with final mg/ml and PG/VG ratio." />
+  <meta property="og:url" content="https://toolboxhub-kr.github.io/en/tools/nic-shot-calculator.html" />
+  <link rel="canonical" href="https://toolboxhub-kr.github.io/en/tools/nic-shot-calculator.html" />
+
+  <meta name="tool:title" content="Nicotine Shot & Shortfill Calculator" />
+  <meta name="tool:category" content="Gaming & DIY" />
+  <meta name="tool:category_slug" content="hobby" />
+  <meta name="tool:icon" content="💧" />
+  <meta name="tool:summary" content="Calculate how many 10ml nic shots (18mg/20mg) to add to 50ml or 100ml shortfills plus final PG/VG." />
+  <meta name="tool:keywords" content="nic shot calculator,shortfill calculator,100ml shortfill 3mg,50ml shortfill,uk vape,nicotine shot,pg vg" />
+  <meta name="tool:order" content="9" />
+
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Nicotine Shot & Shortfill Calculator",
+        "url": "https://toolboxhub-kr.github.io/en/tools/nic-shot-calculator.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free UK/EU TPD nicotine shot and shortfill calculator for 50ml, 100ml, and custom e-liquid bottles."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How many nic shots do I add to a 100ml shortfill to make 3mg?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Add two 10ml 18mg nicotine shots to a 100ml shortfill bottle. This gives 120ml total e-liquid at exactly 3.0mg/ml nicotine strength."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many nic shots for a 50ml shortfill to make 3mg?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Add one 10ml 18mg nicotine shot to a 50ml shortfill bottle, resulting in 60ml total e-liquid at exactly 3.0mg/ml."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if I use 20mg nic salt shots instead of 18mg freebase?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Adding one 10ml 20mg nic shot to a 50ml shortfill yields 3.33mg/ml (60ml total), and adding two 10ml 20mg shots to a 100ml shortfill also yields 3.33mg/ml (120ml total)."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header id="site-header"></header>
+  <main class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a> <span>›</span> <span>Gaming &amp; DIY</span> <span>›</span> <span>Nicotine Shot &amp; Shortfill Calculator</span>
+    </nav>
+    <section class="tool-hero">
+      <h1>💧 Nicotine Shot &amp; Shortfill Calculator (UK / EU)</h1>
+      <p>Find out exactly how many 10ml nic shots to add to your 50ml or 100ml shortfill, and check the final mg/ml &amp; PG/VG ratio.</p>
+    </section>
+    <div data-ad-slot="top"></div>
+
+    <section class="panel">
+      <div class="tool-layout">
+        <div>
+          <div class="form-section-title">Shortfill &amp; Nic Shot Details</div>
+          <div class="preset-chips" style="margin-bottom:14px;">
+            <button type="button" class="chip-btn" data-sf="50-3-18">50ml Shortfill → 3mg</button>
+            <button type="button" class="chip-btn" data-sf="100-3-18">100ml Shortfill → 3mg</button>
+            <button type="button" class="chip-btn" data-sf="100-6-18">100ml Shortfill → 6mg</button>
+            <button type="button" class="chip-btn" data-sf="50-6-20">50ml → 6mg (20mg Salt)</button>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="ns-sf-vol">Shortfill E-Liquid Volume</label>
+              <div class="input-group has-unit"><input type="number" id="ns-sf-vol" value="100" min="10" max="1000" step="10" /><span class="input-unit">ml</span></div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="ns-sf-vg">Shortfill VG %</label>
+              <div class="input-group has-unit"><input type="number" id="ns-sf-vg" value="70" min="0" max="100" step="5" /><span class="input-unit">% VG</span></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="field-label" for="ns-target">Target Nicotine Strength</label>
+              <div class="input-group has-unit"><input type="number" id="ns-target" value="3" min="0.5" max="15" step="0.5" /><span class="input-unit">mg/ml</span></div>
+            </div>
+            <div class="form-group">
+              <label class="field-label" for="ns-shot-mg">Nic Shot Strength (10ml)</label>
+              <select id="ns-shot-mg">
+                <option value="18" selected>18 mg/ml (Standard Freebase)</option>
+                <option value="20">20 mg/ml (Max TPD / Nic Salt)</option>
+                <option value="15">15 mg/ml</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="ns-shot-vg">Nic Shot VG %</label>
+            <select id="ns-shot-vg">
+              <option value="70" selected>70% VG / 30% PG</option>
+              <option value="50">50% VG / 50% PG</option>
+              <option value="100">100% VG (Max VG Shot)</option>
+              <option value="0">100% PG Shot</option>
+            </select>
+          </div>
+          <div class="btn-row"><button type="button" class="btn btn-primary" id="btn-copy-ns">Copy Mix Summary</button></div>
+        </div>
+
+        <div>
+          <div class="result-highlight">
+            <div class="rh-label">Recommended 10ml Nic Shots</div>
+            <div class="rh-value" id="ns-shots-main">2.0 shots (20 ml)</div>
+            <div class="rh-sub" id="ns-sub">Total Bottle Volume: 120 ml · Final Strength: 3.0 mg/ml</div>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-box"><div class="kpi-label">Exact Nic Shot Volume</div><div class="kpi-value text-primary" id="ns-exact-ml">20.0 ml</div></div>
+            <div class="kpi-box"><div class="kpi-label">Final PG / VG Ratio</div><div class="kpi-value text-success" id="ns-final-ratio">30% PG / 70% VG</div></div>
+          </div>
+          <div class="form-section-title" style="margin-top:16px;">Quick Reference: Whole 10ml Shot Guide</div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>10ml Shots Added</th><th>Total Volume</th><th>Final Strength</th><th>Final VG%</th></tr></thead>
+              <tbody id="ns-ref-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div data-ad-slot="middle"></div>
+
+    <article class="seo-article">
+      <h2>How the Shortfill &amp; Nic Shot Formula Works</h2>
+      <p>Because adding a 10ml nicotine shot increases the <strong>total liquid volume</strong> inside your bottle, the exact volume of nicotine shot required is calculated with:</p>
+      <div class="formula-box">
+        Nic Shot Volume (ml) = (Shortfill ml × Target mg) ÷ (Shot mg - Target mg)<br />
+        Number of 10ml Shots = Nic Shot Volume ÷ 10<br />
+        Final Strength (mg/ml) = (Shots × 10 × Shot mg) ÷ (Shortfill ml + Shots × 10)
+      </div>
+      <div class="tip-box">
+        <strong>💡 Mixing from scratch?</strong> Try our full <a href="eliquid-calculator.html">DIY E-Liquid &amp; Vape Juice Calculator (ml &amp; grams)</a> or estimate your yearly savings with our <a href="eliquid-cost-calculator.html">DIY E-Liquid Cost Calculator</a>.
+      </div>
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>How many nic shots do I add to a 100ml shortfill for 3mg?</summary>
+          <div class="faq-answer">Two 10ml 18mg nic shots give 120ml total at exactly 3.0mg/ml.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Why is a 100ml shortfill sold in a 120ml bottle?</summary>
+          <div class="faq-answer">Under UK/EU TPD regulations, nicotine-containing bottles are capped at 10ml. Manufacturers fill 100ml of 0mg flavor into a 120ml bottle leaving 20ml of headspace for two 10ml nic shots.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Should I shake my shortfill after adding nic shots?</summary>
+          <div class="faq-answer">Yes! Shake vigorously for 60–90 seconds so the nicotine distributes evenly throughout the VG/PG base before filling your tank.</div>
+        </details>
+      </div>
+    </article>
+
+    <div id="related-tools"></div>
+    <div data-ad-slot="bottom"></div>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="../../assets/js/ads-config.js"></script>
+  <script src="../../assets/js/en-tools-registry.js"></script>
+  <script src="../../assets/js/common.js"></script>
+  <script>
+    (function () {
+      function update() {
+        const sfVol = Math.max(1, Number(document.getElementById("ns-sf-vol").value) || 100);
+        const sfVg = Math.min(100, Math.max(0, Number(document.getElementById("ns-sf-vg").value) || 70));
+        const target = Math.max(0.1, Number(document.getElementById("ns-target").value) || 3);
+        const shotMg = Number(document.getElementById("ns-shot-mg").value) || 18;
+        const shotVg = Number(document.getElementById("ns-shot-vg").value);
+
+        const safeTarget = Math.min(target, shotMg - 0.5);
+        const exactMl = (sfVol * safeTarget) / (shotMg - safeTarget);
+        const exactShots = exactMl / 10;
+        const totalVol = sfVol + exactMl;
+        const finalVg = ((sfVol * sfVg) + (exactMl * shotVg)) / totalVol;
+        const finalPg = 100 - finalVg;
+
+        document.getElementById("ns-shots-main").textContent = `${exactShots.toFixed(1)} shots (${exactMl.toFixed(1)} ml)`;
+        document.getElementById("ns-sub").textContent = `Total Volume: ${totalVol.toFixed(1)} ml · Target Strength: ${safeTarget.toFixed(1)} mg/ml`;
+        document.getElementById("ns-exact-ml").textContent = `${exactMl.toFixed(1)} ml`;
+        document.getElementById("ns-final-ratio").textContent = `${Math.round(finalPg)}% PG / ${Math.round(finalVg)}% VG`;
+
+        document.getElementById("ns-ref-tbody").innerHTML = [1, 2, 3, 4].map((cnt) => {
+          const add = cnt * 10, tot = sfVol + add;
+          const mg = (add * shotMg) / tot;
+          const vg = ((sfVol * sfVg) + (add * shotVg)) / tot;
+          return `<tr><td><strong>${cnt} × 10ml</strong> (${add}ml)</td><td>${tot} ml</td><td style="color:var(--primary);font-weight:700;">${mg.toFixed(2)} mg/ml</td><td>${Math.round(vg)}% VG</td></tr>`;
+        }).join("");
+      }
+      document.querySelectorAll("[data-sf]").forEach((b) => b.addEventListener("click", () => {
+        const [v, t, m] = b.dataset.sf.split("-");
+        document.getElementById("ns-sf-vol").value = v;
+        document.getElementById("ns-target").value = t;
+        document.getElementById("ns-shot-mg").value = m;
+        update();
+      }));
+      ["ns-sf-vol", "ns-sf-vg", "ns-target", "ns-shot-mg", "ns-shot-vg"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", update);
+        document.getElementById(id).addEventListener("change", update);
+      });
+      document.getElementById("btn-copy-ns").addEventListener("click", () => {
+        TBH.copyText(`Shortfill Nic Shot Mix: ${document.getElementById("ns-shots-main").textContent} | ${document.getElementById("ns-sub").textContent}`);
+      });
+      update();
+    })();
+  </script>
+</body>
+</html>
